@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Financial Coach Dashboard</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Custom Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#4f46e5',
+                        'primary-light': '#eef2ff',
+                        green: { text: '#057A55', bg: '#DEF7EC', bar: '#10b981' },
+                        yellow: { text: '#92400e', bg: '#fef3c7', bar: '#f59e0b' },
+                        red: { text: '#C81E1E', bg: '#FDE2E1', bar: '#ef4444' }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-100 font-sans">
+
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-sm border-b border-slate-200 sticky top-0 z-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center"><a href="#" class="flex-shrink-0 flex items-center gap-2"><i class="fa-solid fa-layer-group text-primary text-2xl"></i><span class="font-bold text-xl text-slate-800">FinCoach</span></a></div>
+                <div class="hidden md:flex md:items-center md:space-x-2"><a href="#" class="bg-primary-light text-primary px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Dashboard</a><a href="#" class="text-slate-500 hover:bg-slate-100 hover:text-slate-700 px-3 py-2 rounded-md text-sm font-medium">Transactions</a><a href="#" class="text-slate-500 hover:bg-slate-100 hover:text-slate-700 px-3 py-2 rounded-md text-sm font-medium">AI Coach</a><a href="#" class="text-slate-500 hover:bg-slate-100 hover:text-slate-700 px-3 py-2 rounded-md text-sm font-medium">Reports</a></div>
+                <div class="flex items-center"><div class="hidden md:flex items-center gap-4"><button type="button" class="relative p-1 text-slate-400 hover:text-slate-600 focus:outline-none"><span class="sr-only">View notifications</span><i class="fa-regular fa-bell text-xl"></i><span class="absolute top-0 right-0 block h-2 w-2 rounded-full bg-red-500 ring-2 ring-white"></span></button><button type="button" class="flex text-sm bg-slate-200 rounded-full focus:outline-none ring-2 ring-offset-2 ring-primary"><span class="sr-only">Open user menu</span><img class="h-8 w-8 rounded-full" src="https://i.pravatar.cc/40?u=alex" alt="User avatar"></button></div><div class="md:hidden"><button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-slate-400 hover:text-slate-600 hover:bg-slate-100 focus:outline-none" aria-controls="mobile-menu" aria-expanded="false"><span class="sr-only">Open main menu</span><i class="fa-solid fa-bars text-xl"></i></button></div></div>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container mx-auto p-4 md:p-8">
+
+        <!-- Greeting & Proactive Alert -->
+        <header class="mb-8">
+            <h1 class="text-3xl font-bold text-slate-800 mb-2">Good morning, Alex!</h1>
+            <div class="flex items-start gap-4 p-4 bg-blue-100 text-blue-800 border border-blue-200 rounded-lg">
+                <i class="fa-solid fa-lightbulb text-xl mt-1"></i>
+                <p class="text-base"><span class="font-semibold">Heads up!</span> Your 'Fun' budget is 70% used, but we're only halfway through the month. Consider a home-cooked meal tonight!</p>
+            </div>
+        </header>
+
+        <!-- START: Financial Overview Section -->
+        <section class="mb-8">
+            <h2 class="text-2xl font-bold text-slate-800 mb-6">Financial Overview</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- Card 1: Remaining Money -->
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex items-center gap-6">
+                    <div class="w-16 h-16 rounded-full flex items-center justify-center bg-green-bg text-green-text text-3xl flex-shrink-0">
+                        <i class="fa-solid fa-wallet"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm font-medium text-slate-500">Remaining this Month</p>
+                        <p class="text-3xl font-bold text-slate-800 mt-1">$2,350.50</p>
+                    </div>
+                </div>
+
+                <!-- Card 2: Total Expenses -->
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex items-center gap-6">
+                    <div class="w-16 h-16 rounded-full flex items-center justify-center bg-red-bg text-red-text text-3xl flex-shrink-0">
+                        <i class="fa-solid fa-arrow-trend-down"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm font-medium text-slate-500">Expenses this Month</p>
+                        <p class="text-3xl font-bold text-slate-800 mt-1">$1,149.50</p>
+                    </div>
+                </div>
+
+                <!-- Card 3: Savings Goal -->
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between gap-6">
+                    <div>
+                        <p class="text-sm font-medium text-slate-500">Savings Goal Progress</p>
+                        <p class="text-xl font-bold text-slate-800 mt-1">$750 / <span class="text-base font-medium text-slate-500">$1000</span></p>
+                        <div class="w-full bg-slate-200 rounded-full h-2 mt-4 md:hidden"><div class="bg-primary h-2 rounded-full" style="width: 75%"></div></div>
+                    </div>
+                    <div class="hidden md:block flex-shrink-0">
+                        <svg class="w-24 h-24" viewBox="0 0 36 36">
+                            <path class="stroke-slate-200" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke-width="3"></path>
+                            <path class="stroke-primary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke-width="3" stroke-dasharray="75, 100" stroke-linecap="round"></path>
+                            <text x="18" y="20.35" class="fill-slate-700 text-[10px] font-bold" text-anchor="middle">75%</text>
+                        </svg>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!-- END: Financial Overview Section -->
+
+        <!-- Main Dashboard Layout: Jars on left, Transactions on right -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 lg:gap-8">
+            
+            <!-- Left Column: Jars -->
+            <main class="lg:col-span-2">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold text-slate-800">Your Jars</h2>
+                    <a href="#" class="flex items-center gap-2 text-sm font-semibold text-primary hover:text-indigo-700 transition-colors"><i class="fa-solid fa-pen-to-square"></i> Manage Jars</a>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- ALL SIX JAR CARDS FROM PREVIOUS VERSION GO HERE... -->
+                    <!-- Jar Card: Necessities -->
+                    <div class="relative bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow"><div class="flex items-center gap-4 mb-2"><div class="w-12 h-12 rounded-full flex items-center justify-center bg-indigo-100 text-indigo-600 text-xl"><i class="fa-solid fa-house-chimney"></i></div><h3 class="text-lg font-semibold text-slate-800">Necessities</h3></div><p class="text-sm text-slate-500 mb-4 ml-16">Rent, bills, groceries.</p><p class="text-2xl font-bold text-slate-700 mb-4">$850 / <span class="text-base font-medium text-slate-500">$1500</span></p><div class="w-full bg-slate-200 rounded-full h-2.5"><div class="bg-green-bar h-2.5 rounded-full" style="width: 56%"></div></div><button class="absolute top-4 right-4 text-xs font-semibold bg-slate-100 text-slate-600 px-3 py-1 rounded-full hover:bg-slate-200 transition-colors">Log +</button></div>
+                    <!-- Jar Card: Long-Term Savings --><div class="relative bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow"><div class="flex items-center gap-4 mb-2"><div class="w-12 h-12 rounded-full flex items-center justify-center bg-green-bg text-green-text text-xl"><i class="fa-solid fa-piggy-bank"></i></div><h3 class="text-lg font-semibold text-slate-800">Long-Term Savings</h3></div><p class="text-sm text-slate-500 mb-4 ml-16">For goals like a house or car.</p><p class="text-2xl font-bold text-slate-700 mb-4">$500 / <span class="text-base font-medium text-slate-500">$500</span></p><div class="w-full bg-slate-200 rounded-full h-2.5"><div class="bg-green-bar h-2.5 rounded-full" style="width: 100%"></div></div><button class="absolute top-4 right-4 text-xs font-semibold bg-slate-100 text-slate-600 px-3 py-1 rounded-full hover:bg-slate-200 transition-colors">Log +</button></div>
+                    <!-- Jar Card: Fun & Entertainment --><div class="relative bg-white p-6 rounded-xl border-2 border-yellow-400 shadow-lg hover:shadow-xl transition-shadow"><div class="flex items-center gap-4 mb-2"><div class="w-12 h-12 rounded-full flex items-center justify-center bg-yellow-bg text-yellow-text text-xl"><i class="fa-solid fa-martini-glass-citrus"></i></div><h3 class="text-lg font-semibold text-slate-800">Fun & Entertainment</h3></div><p class="text-sm text-slate-500 mb-4 ml-16">Dining out, movies, hobbies.</p><p class="text-2xl font-bold text-slate-700 mb-4">$350 / <span class="text-base font-medium text-slate-500">$500</span></p><div class="w-full bg-slate-200 rounded-full h-2.5"><div class="bg-yellow-bar h-2.5 rounded-full" style="width: 70%"></div></div><button class="absolute top-4 right-4 text-xs font-semibold bg-slate-100 text-slate-600 px-3 py-1 rounded-full hover:bg-slate-200 transition-colors">Log +</button></div>
+                    <!-- Jar Card: Education --><div class="relative bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow"><div class="flex items-center gap-4 mb-2"><div class="w-12 h-12 rounded-full flex items-center justify-center bg-blue-100 text-blue-600 text-xl"><i class="fa-solid fa-graduation-cap"></i></div><h3 class="text-lg font-semibold text-slate-800">Education</h3></div><p class="text-sm text-slate-500 mb-4 ml-16">Courses, books, self-growth.</p><p class="text-2xl font-bold text-slate-700 mb-4">$50 / <span class="text-base font-medium text-slate-500">$250</span></p><div class="w-full bg-slate-200 rounded-full h-2.5"><div class="bg-green-bar h-2.5 rounded-full" style="width: 20%"></div></div><button class="absolute top-4 right-4 text-xs font-semibold bg-slate-100 text-slate-600 px-3 py-1 rounded-full hover:bg-slate-200 transition-colors">Log +</button></div>
+                    <!-- Jar Card: Investments --><div class="relative bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow"><div class="flex items-center gap-4 mb-2"><div class="w-12 h-12 rounded-full flex items-center justify-center bg-red-bg text-red-text text-xl"><i class="fa-solid fa-hand-holding-dollar"></i></div><h3 class="text-lg font-semibold text-slate-800">Investments</h3></div><p class="text-sm text-slate-500 mb-4 ml-16">Stocks, funds, financial future.</p><p class="text-2xl font-bold text-slate-700 mb-4">$450 / <span class="text-base font-medium text-slate-500">$500</span></p><div class="w-full bg-slate-200 rounded-full h-2.5"><div class="bg-red-bar h-2.5 rounded-full" style="width: 90%"></div></div><button class="absolute top-4 right-4 text-xs font-semibold bg-slate-100 text-slate-600 px-3 py-1 rounded-full hover:bg-slate-200 transition-colors">Log +</button></div>
+                    <!-- Jar Card: Give --><div class="relative bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow"><div class="flex items-center gap-4 mb-2"><div class="w-12 h-12 rounded-full flex items-center justify-center bg-pink-100 text-pink-600 text-xl"><i class="fa-solid fa-gift"></i></div><h3 class="text-lg font-semibold text-slate-800">Give</h3></div><p class="text-sm text-slate-500 mb-4 ml-16">Charity, gifts, helping others.</p><p class="text-2xl font-bold text-slate-700 mb-4">$10 / <span class="text-base font-medium text-slate-500">$100</span></p><div class="w-full bg-slate-200 rounded-full h-2.5"><div class="bg-green-bar h-2.5 rounded-full" style="width: 10%"></div></div><button class="absolute top-4 right-4 text-xs font-semibold bg-slate-100 text-slate-600 px-3 py-1 rounded-full hover:bg-slate-200 transition-colors">Log +</button></div>
+                </div>
+            </main>
+
+            <!-- Right Column: Transactions & Quick Actions -->
+            <aside class="lg:col-span-1 mt-12 lg:mt-0">
+                <div class="sticky top-24">
+                    <!-- Quick Actions --><div class="mb-8 p-6 bg-white rounded-xl border border-slate-200 shadow-sm"><h3 class="text-xl font-bold text-slate-800 mb-4">Quick Actions</h3><div class="flex flex-col gap-3"><button class="w-full flex items-center justify-center gap-2 px-4 py-3 bg-primary text-white rounded-lg font-semibold shadow-sm hover:bg-indigo-700 transition-all"><i class="fa-solid fa-receipt"></i>Log Expense</button><button class="w-full flex items-center justify-center gap-2 px-4 py-3 bg-white text-slate-700 border border-slate-300 rounded-lg font-semibold shadow-sm hover:bg-slate-100 transition-all"><i class="fa-solid fa-comments-dollar"></i>Ask AI Coach</button></div></div>
+                    <!-- Recent Transactions --><div><h3 class="text-xl font-bold text-slate-800 mb-4">Recent Transactions</h3><div class="space-y-3"><div class="flex justify-between items-center p-4 bg-white rounded-lg border border-slate-200"><div class="pr-2"><p class="font-semibold text-slate-700 truncate">Netflix Subscription</p><span class="text-xs font-medium px-2 py-0.5 mt-1 rounded-full bg-yellow-bg text-yellow-text">Fun</span></div><p class="font-bold text-lg text-slate-800">-$15.49</p></div><div class="flex justify-between items-center p-4 bg-white rounded-lg border border-slate-200"><div class="pr-2"><p class="font-semibold text-slate-700 truncate">Grocery Shopping</p><span class="text-xs font-medium px-2 py-0.5 mt-1 rounded-full bg-indigo-100 text-indigo-600">Necessities</span></div><p class="font-bold text-lg text-slate-800">-$87.20</p></div><div class="flex justify-between items-center p-4 bg-white rounded-lg border border-slate-200"><div class="pr-2"><p class="font-semibold text-slate-700 truncate">Paycheck</p><span class="text-xs font-medium px-2 py-0.5 mt-1 rounded-full bg-green-bg text-green-text">Income</span></div><p class="font-bold text-lg text-green-600">+$1850.00</p></div></div></div>
+                </div>
+            </aside>
+        </div>
+    </div>
+</body>
+</html>
