@@ -27,10 +27,10 @@
 
     <!-- Main Content Area with 3 Columns -->
     <div class="container mx-auto p-4 md:p-8">
-        <div class="grid grid-cols-1 lg:grid-cols-5 lg:gap-8">
+        <div class="grid grid-cols-1 lg:grid-cols-10 lg:gap-8">
 
             <!-- START: Column 1 - Budget & AI Tools -->
-            <aside class="lg:col-span-1">
+            <aside class="lg:col-span-3">
                 <div class="lg:sticky lg:top-24 space-y-6">
                     
                     <!-- START: NEW Categorize Expense Component -->
@@ -58,7 +58,7 @@
                     <!-- Jars Allocation -->
                     <!-- START: REPAIRED Jars Allocation Component (with all 6 jars) -->
                     <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-                        <h3 class="text-base font-bold text-slate-800 mb-4">Jars Allocation</h3>
+                        <h3 class="text-lg font-bold text-slate-800 mb-4">Jars Allocation</h3>
                         <div class="space-y-3">
                             
                             <!-- Jar 1: Necessities -->
@@ -123,7 +123,7 @@
             <!-- END: Column 1 -->
 
             <!-- START: Column 2 - Chat Window -->
-            <main class="lg:col-span-3 flex flex-col bg-white rounded-xl border border-slate-200 shadow-sm" style="height: calc(100vh - 10rem);">
+            <main class="lg:col-span-7 flex flex-col bg-white rounded-xl border border-slate-200 shadow-sm" style="height: calc(100vh - 10rem);">
                 <!-- Chat History -->
                 <div class="flex-1 overflow-y-auto p-6 space-y-6"><div class="flex justify-start items-start gap-4"><div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center text-lg flex-shrink-0"><i class="fa-solid fa-robot"></i></div><div class="bg-slate-100 p-4 rounded-lg rounded-bl-none max-w-xl"><p>Hello! How can I help you manage your finances today?</p></div></div><div class="flex justify-end items-start gap-4"><div class="bg-primary text-white p-4 rounded-lg rounded-br-none max-w-xl"><p>Based on my spending, can I afford a new phone this month?</p></div><div class="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center font-bold text-slate-600 flex-shrink-0">A</div></div><div class="flex justify-start items-start gap-4"><div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center text-lg flex-shrink-0"><i class="fa-solid fa-robot"></i></div><div class="bg-slate-100 p-4 rounded-lg rounded-bl-none max-w-xl"><p>Let's take a look... Yes, you can likely afford a standard phone. If you want a high-end model, you might need to pull from your 'Fun' jar or wait another month.</p></div></div></div>
                 <!-- Smart Input Box -->
@@ -132,12 +132,6 @@
             <!-- END: Column 2 -->
             
             <!-- START: Column 3 - AI Tools -->
-            <aside class="lg:col-span-1">
-                <div class="lg:sticky lg:top-24 space-y-6">
-                    <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm"><h3 class="flex items-center gap-2 text-lg font-bold text-slate-800 mb-6"><i class="fa-solid fa-gear text-primary"></i> AI Configuration</h3><div class="space-y-4"><div><label class="text-sm font-medium text-slate-600">Response Detail Level</label><select class="mt-1 w-full p-2.5 bg-slate-100 border border-slate-200 rounded-lg appearance-none focus:ring-2 focus:ring-primary focus:outline-none" style="background-image: url('data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 fill=%27none%27 viewBox=%270 0 20 20%27%3e%3cpath stroke=%27%236b7280%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27 stroke-width=%271.5%27 d=%27M6 8l4 4 4-4%27/%3e%3c/svg%3e'); background-position: right 0.5rem center; background-repeat: no-repeat; background-size: 1.5em 1.5em;"><option>Detailed</option><option>Summary</option><option>Brief</option></select></div><div><label class="text-sm font-medium text-slate-600">Reminder Frequency</label><select class="mt-1 w-full p-2.5 bg-slate-100 border-2 border-slate-400 rounded-lg appearance-none focus:ring-2 focus:ring-primary focus:outline-none" style="background-image: url('data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 fill=%27none%27 viewBox=%270 0 20 20%27%3e%3cpath stroke=%27%236b7280%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27 stroke-width=%271.5%27 d=%27M6 8l4 4 4-4%27/%3e%3c/svg%3e'); background-position: right 0.5rem center; background-repeat: no-repeat; background-size: 1.5em 1.5em;"><option>Weekly</option><option>Daily</option><option>Monthly</option><option>Never</option></select></div></div><button class="w-full mt-6 py-2.5 bg-gradient-to-r from-primary to-indigo-400 text-white font-semibold rounded-lg hover:opacity-90 transition-opacity">Save Configuration</button></div>
-                    <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm"><h3 class="flex items-center gap-2 text-lg font-bold text-slate-800 mb-6"><i class="fa-solid fa-lightbulb text-yellow-400"></i> Quick Suggestions</h3><div class="space-y-3"><button class="w-full text-left p-3 bg-slate-100 text-slate-700 font-medium rounded-lg hover:bg-slate-200 transition-colors">Optimize my jars</button><button class="w-full text-left p-3 bg-slate-100 text-slate-700 font-medium rounded-lg hover:bg-slate-200 transition-colors">Analyze my spending</button><button class="w-full text-left p-3 bg-slate-100 text-slate-700 font-medium rounded-lg hover:bg-slate-200 transition-colors">Make a savings plan</button><button class="w-full text-left p-3 bg-slate-100 text-slate-700 font-medium rounded-lg hover:bg-slate-200 transition-colors">Adjust jar percentages</button></div></div>
-                </div>
-            </aside>
         </div>
     </div>
 </body>
