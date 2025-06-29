@@ -73,8 +73,6 @@ That's it! You can now explore the full functionality of the application.
 
 ## 📸 Screenshots
 
-*(This is a great place to add screenshots of your finished pages)*
-
 ### Dashboard
 Shows the main overview with financial stats and weekly spending.  
 ![Dashboard Screenshot](IMAGES/dashboard.png)
