@@ -4,19 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Budget & Jars Management</title>
-    
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Font Awesome Icons CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- Custom Tailwind Configuration -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
@@ -30,123 +20,134 @@
 </head>
 <body class="bg-slate-100 font-sans">
 
-    <!-- Navigation Bar (with "Jars" now active) -->
+    <!-- Navigation Bar -->
     <nav class="bg-white shadow-sm border-b border-slate-200 sticky top-0 z-50">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8"><div class="flex items-center justify-between h-16"><div class="flex items-center"><a href="#" class="flex-shrink-0 flex items-center gap-2"><i class="fa-solid fa-layer-group text-primary text-2xl"></i><span class="font-bold text-xl text-slate-800">FinCoach</span></a></div><div class="hidden md:flex md:items-center md:space-x-2"><a href="#" class="text-slate-500 hover:bg-slate-100 hover:text-slate-700 px-3 py-2 rounded-md text-sm font-medium">Dashboard</a><a href="#" class="bg-primary-light text-primary px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Jars</a><a href="#" class="text-slate-500 hover:bg-slate-100 hover:text-slate-700 px-3 py-2 rounded-md text-sm font-medium">Transactions</a><a href="#" class="text-slate-500 hover:bg-slate-100 hover:text-slate-700 px-3 py-2 rounded-md text-sm font-medium">AI Coach</a></div><div class="flex items-center"><div class="hidden md:flex items-center gap-4"><button type="button" class="relative p-1 text-slate-400 hover:text-slate-600"><span class="sr-only">View notifications</span><i class="fa-regular fa-bell text-xl"></i><span class="absolute top-0 right-0 block h-2 w-2 rounded-full bg-red-500 ring-2 ring-white"></span></button><button type="button" class="flex text-sm bg-slate-200 rounded-full focus:outline-none ring-2 ring-offset-2 ring-primary"><span class="sr-only">Open user menu</span><img class="h-8 w-8 rounded-full" src="https://i.pravatar.cc/40?u=alex" alt="User avatar"></button></div><div class="md:hidden"><button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-slate-400"><i class="fa-solid fa-bars text-xl"></i></button></div></div></div></div>
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8"><div class="flex items-center justify-between h-16"><div class="flex items-center"><a href="#" class="flex-shrink-0 flex items-center gap-2"><i class="fa-solid fa-layer-group text-primary text-2xl"></i><span class="font-bold text-xl text-slate-800">FinCoach</span></a></div><div class="hidden md:flex md:items-center md:space-x-2"><a href="#" class="text-slate-500 hover:bg-slate-100 hover:text-slate-700 px-3 py-2 rounded-md text-sm font-medium">Dashboard</a><a href="#" class="bg-primary-light text-primary px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Jars</a><a href="#" class="text-slate-500 hover:bg-slate-100 hover:text-slate-700 px-3 py-2 rounded-md text-sm font-medium">Transactions</a><a href="#" class="text-slate-500 hover:bg-slate-100 hover:text-slate-700 px-3 py-2 rounded-md text-sm font-medium">AI Coach</a></div><div class="flex items-center"><div class="hidden md:flex items-center gap-4"><button type="button" class="relative p-1 text-slate-400 hover:text-slate-600"><span class="sr-only">View notifications</span><i class="fa-regular fa-bell text-xl"></i><span class="absolute top-0 right-0 block h-2 w-2 rounded-full bg-danger ring-2 ring-white"></span></button><button type="button" class="flex text-sm bg-slate-200 rounded-full focus:outline-none ring-2 ring-offset-2 ring-primary"><span class="sr-only">Open user menu</span><img class="h-8 w-8 rounded-full" src="https://i.pravatar.cc/40?u=alex" alt="User avatar"></button></div><div class="md:hidden"><button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-slate-400"><i class="fa-solid fa-bars text-xl"></i></button></div></div></div></div>
     </nav>
 
     <!-- Main Content Area -->
     <div class="container mx-auto p-4 md:p-8">
-        <h1 class="text-3xl font-bold text-slate-800 mb-8">Budget & Jars Management</h1>
 
-        <div class="space-y-8">
-            <!-- 1. Total Income Component -->
-            <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-                <div class="flex justify-between items-center"><h3 class="text-xl font-bold text-slate-800">Total Income</h3><a href="#" class="text-sm font-semibold text-primary hover:text-indigo-700">Edit Income</a></div>
-                <p class="text-4xl font-bold text-slate-900 mt-2">$3,500.00 <span class="text-xl font-medium text-slate-500">/ month</span></p>
+        <!-- START: Main 2-Column Layout -->
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+            
+            <!-- Left Column: Controls (Income, Add Expense, Recurring) -->
+            <div class="lg:col-span-2 space-y-8">
+                <!-- Total Income Component -->
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm"><div class="flex justify-between items-center"><h3 class="text-xl font-bold text-slate-800">Total Income</h3><a href="#" class="text-sm font-semibold text-primary hover:text-indigo-700">Edit</a></div><p class="text-4xl font-bold text-slate-900 mt-2">$3,500.00 <span class="text-xl font-medium text-slate-500">/ month</span></p></div>
+
+                <!-- START: New Add New Expense Box -->
+				<div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+					<h3 class="text-xl font-bold text-slate-800 mb-4">Add New Expense</h3>
+					
+					<!-- New AI Scan Button -->
+					<button class="w-full flex items-center justify-center gap-3 py-3 border-2 border-dashed border-primary/50 text-primary font-semibold rounded-lg hover:bg-primary-light hover:border-solid transition-all">
+						<i class="fa-solid fa-wand-magic-sparkles"></i>
+						<span>Scan Receipt with AI</span>
+					</button>
+					
+					<!-- Separator -->
+					<div class="flex items-center gap-2 my-4">
+						<hr class="flex-grow border-slate-200">
+						<span class="text-sm text-slate-400 font-medium">Or enter manually</span>
+						<hr class="flex-grow border-slate-200">
+					</div>
+
+					<!-- The original manual entry form -->
+					<div class="space-y-4">
+						<div>
+							<label class="text-sm font-medium text-slate-600">Description</label>
+							<input type="text" placeholder="e.g., Lunch with friends" class="mt-1 w-full p-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-primary">
+						</div>
+						<div class="grid grid-cols-2 gap-4">
+							<div>
+								<label class="text-sm font-medium text-slate-600">Amount</label>
+								<input type="number" placeholder="0.00" class="mt-1 w-full p-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-primary">
+							</div>
+							<div>
+								<label class="text-sm font-medium text-slate-600">Date</label>
+								<input type="date" value="2024-06-15" class="mt-1 w-full p-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-primary">
+							</div>
+						</div>
+						<div>
+							<label class="text-sm font-medium text-slate-600">Choose a Jar</label>
+							<select class="mt-1 w-full p-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-primary">
+								<option>Fun</option>
+								<option>Necessities</option>
+								<option>Education</option>
+								<option>Invest</option>
+								<option>Give</option>
+								<option>Savings</option>
+							</select>
+						</div>
+						<button class="w-full py-3 bg-primary text-white font-semibold rounded-lg hover:bg-indigo-700 transition-colors">Log Expense</button>
+					</div>
+				</div>
+				<!-- END: REPAIRED Add New Expense Box -->
+
+                <!-- Recurring Fees Table -->
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm"><div class="flex justify-between items-center mb-4"><h3 class="text-xl font-bold text-slate-800">Recurring Fees</h3><button class="px-4 py-2 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-indigo-700 transition-colors">+ Add</button></div><div class="overflow-x-auto"><table class="w-full text-left"><thead class="border-b border-slate-200"><tr><th class="p-3 text-sm font-semibold text-slate-500">Name</th><th class="p-3 text-sm font-semibold text-slate-500">Amount</th><th class="p-3 text-sm font-semibold text-slate-500">Jar</th></tr></thead><tbody><tr class="border-b border-slate-100"><td class="p-3 font-medium text-slate-800">Rent</td><td class="p-3 text-slate-600">$1200.00</td><td class="p-3"><span class="text-xs font-medium px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-800">Necessities</span></td></tr><tr class="border-b border-slate-100"><td class="p-3 font-medium text-slate-800">Spotify</td><td class="p-3 text-slate-600">$15.00</td><td class="p-3"><span class="text-xs font-medium px-2 py-0.5 rounded-full bg-yellow-100 text-yellow-800">Fun</span></td></tr></tbody></table></div></div>
             </div>
 
-            <!-- 2. Jars Configuration Component -->
-			<!-- START: Remade Jars Configuration Component (with "Used" money progress) -->
-			<div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-				<h3 class="text-xl font-bold text-slate-800 mb-6">Jars Allocation & Status</h3>
-				
-				<!-- New 3x2 Grid Layout -->
-				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Right Column: Jars & Statistics -->
+            <div class="lg:col-span-3 space-y-8">
+                <!-- Jars Allocation & Status Component -->
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm"><h3 class="text-xl font-bold text-slate-800 mb-2">Jars Allocation & Status</h3><div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6"><div class="relative p-5 border border-slate-200 rounded-xl flex flex-col"><div class="flex justify-between items-center"><div class="flex items-center gap-3"><i class="fa-solid fa-house-chimney text-xl w-6 text-center text-primary"></i><h4 class="font-bold text-slate-800">Necessities</h4></div><button class="text-slate-400 hover:text-primary"><i class="fa-solid fa-ellipsis-vertical"></i></button></div><div class="mt-4 flex-grow"><p class="text-sm font-medium text-slate-500">Remaining</p><p class="text-2xl font-bold text-slate-900">$925.00 <span class="text-lg font-normal text-slate-400">/ $1,925.00</span></p></div><div class="mt-2"><div class="w-full bg-slate-200 rounded-full h-2.5"><div class="bg-primary h-2.5 rounded-full" style="width: 52%"></div></div></div></div><div class="relative p-5 border border-slate-200 rounded-xl flex flex-col"><div class="flex justify-between items-center"><div class="flex items-center gap-3"><i class="fa-solid fa-piggy-bank text-xl w-6 text-center text-green"></i><h4 class="font-bold text-slate-800">Savings</h4></div><button class="text-slate-400 hover:text-green"><i class="fa-solid fa-ellipsis-vertical"></i></button></div><div class="mt-4 flex-grow"><p class="text-sm font-medium text-slate-500">Saved</p><p class="text-2xl font-bold text-slate-900">$350.00 <span class="text-lg font-normal text-slate-400">/ $350.00</span></p></div><div class="mt-2"><div class="w-full bg-slate-200 rounded-full h-2.5"><div class="bg-green h-2.5 rounded-full" style="width: 100%"></div></div></div></div><div class="relative p-5 border border-slate-200 rounded-xl flex flex-col"><div class="flex justify-between items-center"><div class="flex items-center gap-3"><i class="fa-solid fa-martini-glass-citrus text-xl w-6 text-center text-yellow"></i><h4 class="font-bold text-slate-800">Fun</h4></div><button class="text-slate-400 hover:text-yellow"><i class="fa-solid fa-ellipsis-vertical"></i></button></div><div class="mt-4 flex-grow"><p class="text-sm font-medium text-slate-500">Remaining</p><p class="text-2xl font-bold text-yellow-600">$70.00 <span class="text-lg font-normal text-slate-400">/ $350.00</span></p></div><div class="mt-2"><div class="w-full bg-slate-200 rounded-full h-2.5"><div class="bg-yellow h-2.5 rounded-full" style="width: 80%"></div></div></div></div><div class="relative p-5 border border-slate-200 rounded-xl flex flex-col"><div class="flex justify-between items-center"><div class="flex items-center gap-3"><i class="fa-solid fa-graduation-cap text-xl w-6 text-center text-blue"></i><h4 class="font-bold text-slate-800">Education</h4></div><button class="text-slate-400 hover:text-blue"><i class="fa-solid fa-ellipsis-vertical"></i></button></div><div class="mt-4 flex-grow"><p class="text-sm font-medium text-slate-500">Remaining</p><p class="text-2xl font-bold text-slate-900">$300.00 <span class="text-lg font-normal text-slate-400">/ $350.00</span></p></div><div class="mt-2"><div class="w-full bg-slate-200 rounded-full h-2.5"><div class="bg-blue h-2.5 rounded-full" style="width: 14%"></div></div></div></div><div class="relative p-5 border border-slate-200 rounded-xl flex flex-col"><div class="flex justify-between items-center"><div class="flex items-center gap-3"><i class="fa-solid fa-hand-holding-dollar text-xl w-6 text-center text-danger"></i><h4 class="font-bold text-slate-800">Invest</h4></div><button class="text-slate-400 hover:text-danger"><i class="fa-solid fa-ellipsis-vertical"></i></button></div><div class="mt-4 flex-grow"><p class="text-sm font-medium text-slate-500">Remaining</p><p class="text-2xl font-bold text-danger">$17.50 <span class="text-lg font-normal text-slate-400">/ $175.00</span></p></div><div class="mt-2"><div class="w-full bg-slate-200 rounded-full h-2.5"><div class="bg-danger h-2.5 rounded-full" style="width: 90%"></div></div></div></div><div class="relative p-5 border border-slate-200 rounded-xl flex flex-col"><div class="flex justify-between items-center"><div class="flex items-center gap-3"><i class="fa-solid fa-gift text-xl w-6 text-center text-pink"></i><h4 class="font-bold text-slate-800">Give</h4></div><button class="text-slate-400 hover:text-pink"><i class="fa-solid fa-ellipsis-vertical"></i></button></div><div class="mt-4 flex-grow"><p class="text-sm font-medium text-slate-500">Remaining</p><p class="text-2xl font-bold text-slate-900">$175.00 <span class="text-lg font-normal text-slate-400">/ $175.00</span></p></div><div class="mt-2"><div class="w-full bg-slate-200 rounded-full h-2.5"><div class="bg-pink h-2.5 rounded-full" style="width: 0%"></div></div></div></div></div></div>
 
-					<!-- Jar Card: Necessities -->
-					<div class="relative p-5 border border-slate-200 rounded-xl flex flex-col">
-						<div class="flex justify-between items-center"><div class="flex items-center gap-3"><i class="fa-solid fa-house-chimney text-xl w-6 text-center text-primary"></i><h4 class="font-bold text-slate-800">Necessities</h4></div><button class="text-slate-400 hover:text-primary"><i class="fa-solid fa-ellipsis-vertical"></i></button></div>
-						<div class="mt-4 flex-grow">
-							<p class="text-sm font-medium text-slate-500">Remaining</p>
-							<p class="text-2xl font-bold text-slate-900">$925.00 <span class="text-lg font-normal text-slate-400">/ $1,925.00</span></p>
+                <!-- START: Right Column (Modified with 6-Line Cumulative Chart) -->
+				<div class="lg:col-span-2">
+					<div class="lg:sticky lg:top-24">
+						<!-- New Monthly Cumulative Spending Chart -->
+						<div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+							<div class="flex justify-between items-center mb-4">
+								<h3 class="text-xl font-bold text-slate-800">Monthly Cumulative Spending</h3>
+								<span class="text-sm font-medium text-slate-500 bg-slate-100 px-3 py-1 rounded-md">For June 2024</span>
+							</div>
+							<!-- SVG Line Chart -->
+							<div class="w-full h-80">
+								<svg width="100%" height="100%" viewBox="0 0 500 200" preserveAspectRatio="none">
+									<!-- Grid Lines and X-Axis Labels -->
+									<g>
+										<line x1="0" y1="0" x2="500" y2="0" stroke="#e2e8f0" stroke-width="1"></line>
+										<line x1="0" y1="50" x2="500" y2="50" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="2"></line>
+										<line x1="0" y1="100" x2="500" y2="100" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="2"></line>
+										<line x1="0" y1="150" x2="500" y2="150" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="2"></line>
+										<text x="50" y="195" font-size="12" fill="#64748b" text-anchor="middle">1</text>
+										<text x="130" y="195" font-size="12" fill="#64748b" text-anchor="middle">5</text>
+										<text x="210" y="195" font-size="12" fill="#64748b" text-anchor="middle">10</text>
+										<text x="290" y="195" font-size="12" fill="#64748b" text-anchor="middle">15</text>
+										<text x="370" y="195" font-size="12" fill="#64748b" text-anchor="middle">20</text>
+										<text x="450" y="195" font-size="12" fill="#64748b" text-anchor="middle">25</text>
+									</g>
+									
+									<!-- SVG LINE CHART (using <path> elements) -->
+									<g>
+										<!-- Line 1: Give (Pink) - lowest spending -->
+										<path d="M 50 180 L 130 180 L 210 175 L 290 175 L 370 170 L 450 170" stroke="#ec4899" fill="none" stroke-width="2" stroke-linecap="round"></path>
+										<!-- Line 2: Invest (Red) -->
+										<path d="M 50 175 L 130 170 L 210 165 L 290 160 L 370 155 L 450 150" stroke="#ef4444" fill="none" stroke-width="2" stroke-linecap="round"></path>
+										<!-- Line 3: Education (Blue) -->
+										<path d="M 50 165 L 130 160 L 210 155 L 290 140 L 370 140 L 450 130" stroke="#3b82f6" fill="none" stroke-width="2" stroke-linecap="round"></path>
+										<!-- Line 4: Fun (Yellow) -->
+										<path d="M 50 150 L 130 140 L 210 120 L 290 110 L 370 90 L 450 85" stroke="#f59e0b" fill="none" stroke-width="2" stroke-linecap="round"></path>
+										<!-- Line 5: Savings (Green) - Single deposit, then flat -->
+										<path d="M 50 130 L 130 110 L 210 110 L 290 110 L 370 110 L 450 110" stroke="#10b981" fill="none" stroke-width="2" stroke-linecap="round"></path>
+										
+										<!-- Line 6: Necessities (Primary) - Thicker line with data point circles -->
+										<path d="M 50 80 L 130 70 L 210 65 L 290 55 L 370 45 L 450 40" stroke="#4f46e5" fill="none" stroke-width="3" stroke-linecap="round"></path>
+										<!-- <circle cx="50" cy="80" r="4" fill="#4f46e5" stroke="white" stroke-width="2"></circle>
+										<circle cx="130" cy="70" r="4" fill="#4f46e5" stroke="white" stroke-width="2"></circle>
+										<circle cx="210" cy="65" r="4" fill="#4f46e5" stroke="white" stroke-width="2"></circle>
+										<circle cx="290" cy="55" r="4" fill="#4f46e5" stroke="white" stroke-width="2"></circle>
+										<circle cx="370" cy="45" r="4" fill="#4f46e5" stroke="white" stroke-width="2"></circle>
+										<circle cx="450" cy="40" r="4" fill="#4f46e5" stroke="white" stroke-width="2"></circle> -->
+									</g>
+								</svg>
+							</div>
 						</div>
-						<div class="mt-2"><div class="w-full bg-slate-200 rounded-full h-2.5"><div class="bg-primary h-2.5 rounded-full" style="width: 52%"></div></div></div>
-						<!-- <div class="absolute bottom-0 left-0 right-0 h-1 bg-primary rounded-b-xl"></div> -->
-					</div>
-
-					<!-- Jar Card: Savings (fully saved) -->
-					<div class="relative p-5 border border-slate-200 rounded-xl flex flex-col">
-						<div class="flex justify-between items-center"><div class="flex items-center gap-3"><i class="fa-solid fa-piggy-bank text-xl w-6 text-center text-green"></i><h4 class="font-bold text-slate-800">Savings</h4></div><button class="text-slate-400 hover:text-green"><i class="fa-solid fa-ellipsis-vertical"></i></button></div>
-						<div class="mt-4 flex-grow">
-							<p class="text-sm font-medium text-slate-500">Saved this month</p>
-							<p class="text-2xl font-bold text-slate-900">$350.00 <span class="text-lg font-normal text-slate-400">/ $350.00</span></p>
-						</div>
-						<div class="mt-2"><div class="w-full bg-slate-200 rounded-full h-2.5"><div class="bg-green h-2.5 rounded-full" style="width: 100%"></div></div></div>
-						<!-- <div class="absolute bottom-0 left-0 right-0 h-1 bg-green rounded-b-xl"></div> -->
-					</div>
-
-					<!-- Jar Card: Fun (Warning State) -->
-					<div class="relative p-5 border border-slate-200 rounded-xl flex flex-col">
-						<div class="flex justify-between items-center"><div class="flex items-center gap-3"><i class="fa-solid fa-martini-glass-citrus text-xl w-6 text-center text-yellow"></i><h4 class="font-bold text-slate-800">Fun</h4></div><button class="text-slate-400 hover:text-yellow"><i class="fa-solid fa-ellipsis-vertical"></i></button></div>
-						<div class="mt-4 flex-grow">
-							<p class="text-sm font-medium text-slate-500">Remaining</p>
-							<p class="text-2xl font-bold text-yellow-600">$70.00 <span class="text-lg font-normal text-slate-400">/ $350.00</span></p>
-						</div>
-						<!-- Progress bar color changes to yellow for warning -->
-						<div class="mt-2"><div class="w-full bg-slate-200 rounded-full h-2.5"><div class="bg-yellow h-2.5 rounded-full" style="width: 80%"></div></div></div>
-						<!-- <div class="absolute bottom-0 left-0 right-0 h-1 bg-yellow rounded-b-xl"></div> -->
-					</div>
-
-					<!-- Jar Card: Education -->
-					<div class="relative p-5 border border-slate-200 rounded-xl flex flex-col">
-						<div class="flex justify-between items-center"><div class="flex items-center gap-3"><i class="fa-solid fa-graduation-cap text-xl w-6 text-center text-blue"></i><h4 class="font-bold text-slate-800">Education</h4></div><button class="text-slate-400 hover:text-blue"><i class="fa-solid fa-ellipsis-vertical"></i></button></div>
-						<div class="mt-4 flex-grow">
-							<p class="text-sm font-medium text-slate-500">Remaining</p>
-							<p class="text-2xl font-bold text-slate-900">$300.00 <span class="text-lg font-normal text-slate-400">/ $350.00</span></p>
-						</div>
-						<div class="mt-2"><div class="w-full bg-slate-200 rounded-full h-2.5"><div class="bg-blue h-2.5 rounded-full" style="width: 14%"></div></div></div>
-						<!-- <div class="absolute bottom-0 left-0 right-0 h-1 bg-blue rounded-b-xl"></div> -->
-					</div>
-
-					<!-- Jar Card: Invest (Danger State) -->
-					<div class="relative p-5 border border-slate-200 rounded-xl flex flex-col">
-						<div class="flex justify-between items-center"><div class="flex items-center gap-3"><i class="fa-solid fa-hand-holding-dollar text-xl w-6 text-center text-danger"></i><h4 class="font-bold text-slate-800">Invest</h4></div><button class="text-slate-400 hover:text-danger"><i class="fa-solid fa-ellipsis-vertical"></i></button></div>
-						<div class="mt-4 flex-grow">
-							<p class="text-sm font-medium text-slate-500">Remaining</p>
-							<p class="text-2xl font-bold text-danger">$17.50 <span class="text-lg font-normal text-slate-400">/ $175.00</span></p>
-						</div>
-						<!-- Progress bar color changes to red for danger -->
-						<div class="mt-2"><div class="w-full bg-slate-200 rounded-full h-2.5"><div class="bg-danger h-2.5 rounded-full" style="width: 90%"></div></div></div>
-						<!-- <div class="absolute bottom-0 left-0 right-0 h-1 bg-danger rounded-b-xl"></div> -->
-					</div>
-
-					<!-- Jar Card: Give -->
-					<div class="relative p-5 border border-slate-200 rounded-xl flex flex-col">
-						<div class="flex justify-between items-center"><div class="flex items-center gap-3"><i class="fa-solid fa-gift text-xl w-6 text-center text-pink"></i><h4 class="font-bold text-slate-800">Give</h4></div><button class="text-slate-400 hover:text-pink"><i class="fa-solid fa-ellipsis-vertical"></i></button></div>
-						<div class="mt-4 flex-grow">
-							<p class="text-sm font-medium text-slate-500">Remaining</p>
-							<p class="text-2xl font-bold text-slate-900">$175.00 <span class="text-lg font-normal text-slate-400">/ $175.00</span></p>
-						</div>
-						<div class="mt-2"><div class="w-full bg-slate-200 rounded-full h-2.5"><div class="bg-pink h-2.5 rounded-full" style="width: 10%"></div></div></div>
-						<!-- <div class="absolute bottom-0 left-0 right-0 h-1 bg-pink rounded-b-xl"></div> -->
 					</div>
 				</div>
-
-				<!-- Running Total (It is still important to show if the allocation percentages are correct) -->
-				<div class="bg-slate-100 p-4 rounded-lg mt-6 flex justify-between items-center">
-					<div class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-xl text-green"></i><div><p class="font-bold text-green">Total Allocation: 100%</p><p class="text-sm text-slate-500">Your budget is perfectly balanced. Good job!</p></div></div>
-				</div>
-			</div>
-
-            <!-- 3. Recurring Fees Table -->
-            <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-                <div class="flex justify-between items-center mb-4">
-                    <h3 class="text-xl font-bold text-slate-800">Recurring Fees</h3>
-                    <button class="px-4 py-2 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-indigo-700 transition-colors">+ Add Recurring Fee</button>
-                </div>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left">
-                        <thead class="border-b border-slate-200">
-                            <tr><th class="p-3 text-sm font-semibold text-slate-500">Name</th><th class="p-3 text-sm font-semibold text-slate-500">Amount</th><th class="p-3 text-sm font-semibold text-slate-500">Frequency</th><th class="p-3 text-sm font-semibold text-slate-500">Linked Jar</th><th class="p-3 text-sm font-semibold text-slate-500 text-right">Actions</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr class="border-b border-slate-100"><td class="p-3 font-medium text-slate-800">Rent</td><td class="p-3 text-slate-600">$1200.00</td><td class="p-3 text-slate-600">Monthly</td><td class="p-3"><span class="text-xs font-medium px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-800">Necessities</span></td><td class="p-3 text-right space-x-4"><a href="#" class="font-semibold text-primary hover:underline">Edit</a><a href="#" class="font-semibold text-danger hover:underline">Delete</a></td></tr>
-                            <tr class="border-b border-slate-100"><td class="p-3 font-medium text-slate-800">Spotify</td><td class="p-3 text-slate-600">$15.00</td><td class="p-3 text-slate-600">Monthly</td><td class="p-3"><span class="text-xs font-medium px-2 py-0.5 rounded-full bg-yellow-100 text-yellow-800">Fun</span></td><td class="p-3 text-right space-x-4"><a href="#" class="font-semibold text-primary hover:underline">Edit</a><a href="#" class="font-semibold text-danger hover:underline">Delete</a></td></tr>
-                            <tr class="border-b border-slate-100"><td class="p-3 font-medium text-slate-800">Gym Membership</td><td class="p-3 text-slate-600">$45.00</td><td class="p-3 text-slate-600">Monthly</td><td class="p-3"><span class="text-xs font-medium px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-800">Necessities</span></td><td class="p-3 text-right space-x-4"><a href="#" class="font-semibold text-primary hover:underline">Edit</a><a href="#" class="font-semibold text-danger hover:underline">Delete</a></td></tr>
-                        </tbody>
-                    </table>
-                </div>
+				<!-- END: Right Column -->
             </div>
         </div>
     </div>
