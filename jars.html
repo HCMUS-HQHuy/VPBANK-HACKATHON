@@ -47,26 +47,87 @@
             </div>
 
             <!-- 2. Jars Configuration Component -->
-            <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-                <h3 class="text-xl font-bold text-slate-800 mb-6">Jars Allocation</h3>
-                <div class="divide-y divide-slate-200">
-                    <!-- Jar Item -->
-                    <div class="flex items-center justify-between py-4"><div class="flex items-center gap-4"><i class="fa-solid fa-house-chimney text-xl w-6 text-center text-primary"></i><div><p class="font-medium text-slate-800">Necessities</p><p class="text-sm text-slate-500">55%</p></div></div><div class="text-right"><p class="font-semibold text-slate-800 text-lg">$1,925.00</p><a href="#" class="text-xs font-semibold text-primary hover:text-indigo-700">Edit</a></div></div>
-                    <div class="flex items-center justify-between py-4"><div class="flex items-center gap-4"><i class="fa-solid fa-piggy-bank text-xl w-6 text-center text-green"></i><div><p class="font-medium text-slate-800">Savings</p><p class="text-sm text-slate-500">10%</p></div></div><div class="text-right"><p class="font-semibold text-slate-800 text-lg">$350.00</p><a href="#" class="text-xs font-semibold text-primary hover:text-indigo-700">Edit</a></div></div>
-                    <div class="flex items-center justify-between py-4"><div class="flex items-center gap-4"><i class="fa-solid fa-martini-glass-citrus text-xl w-6 text-center text-yellow"></i><div><p class="font-medium text-slate-800">Fun</p><p class="text-sm text-slate-500">10%</p></div></div><div class="text-right"><p class="font-semibold text-slate-800 text-lg">$350.00</p><a href="#" class="text-xs font-semibold text-primary hover:text-indigo-700">Edit</a></div></div>
-                    <div class="flex items-center justify-between py-4"><div class="flex items-center gap-4"><i class="fa-solid fa-graduation-cap text-xl w-6 text-center text-blue"></i><div><p class="font-medium text-slate-800">Education</p><p class="text-sm text-slate-500">10%</p></div></div><div class="text-right"><p class="font-semibold text-slate-800 text-lg">$350.00</p><a href="#" class="text-xs font-semibold text-primary hover:text-indigo-700">Edit</a></div></div>
-                    <div class="flex items-center justify-between py-4"><div class="flex items-center gap-4"><i class="fa-solid fa-hand-holding-dollar text-xl w-6 text-center text-danger"></i><div><p class="font-medium text-slate-800">Invest</p><p class="text-sm text-slate-500">5%</p></div></div><div class="text-right"><p class="font-semibold text-slate-800 text-lg">$175.00</p><a href="#" class="text-xs font-semibold text-primary hover:text-indigo-700">Edit</a></div></div>
-                    <div class="flex items-center justify-between py-4"><div class="flex items-center gap-4"><i class="fa-solid fa-gift text-xl w-6 text-center text-pink"></i><div><p class="font-medium text-slate-800">Give</p><p class="text-sm text-slate-500">5%</p></div></div><div class="text-right"><p class="font-semibold text-slate-800 text-lg">$175.00</p><a href="#" class="text-xs font-semibold text-primary hover:text-indigo-700">Edit</a></div></div>
-                </div>
-                <!-- Running Total (Conditional Color Example) -->
-                <div class="border-t-2 border-slate-200 mt-4 pt-4 flex justify-between font-bold text-slate-800">
-                    <span class="text-danger">Total Allocation:</span>
-                    <span class="text-danger">95% / 100%</span>
-                    <!-- Example of a correct total: -->
-                    <!-- <span class="text-green">Total Allocation:</span> -->
-                    <!-- <span class="text-green">100% / 100%</span> -->
-                </div>
-            </div>
+			<!-- START: Remade Jars Configuration Component (with "Used" money progress) -->
+			<div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+				<h3 class="text-xl font-bold text-slate-800 mb-6">Jars Allocation & Status</h3>
+				
+				<!-- New 3x2 Grid Layout -->
+				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+					<!-- Jar Card: Necessities -->
+					<div class="relative p-5 border border-slate-200 rounded-xl flex flex-col">
+						<div class="flex justify-between items-center"><div class="flex items-center gap-3"><i class="fa-solid fa-house-chimney text-xl w-6 text-center text-primary"></i><h4 class="font-bold text-slate-800">Necessities</h4></div><button class="text-slate-400 hover:text-primary"><i class="fa-solid fa-ellipsis-vertical"></i></button></div>
+						<div class="mt-4 flex-grow">
+							<p class="text-sm font-medium text-slate-500">Remaining</p>
+							<p class="text-2xl font-bold text-slate-900">$925.00 <span class="text-lg font-normal text-slate-400">/ $1,925.00</span></p>
+						</div>
+						<div class="mt-2"><div class="w-full bg-slate-200 rounded-full h-2.5"><div class="bg-primary h-2.5 rounded-full" style="width: 52%"></div></div></div>
+						<!-- <div class="absolute bottom-0 left-0 right-0 h-1 bg-primary rounded-b-xl"></div> -->
+					</div>
+
+					<!-- Jar Card: Savings (fully saved) -->
+					<div class="relative p-5 border border-slate-200 rounded-xl flex flex-col">
+						<div class="flex justify-between items-center"><div class="flex items-center gap-3"><i class="fa-solid fa-piggy-bank text-xl w-6 text-center text-green"></i><h4 class="font-bold text-slate-800">Savings</h4></div><button class="text-slate-400 hover:text-green"><i class="fa-solid fa-ellipsis-vertical"></i></button></div>
+						<div class="mt-4 flex-grow">
+							<p class="text-sm font-medium text-slate-500">Saved this month</p>
+							<p class="text-2xl font-bold text-slate-900">$350.00 <span class="text-lg font-normal text-slate-400">/ $350.00</span></p>
+						</div>
+						<div class="mt-2"><div class="w-full bg-slate-200 rounded-full h-2.5"><div class="bg-green h-2.5 rounded-full" style="width: 100%"></div></div></div>
+						<!-- <div class="absolute bottom-0 left-0 right-0 h-1 bg-green rounded-b-xl"></div> -->
+					</div>
+
+					<!-- Jar Card: Fun (Warning State) -->
+					<div class="relative p-5 border border-slate-200 rounded-xl flex flex-col">
+						<div class="flex justify-between items-center"><div class="flex items-center gap-3"><i class="fa-solid fa-martini-glass-citrus text-xl w-6 text-center text-yellow"></i><h4 class="font-bold text-slate-800">Fun</h4></div><button class="text-slate-400 hover:text-yellow"><i class="fa-solid fa-ellipsis-vertical"></i></button></div>
+						<div class="mt-4 flex-grow">
+							<p class="text-sm font-medium text-slate-500">Remaining</p>
+							<p class="text-2xl font-bold text-yellow-600">$70.00 <span class="text-lg font-normal text-slate-400">/ $350.00</span></p>
+						</div>
+						<!-- Progress bar color changes to yellow for warning -->
+						<div class="mt-2"><div class="w-full bg-slate-200 rounded-full h-2.5"><div class="bg-yellow h-2.5 rounded-full" style="width: 80%"></div></div></div>
+						<!-- <div class="absolute bottom-0 left-0 right-0 h-1 bg-yellow rounded-b-xl"></div> -->
+					</div>
+
+					<!-- Jar Card: Education -->
+					<div class="relative p-5 border border-slate-200 rounded-xl flex flex-col">
+						<div class="flex justify-between items-center"><div class="flex items-center gap-3"><i class="fa-solid fa-graduation-cap text-xl w-6 text-center text-blue"></i><h4 class="font-bold text-slate-800">Education</h4></div><button class="text-slate-400 hover:text-blue"><i class="fa-solid fa-ellipsis-vertical"></i></button></div>
+						<div class="mt-4 flex-grow">
+							<p class="text-sm font-medium text-slate-500">Remaining</p>
+							<p class="text-2xl font-bold text-slate-900">$300.00 <span class="text-lg font-normal text-slate-400">/ $350.00</span></p>
+						</div>
+						<div class="mt-2"><div class="w-full bg-slate-200 rounded-full h-2.5"><div class="bg-blue h-2.5 rounded-full" style="width: 14%"></div></div></div>
+						<!-- <div class="absolute bottom-0 left-0 right-0 h-1 bg-blue rounded-b-xl"></div> -->
+					</div>
+
+					<!-- Jar Card: Invest (Danger State) -->
+					<div class="relative p-5 border border-slate-200 rounded-xl flex flex-col">
+						<div class="flex justify-between items-center"><div class="flex items-center gap-3"><i class="fa-solid fa-hand-holding-dollar text-xl w-6 text-center text-danger"></i><h4 class="font-bold text-slate-800">Invest</h4></div><button class="text-slate-400 hover:text-danger"><i class="fa-solid fa-ellipsis-vertical"></i></button></div>
+						<div class="mt-4 flex-grow">
+							<p class="text-sm font-medium text-slate-500">Remaining</p>
+							<p class="text-2xl font-bold text-danger">$17.50 <span class="text-lg font-normal text-slate-400">/ $175.00</span></p>
+						</div>
+						<!-- Progress bar color changes to red for danger -->
+						<div class="mt-2"><div class="w-full bg-slate-200 rounded-full h-2.5"><div class="bg-danger h-2.5 rounded-full" style="width: 90%"></div></div></div>
+						<!-- <div class="absolute bottom-0 left-0 right-0 h-1 bg-danger rounded-b-xl"></div> -->
+					</div>
+
+					<!-- Jar Card: Give -->
+					<div class="relative p-5 border border-slate-200 rounded-xl flex flex-col">
+						<div class="flex justify-between items-center"><div class="flex items-center gap-3"><i class="fa-solid fa-gift text-xl w-6 text-center text-pink"></i><h4 class="font-bold text-slate-800">Give</h4></div><button class="text-slate-400 hover:text-pink"><i class="fa-solid fa-ellipsis-vertical"></i></button></div>
+						<div class="mt-4 flex-grow">
+							<p class="text-sm font-medium text-slate-500">Remaining</p>
+							<p class="text-2xl font-bold text-slate-900">$175.00 <span class="text-lg font-normal text-slate-400">/ $175.00</span></p>
+						</div>
+						<div class="mt-2"><div class="w-full bg-slate-200 rounded-full h-2.5"><div class="bg-pink h-2.5 rounded-full" style="width: 10%"></div></div></div>
+						<!-- <div class="absolute bottom-0 left-0 right-0 h-1 bg-pink rounded-b-xl"></div> -->
+					</div>
+				</div>
+
+				<!-- Running Total (It is still important to show if the allocation percentages are correct) -->
+				<div class="bg-slate-100 p-4 rounded-lg mt-6 flex justify-between items-center">
+					<div class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-xl text-green"></i><div><p class="font-bold text-green">Total Allocation: 100%</p><p class="text-sm text-slate-500">Your budget is perfectly balanced. Good job!</p></div></div>
+				</div>
+			</div>
 
             <!-- 3. Recurring Fees Table -->
             <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
