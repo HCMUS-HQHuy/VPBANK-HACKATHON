@@ -37,57 +37,125 @@
                 <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm"><div class="flex justify-between items-center"><h3 class="text-xl font-bold text-slate-800">Total Income</h3><a href="#" class="text-sm font-semibold text-primary hover:text-indigo-700">Edit</a></div><p class="text-4xl font-bold text-slate-900 mt-2">$3,500.00 <span class="text-xl font-medium text-slate-500">/ month</span></p></div>
 
                 <!-- START: New Add New Expense Box -->
-				<div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-					<h3 class="text-xl font-bold text-slate-800 mb-4">Add New Expense</h3>
-					
-					<!-- New AI Scan Button -->
-					<button class="w-full flex items-center justify-center gap-3 py-3 border-2 border-dashed border-primary/50 text-primary font-semibold rounded-lg hover:bg-primary-light hover:border-solid transition-all">
-						<i class="fa-solid fa-wand-magic-sparkles"></i>
-						<span>Scan Receipt with AI</span>
-					</button>
-					
-					<!-- Separator -->
-					<div class="flex items-center gap-2 my-4">
-						<hr class="flex-grow border-slate-200">
-						<span class="text-sm text-slate-400 font-medium">Or enter manually</span>
-						<hr class="flex-grow border-slate-200">
-					</div>
+<!-- START: REPAIRED Recurring Fees Component (with Modal) -->
+<div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+    <div class="flex justify-between items-center mb-4">
+        <h3 class="text-xl font-bold text-slate-800">Recurring Fees</h3>
+        <!-- This button would trigger the modal below -->
+        <button class="px-4 py-2 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-indigo-700 transition-colors">+ Add New Fee</button>
+    </div>
 
-					<!-- The original manual entry form -->
-					<div class="space-y-4">
-						<div>
-							<label class="text-sm font-medium text-slate-600">Description</label>
-							<input type="text" placeholder="e.g., Lunch with friends" class="mt-1 w-full p-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-primary">
-						</div>
-						<div class="grid grid-cols-2 gap-4">
-							<div>
-								<label class="text-sm font-medium text-slate-600">Amount</label>
-								<input type="number" placeholder="0.00" class="mt-1 w-full p-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-primary">
-							</div>
-							<div>
-								<label class="text-sm font-medium text-slate-600">Date</label>
-								<input type="date" value="2024-06-15" class="mt-1 w-full p-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-primary">
-							</div>
-						</div>
-						<div>
-							<label class="text-sm font-medium text-slate-600">Choose a Jar</label>
-							<select class="mt-1 w-full p-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-primary">
-								<option>Fun</option>
-								<option>Necessities</option>
-								<option>Education</option>
-								<option>Invest</option>
-								<option>Give</option>
-								<option>Savings</option>
-							</select>
-						</div>
-						<button class="w-full py-3 bg-primary text-white font-semibold rounded-lg hover:bg-indigo-700 transition-colors">Log Expense</button>
-					</div>
-				</div>
-				<!-- END: REPAIRED Add New Expense Box -->
+    <!-- Enhanced Recurring Fees Table -->
+    <div class="overflow-x-auto">
+        <table class="w-full text-left">
+            <thead class="border-b-2 border-slate-200 bg-slate-50">
+                <tr>
+                    <th class="p-3 text-sm font-semibold text-slate-500">Name</th>
+                    <th class="p-3 text-sm font-semibold text-slate-500">Amount</th>
+                    <th class="p-3 text-sm font-semibold text-slate-500">Frequency</th>
+                    <th class="p-3 text-sm font-semibold text-slate-500">Next Due</th>
+                    <th class="p-3 text-sm font-semibold text-slate-500">Jar</th>
+                    <th class="p-3 text-sm font-semibold text-slate-500 text-right">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="border-b border-slate-100">
+                    <td class="p-3 font-medium text-slate-800">Rent</td>
+                    <td class="p-3 text-slate-600">$1200.00</td>
+                    <td class="p-3 text-slate-600">Monthly</td>
+                    <td class="p-3 text-slate-600">July 1, 2024</td>
+                    <td class="p-3"><span class="text-xs font-medium px-2 py-1 rounded-full bg-indigo-100 text-indigo-800">Necessities</span></td>
+                    <td class="p-3 text-right space-x-4"><a href="#" class="font-semibold text-primary hover:underline">Edit</a><a href="#" class="font-semibold text-danger hover:underline">Delete</a></td>
+                </tr>
+                <tr class="border-b border-slate-100">
+                    <td class="p-3 font-medium text-slate-800">Spotify</td>
+                    <td class="p-3 text-slate-600">$15.00</td>
+                    <td class="p-3 text-slate-600">Monthly</td>
+                    <td class="p-3 text-slate-600">June 28, 2024</td>
+                    <td class="p-3"><span class="text-xs font-medium px-2 py-1 rounded-full bg-yellow-100 text-yellow-800">Fun</span></td>
+                    <td class="p-3 text-right space-x-4"><a href="#" class="font-semibold text-primary hover:underline">Edit</a><a href="#" class="font-semibold text-danger hover:underline">Delete</a></td>
+                </tr>
+                 <tr class="border-b border-slate-100">
+                    <td class="p-3 font-medium text-slate-800">Weekly Allowance</td>
+                    <td class="p-3 text-slate-600">$20.00</td>
+                    <td class="p-3 text-slate-600">Weekly</td>
+                    <td class="p-3 text-slate-600">June 21, 2024</td>
+                    <td class="p-3"><span class="text-xs font-medium px-2 py-1 rounded-full bg-green-100 text-green-800">Savings</span></td>
+                    <td class="p-3 text-right space-x-4"><a href="#" class="font-semibold text-primary hover:underline">Edit</a><a href="#" class="font-semibold text-danger hover:underline">Delete</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- END: REPAIRED Recurring Fees Component -->
 
-                <!-- Recurring Fees Table -->
-                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm"><div class="flex justify-between items-center mb-4"><h3 class="text-xl font-bold text-slate-800">Recurring Fees</h3><button class="px-4 py-2 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-indigo-700 transition-colors">+ Add</button></div><div class="overflow-x-auto"><table class="w-full text-left"><thead class="border-b border-slate-200"><tr><th class="p-3 text-sm font-semibold text-slate-500">Name</th><th class="p-3 text-sm font-semibold text-slate-500">Amount</th><th class="p-3 text-sm font-semibold text-slate-500">Jar</th></tr></thead><tbody><tr class="border-b border-slate-100"><td class="p-3 font-medium text-slate-800">Rent</td><td class="p-3 text-slate-600">$1200.00</td><td class="p-3"><span class="text-xs font-medium px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-800">Necessities</span></td></tr><tr class="border-b border-slate-100"><td class="p-3 font-medium text-slate-800">Spotify</td><td class="p-3 text-slate-600">$15.00</td><td class="p-3"><span class="text-xs font-medium px-2 py-0.5 rounded-full bg-yellow-100 text-yellow-800">Fun</span></td></tr></tbody></table></div></div>
+
+<!-- START: "Add New Recurring Fee" Modal -->
+<!-- In a real app, this would be hidden by default (e.g., add the 'hidden' class) and shown with JavaScript -->
+<div class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+    <div class="bg-white w-full max-w-lg p-6 md:p-8 rounded-xl shadow-2xl">
+        <!-- Modal Header -->
+        <div class="flex justify-between items-center mb-6">
+            <h3 class="text-2xl font-bold text-slate-800">Add New Recurring Fee</h3>
+            <button class="text-slate-400 hover:text-slate-800 text-2xl">×</button>
+        </div>
+        
+        <!-- Modal Form -->
+        <div class="space-y-4">
+            <div>
+                <label class="text-sm font-medium text-slate-600">Description</label>
+                <input type="text" placeholder="e.g., Netflix Subscription" class="mt-1 w-full p-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-primary">
             </div>
+            
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label class="text-sm font-medium text-slate-600">Amount</label>
+                    <input type="number" placeholder="0.00" class="mt-1 w-full p-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-primary">
+                </div>
+                <div>
+                    <label class="text-sm font-medium text-slate-600">Frequency</label>
+                    <select class="mt-1 w-full p-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-primary">
+                        <option>Daily</option>
+                        <option>Weekly</option>
+                        <option selected>Monthly</option>
+                        <option>Yearly</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-4">
+                 <div>
+                    <label class="text-sm font-medium text-slate-600">Start Date</label>
+                    <input type="date" class="mt-1 w-full p-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-primary">
+                </div>
+                 <div>
+                    <label class="text-sm font-medium text-slate-600">End Date (Optional)</label>
+                    <input type="date" class="mt-1 w-full p-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-primary">
+                </div>
+            </div>
+
+            <div>
+                <label class="text-sm font-medium text-slate-600">Link to Jar</label>
+                <select class="mt-1 w-full p-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-primary">
+                    <option>Fun</option>
+                    <option>Necessities</option>
+                    <option>Education</option>
+                    <option>Invest</option>
+                    <option>Give</option>
+                    <option>Savings</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Modal Actions -->
+        <div class="mt-8 flex justify-end gap-3">
+            <button class="px-4 py-2 bg-slate-100 text-slate-700 font-semibold rounded-lg hover:bg-slate-200">Cancel</button>
+            <button class="px-4 py-2 bg-primary text-white font-semibold rounded-lg hover:bg-indigo-700">Save Fee</button>
+        </div>
+    </div>
+</div>
+				<!-- END: REPAIRED Add New Expense Box -->
+			</div>
 
             <!-- Right Column: Jars & Statistics -->
             <div class="lg:col-span-3 space-y-8">
