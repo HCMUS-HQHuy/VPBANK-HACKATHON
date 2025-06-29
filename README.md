@@ -75,11 +75,21 @@ That's it! You can now explore the full functionality of the application.
 
 *(This is a great place to add screenshots of your finished pages)*
 
-*   **Dashboard:** Shows the main overview with financial stats and weekly spending.
-*   **AI Coach:** Highlights the three-column layout with the chat interface.
-*   **Jars Management:** Displays the jar cards and the cumulative spending chart.
-*   **Transaction Log:** Shows the filterable table and summary section.
+### Dashboard
+Shows the main overview with financial stats and weekly spending.  
+![Dashboard Screenshot](IMAGES/dashboard.png)
 
+### AI Coach
+Highlights the three-column layout with the chat interface.  
+![AI Coach Screenshot](IMAGES/ai-coach.png)
+
+### Jars Management
+Displays the jar cards and the cumulative spending chart.  
+![Jars Management Screenshot](IMAGES/jars-managerment.png)
+
+### Transaction Log
+Shows the filterable table and summary section.  
+![Transaction Log Screenshot](IMAGES/transactions.png)
 ## 👥 The Team (Nhóm 88)
 
 *   Phan Trọng Đài
