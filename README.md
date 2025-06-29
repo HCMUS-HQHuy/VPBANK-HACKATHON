@@ -60,11 +60,11 @@ This is a static front-end project and does not require any build steps or compl
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/your-username/ai-financial-coach.git
+    git clone https://github.com/HCMUS-HQHuy/VPBANK-HACKATHON.git
     ```
 2.  **Navigate to the project directory:**
     ```bash
-    cd ai-financial-coach
+    cd VPBANK-HACKATHON
     ```
 3.  **Open the HTML files in your browser:**
     Simply double-click any of the `.html` files (e.g., `index.html`) to open them directly in your web browser (like Chrome, Firefox, or Edge).
