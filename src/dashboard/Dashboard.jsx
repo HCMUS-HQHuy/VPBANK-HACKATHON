@@ -8,10 +8,12 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Navbar from '@/Navbar';
 
 const Dashboard = () => {
   return (
 	<>
+      <Navbar/>
       {/* Main Container */}
       <div className="container mx-auto p-4 md:p-8">
         {/* Header Greeting */}

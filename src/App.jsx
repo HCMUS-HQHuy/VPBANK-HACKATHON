@@ -1,10 +1,9 @@
-import Dashboard from './Dashboard';
-import Navbar from './Navbar';
+import Dashboard from './dashboard/Dashboard';
 
-export default function Game() {
+
+export default function App() {
   return (
     <>
-      <Navbar/>
       <Dashboard/>
     </>
   )
