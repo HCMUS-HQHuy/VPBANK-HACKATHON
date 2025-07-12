@@ -1,5 +1,3 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHouseChimney, faPiggyBank, faMartiniGlassCitrus, faGraduationCap, faHandHoldingDollar, faGift } from '@fortawesome/free-solid-svg-icons'
 import Navbar from '@/common/Navbar';
 import Expenses from '@/common/financialOverview/Expenses';
 import Remaining from '@/common/financialOverview/Remaining';
