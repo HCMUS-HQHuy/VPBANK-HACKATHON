@@ -1,9 +1,9 @@
 import Navbar from '@/common/Navbar';
-import Expenses from '@/common/financialOverview/Expenses';
-import Remaining from '@/common/financialOverview/Remaining';
-import TotalIncome from '@/common/financialOverview/TotalIncome';
 import JarsAllocation from './JarsAllocation';
 import Spending from './Spending';
+import TotalIncomeCard from '@/common/financialOverview/TotalIncomeCard';
+import RemainingCard from '@/common/financialOverview/RemainingCard';
+import ExpensesCard from '@/common/financialOverview/ExpensesCard';
 
 const Dashboard = () => {
   return (
@@ -25,9 +25,9 @@ const Dashboard = () => {
         {/* Financial Overview */}
         <section className="mb-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <TotalIncome/>
-            <Remaining/>
-            <Expenses/>
+            <TotalIncomeCard/>
+            <RemainingCard/>
+            <ExpensesCard/>
           </div>
         </section>
 

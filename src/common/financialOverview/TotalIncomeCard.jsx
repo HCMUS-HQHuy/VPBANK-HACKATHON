@@ -1,7 +1,5 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faWallet, faArrowTrendDown } from '@fortawesome/free-solid-svg-icons'
 
-const TotalIncome = () => {
+const TotalIncomeCard = () => {
 	return (
 		<>
 			<div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
@@ -17,4 +15,4 @@ const TotalIncome = () => {
 	)
 }
 
-export default TotalIncome;
+export default TotalIncomeCard;

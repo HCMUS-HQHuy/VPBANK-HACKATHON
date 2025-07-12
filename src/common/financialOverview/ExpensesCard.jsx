@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowTrendDown } from '@fortawesome/free-solid-svg-icons'
 
-const Expenses  = () => {
+const ExpensesCard  = () => {
 	return (
 		<>
             <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex items-center gap-6">
@@ -17,4 +17,4 @@ const Expenses  = () => {
 	)
 }
 
-export default Expenses;
+export default ExpensesCard;

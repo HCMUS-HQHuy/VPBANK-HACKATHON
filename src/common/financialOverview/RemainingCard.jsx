@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faWallet } from '@fortawesome/free-solid-svg-icons'
 
-const Remaining = ()=> {
+const RemainingCard = ()=> {
 	return (
 		<>
 			<div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex items-center gap-6">
@@ -17,4 +17,4 @@ const Remaining = ()=> {
 	)
 }
 
-export default Remaining;
+export default RemainingCard;
