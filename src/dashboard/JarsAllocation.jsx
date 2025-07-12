@@ -13,7 +13,7 @@ const JarsAllocation = () => {
 
             <div className="grid grid-cols-3 gap-y-6 text-center">
                 {/* CHANGED: Destructure 'themeColor' instead of 'background' and 'color' */}
-                {JarsIcon.map(({ label, percent, icon, colorLight, color }) => {
+                {Object.values(JarsIcon).map(({ label, percent, icon, colorLight, color }) => {
                     const background = `bg-${colorLight}`;
                     const iconColor =  `text-${color}`;
                     return (
