@@ -8,7 +8,6 @@ import ExpensesCard from '@/common/financialOverview/ExpensesCard';
 const Dashboard = () => {
   return (
 	<>
-      <Navbar/>
       {/* Main Container */}
       <div className="container mx-auto p-4 md:p-8">
         {/* Header Greeting */}
