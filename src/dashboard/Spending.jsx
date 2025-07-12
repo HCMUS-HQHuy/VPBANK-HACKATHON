@@ -1,9 +1,8 @@
 
-
 const Spending = () => {
 	return (
 		<>
-			<h3 className="text-xl font-bold text-slate-800 mb-6">Weekly Spending</h3>
+			<h3 className="text-xl font-bold text-text-primary mb-6">Weekly Spending</h3>
 			<div className="flex items-end justify-around h-48">
 			{[
 				{ day: 'Mon', amount: '$25', height: 'h-10' },
@@ -16,12 +15,12 @@ const Spending = () => {
 			].map(({ day, amount, height }) => (
 				<div key={day} className="flex flex-col items-center gap-2 group">
 				<div className="relative">
-					<span className="absolute bottom-full mb-2 hidden group-hover:block bg-slate-800 text-white text-xs px-2 py-1 rounded">
+					<span className="absolute bottom-full mb-2 hidden group-hover:block bg-card-secondary text-text-primary text-xs px-2 py-1 rounded">
 					{amount}
 					</span>
 				</div>
-				<div className={`w-8 ${height} bg-blue-600 transition-colors rounded-t-lg`}></div>
-				<p className="text-xs font-medium text-slate-500">{day}</p>
+				<div className={`w-8 ${height} bg-blue transition-colors rounded-t-lg`}></div>
+				<p className="text-xs font-medium text-text-secondary">{day}</p>
 				</div>
 			))}
 			</div>

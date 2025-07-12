@@ -1,18 +1,24 @@
-
 const TotalIncomeCard = () => {
-	return (
-		<>
-			<div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-              <div className="flex justify-between items-center">
-                <h3 className="text-xl font-bold text-slate-800">Total Income</h3>
-                <a href="#" className="text-sm font-semibold text-primary hover:text-indigo-700">Edit</a>
-              </div>
-              <p className="text-4xl font-bold text-slate-900 mt-2">
-                $3,500.00 <span className="text-xl font-medium text-slate-500">/ month</span>
-              </p>
+    return (
+        // The unnecessary fragment is removed, and theme classes are applied.
+        <div className="bg-card p-6 rounded-xl border border-border shadow-sm">
+            <div className="flex justify-between items-center">
+                {/* CHANGED: text-slate-800 -> text-text-primary */}
+                <h3 className="text-xl font-bold text-text-primary">Total Income</h3>
+                
+                {/* CHANGED: text-primary -> text-text-accent */}
+                <a href="#" className="text-sm font-semibold text-text-accent hover:underline">
+                    Edit
+                </a>
             </div>
-		</>
-	)
-}
+            
+            <p className="text-4xl font-bold text-text-primary mt-2">
+                $3,500.00 
+                {/* CHANGED: text-slate-500 -> text-text-secondary */}
+                <span className="text-xl font-medium text-text-secondary"> / month</span>
+            </p>
+        </div>
+    );
+};
 
 export default TotalIncomeCard;
