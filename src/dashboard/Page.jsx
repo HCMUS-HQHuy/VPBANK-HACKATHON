@@ -8,7 +8,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Navbar from '@/Navbar';
+import Navbar from '@/common/Navbar';
 
 const Dashboard = () => {
   return (
