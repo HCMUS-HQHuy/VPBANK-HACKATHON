@@ -45,7 +45,7 @@ const RecurringFeesCard = () => {
                                 <td className="p-3 text-text-secondary">June 28</td>
                                 <td className="p-3"><i className="fa-solid fa-martini-glass-citrus text-xl w-6 text-center text-yellow"></i></td>
                             </tr>
-                            <tr> {/* Last row has no bottom border */}
+                            <tr className="border-b border-border">
                                 <td className="p-3 font-medium text-text-primary">Weekly Allowance</td>
                                 <td className="p-3 text-text-secondary">$20.00</td>
                                 <td className="p-3 text-text-secondary">Weekly</td>
