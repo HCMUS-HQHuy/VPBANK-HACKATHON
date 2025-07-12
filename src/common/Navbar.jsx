@@ -1,6 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLayerGroup } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faLayerGroup } from '@fortawesome/free-solid-svg-icons'
+import { faBell } from '@fortawesome/free-regular-svg-icons'
 
 
 const Navbar = () => {
@@ -18,11 +19,7 @@ const Navbar = () => {
 
                     {/* Desktop Navigation Links */}
                     <div className="hidden md:flex md:items-center md:space-x-2">
-                        <a
-                            href="#"
-                            className="bg-primary-light text-primary px-3 py-2 rounded-md text-sm font-medium"
-                            aria-current="page"
-                        >
+                        <a href="#" className="bg-primary-light text-primary px-3 py-2 rounded-md text-sm font-medium" aria-current="page">
                             Dashboard
                         </a>
                         <a
@@ -54,7 +51,8 @@ const Navbar = () => {
                                 className="relative p-1 text-slate-400 hover:text-slate-600"
                             >
                                 <span className="sr-only">View notifications</span>
-                                <i className="fa-regular fa-bell text-xl"></i>
+                                {/* <i className="fa-regular fa-bell text-xl"></i> */}
+                                 <FontAwesomeIcon icon={faBell} className="fa-regular text-xl"/>
                                 <span className="absolute top-0 right-0 block h-2 w-2 rounded-full bg-red-500 ring-2 ring-white"></span>
                             </button>
 
@@ -73,11 +71,8 @@ const Navbar = () => {
 
                         {/* Mobile Menu Button */}
                         <div className="md:hidden">
-                            <button
-                                type="button"
-                                className="inline-flex items-center justify-center p-2 rounded-md text-slate-400"
-                            >
-                                <i className="fa-solid fa-bars text-xl"></i>
+                            <button type="button" className="inline-flex items-center justify-center p-2 rounded-md text-slate-400" >
+                                <FontAwesomeIcon icon={faBars } className="text-xl"/>
                             </button>
                         </div>
                     </div>
