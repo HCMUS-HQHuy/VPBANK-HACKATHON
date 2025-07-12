@@ -30,56 +30,65 @@
 
 @layer base {
   :root {
-    --color-background: rgb(239, 241, 245);
-    --color-card: rgb(255, 255, 255);
-    --color-card-secondary: rgb(239, 241, 245);
+    /* Base Surfaces */
+    --color-background: hsl(220 13% 96%);
+    --color-card: hsl(0 0% 100%);
+    --color-card-secondary: hsl(220 14% 96%);
 
-    --color-text-primary: rgb(30, 41, 59);
-    --color-text-secondary: rgb(113, 123, 144);
-    --color-text-accent: rgb(99, 102, 241);
+    /* Base Text */
+    --color-text-primary: hsl(222 47% 11%);
+    --color-text-secondary: hsl(215 16% 47%);
 
-    --color-border: rgb(229, 232, 235);
-    --color-ring: rgb(99, 102, 241);
+    /* Borders & Rings */
+    --color-border: hsl(220 13% 91%);
+    --color-ring: hsl(243 92% 60%);
 
-    --color-primary: rgb(99, 102, 241);
-    --color-primary-light: rgb(238, 242, 255);
+    /* Accents & Brand Colors */
+    --color-text-accent: hsl(243 92% 60%);
+    --color-primary: hsl(243 92% 60%);
+    --color-primary-light: hsl(240 100% 97%);
 
-    --color-green: rgb(46, 166, 94);
-    --color-green-light: rgb(225, 248, 238);
-    --color-yellow: rgb(247, 200, 54);
-    --color-yellow-light: rgb(255, 250, 235);
-    --color-blue: rgb(59, 130, 246);
-    --color-blue-light: rgb(235, 244, 255);
-    --color-danger: rgb(240, 82, 60);
-    --color-danger-light: rgb(255, 240, 236);
-    --color-pink: rgb(236, 72, 153);
-    --color-pink-light: rgb(255, 240, 246);
+    --color-green: hsl(158 64% 42%);
+    --color-green-light: hsl(160 84% 94%);
+    --color-yellow: hsl(39 91% 55%);
+    --color-yellow-light: hsl(45 93% 96%);
+    --color-blue: hsl(217 91% 60%);
+    --color-blue-light: hsl(217 91% 95%);
+    --color-danger: hsl(11 84% 62%);
+    --color-danger-light: hsl(12 100% 96%);
+    --color-pink: hsl(326 74% 59%);
+    --color-pink-light: hsl(336 86% 96%);
   }
 
   .dark {
-    --color-background: rgb(30, 41, 59);
-    --color-card: rgb(51, 65, 85);
-    --color-card-secondary: rgb(38, 50, 71);
+    /* Base Surfaces */
+    --color-background: hsl(222 47% 11%);
+    --color-card: hsl(222 37% 16%);
+    --color-card-secondary: hsl(222 40% 13%);
 
-    --color-text-primary: rgb(241, 245, 249);
-    --color-text-secondary: rgb(148, 163, 184);
-    --color-text-accent: rgb(179, 191, 255);
+    /* Base Text */
+    --color-text-primary: hsl(210 40% 98%);
+    --color-text-secondary: hsl(215 20% 65%);
 
-    --color-border: rgb(51, 65, 85);
-    --color-ring: rgb(179, 191, 255);
+    /* Borders & Rings */
+    --color-border: hsl(222 27% 25%);
+    --color-ring: hsl(240 100% 80%);
 
-    --color-primary: rgb(179, 191, 255);
-    --color-primary-light: rgb(26, 28, 38);
+    /* Accents & Brand Colors */
+    --color-text-accent: hsl(240 100% 80%);
+    --color-primary: hsl(240 100% 80%);
+    --color-primary-light: hsl(240 15% 25%);
 
-    --color-green: rgb(42, 201, 104);
-    --color-green-light: rgb(30, 46, 33);
-    --color-yellow: rgb(255, 221, 102);
-    --color-yellow-light: rgb(51, 39, 26);
-    --color-blue: rgb(83, 140, 255);
-    --color-blue-light: rgb(33, 41, 56);
-    --color-danger: rgb(240, 68, 56);
-    --color-danger-light: rgb(51, 33, 30);
-    --color-pink: rgb(252, 70, 184);
-    --color-pink-light: rgb(56, 33, 43);
+    /* Accent Colors */
+    --color-green: hsl(145 63% 49%);
+    --color-green-light: hsl(150 40% 12%);
+    --color-yellow: hsl(45 93% 58%);
+    --color-yellow-light: hsl(40 40% 12%);
+    --color-blue: hsl(217 91% 65%);
+    --color-blue-light: hsl(220 40% 15%);
+    --color-danger: hsl(0 84% 65%);
+    --color-danger-light: hsl(0 40% 15%);
+    --color-pink: hsl(326 84% 70%);
+    --color-pink-light: hsl(330 40% 15%);
   }
 }

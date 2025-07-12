@@ -21,7 +21,7 @@ const JarsManagementPage = () => {
           {/* Right Column: Jars & Statistics */}
           <div className="lg:col-span-3 space-y-8">
             <JarsAllocationCard />
-            <SpendingTrendsChart />
+            {/* <SpendingTrendsChart /> */}
           </div>
         </div>
       </div>
