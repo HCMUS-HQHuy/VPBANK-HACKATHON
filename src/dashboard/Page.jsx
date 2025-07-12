@@ -1,14 +1,9 @@
-import {
-  faHouseChimney,
-  faPiggyBank,
-  faMartiniGlassCitrus,
-  faGraduationCap,
-  faHandHoldingDollar,
-  faGift,
-} from '@fortawesome/free-solid-svg-icons'
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHouseChimney, faPiggyBank, faMartiniGlassCitrus, faGraduationCap, faHandHoldingDollar, faGift } from '@fortawesome/free-solid-svg-icons'
 import Navbar from '@/common/Navbar';
+import Expenses from '@/common/financialOverview/Expenses';
+import Remaining from '@/common/financialOverview/Remaining';
+import TotalIncome from '@/common/financialOverview/TotalIncome';
 
 const Dashboard = () => {
   return (
@@ -30,33 +25,9 @@ const Dashboard = () => {
         {/* Financial Overview */}
         <section className="mb-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-              <div className="flex justify-between items-center">
-                <h3 className="text-xl font-bold text-slate-800">Total Income</h3>
-                <a href="#" className="text-sm font-semibold text-primary hover:text-indigo-700">Edit</a>
-              </div>
-              <p className="text-4xl font-bold text-slate-900 mt-2">
-                $3,500.00 <span className="text-xl font-medium text-slate-500">/ month</span>
-              </p>
-            </div>
-            <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex items-center gap-6">
-              <div className="w-16 h-16 rounded-full flex items-center justify-center bg-green-bg text-green-text text-3xl">
-                <i className="fa-solid fa-wallet"></i>
-              </div>
-              <div>
-                <p className="text-sm font-medium text-slate-500">Remaining this Month</p>
-                <p className="text-3xl font-bold text-slate-800 mt-1">$2,350</p>
-              </div>
-            </div>
-            <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex items-center gap-6">
-              <div className="w-16 h-16 rounded-full flex items-center justify-center bg-red-bg text-red-text text-3xl">
-                <i className="fa-solid fa-arrow-trend-down"></i>
-              </div>
-              <div>
-                <p className="text-sm font-medium text-slate-500">Expenses this Month</p>
-                <p className="text-3xl font-bold text-slate-800 mt-1">$1,150</p>
-              </div>
-            </div>
+            <TotalIncome/>
+            <Remaining/>
+            <Expenses/>
           </div>
         </section>
 
