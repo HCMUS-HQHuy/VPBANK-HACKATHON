@@ -10,7 +10,7 @@ const Navbar = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     const baseLinkClass = "px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200";
-    const activeLinkClass = `${baseLinkClass} bg-brand-primary-light text-brand-primary`;
+    const activeLinkClass = `${baseLinkClass} bg-primary-light text-primary`;
     const inactiveLinkClass = `${baseLinkClass} text-text-secondary hover:bg-card-secondary hover:text-text-primary`;
     const mobileLinkClass = "block px-3 py-2 rounded-md text-base font-medium";
 
@@ -22,9 +22,7 @@ const Navbar = () => {
                     {/* Logo */}
                     <div className="flex items-center">
                         <Link to="/" className="flex-shrink-0 flex items-center gap-2">
-                            {/* CHANGED: Replaced hardcoded color with theme-aware class */}
                             <FontAwesomeIcon icon={faLayerGroup} className="text-2xl text-primary"/>
-                            {/* CHANGED: Replaced hardcoded color with theme-aware class */}
                             <span className="font-bold text-xl text-text-primary">FinCoach</span>
                         </Link>
                     </div>
