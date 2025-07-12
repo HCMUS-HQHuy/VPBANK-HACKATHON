@@ -7,6 +7,7 @@ import {
   faGift,
 } from '@fortawesome/free-solid-svg-icons'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Dashboard = () => {
   return (
@@ -94,16 +95,16 @@ const Dashboard = () => {
               </div>
               <div className="grid grid-cols-3 gap-y-6 text-center">
                 {[
-                  { label: 'Necessities', percent: '55%', icon: 'house-chimney', color: 'indigo' },
-                  { label: 'Savings', percent: '10%', icon: 'piggy-bank', color: 'green' },
-                  { label: 'Fun', percent: '10%', icon: 'martini-glass-citrus', color: 'yellow' },
-                  { label: 'Education', percent: '10%', icon: 'graduation-cap', color: 'blue' },
-                  { label: 'Invest', percent: '10%', icon: 'hand-holding-dollar', color: 'red' },
-                  { label: 'Give', percent: '5%', icon: 'gift', color: 'pink' },
+                    { label: 'Necessities', percent: '55%', icon: faHouseChimney, color: 'bg-indigo-100 text-indigo-600' },
+                    { label: 'Savings', percent: '10%', icon: faPiggyBank, color: 'bg-green-100 text-green-600' },
+                    { label: 'Fun', percent: '10%', icon: faMartiniGlassCitrus, color: 'bg-yellow-100 text-yellow-600' },
+                    { label: 'Education', percent: '10%', icon: faGraduationCap, color: 'bg-blue-100 text-blue-600' },
+                    { label: 'Invest', percent: '10%', icon: faHandHoldingDollar, color: 'bg-red-100 text-red-600' },
+                    { label: 'Give', percent: '5%', icon: faGift, color: 'bg-pink-100 text-pink-600' },
                 ].map(({ label, percent, icon, color }) => (
                   <div key={label} className="flex flex-col items-center">
-                    <div className={`w-12 h-12 rounded-full flex items-center justify-center bg-${color}-100 text-${color}-600 text-xl`}>
-                      <i className={`fa-solid fa-${icon}`}></i>
+                    <div className={`w-12 h-12 rounded-full flex items-center justify-center ${color} text-xl`}>
+                      <FontAwesomeIcon icon={icon}/>
                     </div>
                     <p className="text-sm font-medium text-slate-600 mt-2">{label}</p>
                     <p className="font-bold text-slate-800">{percent}</p>
