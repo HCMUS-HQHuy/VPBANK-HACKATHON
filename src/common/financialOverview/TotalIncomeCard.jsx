@@ -1,3 +1,6 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEdit } from "@fortawesome/free-solid-svg-icons";
+
 const TotalIncomeCard = () => {
     return (
         // The unnecessary fragment is removed, and theme classes are applied.
@@ -8,7 +11,8 @@ const TotalIncomeCard = () => {
                 
                 {/* CHANGED: text-primary -> text-text-accent */}
                 <a href="#" className="text-sm font-semibold text-text-accent hover:underline">
-                    Edit
+                    <FontAwesomeIcon icon={faEdit} />
+                    <span> Edit </span>
                 </a>
             </div>
             

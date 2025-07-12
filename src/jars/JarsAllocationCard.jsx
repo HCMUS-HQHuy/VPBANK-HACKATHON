@@ -1,20 +1,19 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEllipsisVertical, faPencil } from '@fortawesome/free-solid-svg-icons';
 
 // This is the individual, theme-aware card for a single jar.
 const JarCard = ({ icon, color, name, remaining, total, percentage }) => {
-    const themeColor = color === 'primary' ? `brand-primary` : color;
-    const hoverThemeColor = color === 'primary' ? `brand-primary` : color;
+    const themeColor = `bg-${color}`;
+    const hoverThemeColor = `hover:${themeColor}`;
     
     return (
-        <div className="relative p-5 border border-border rounded-xl flex flex-col bg-card">
+        <div className={`relative p-5 border border-border rounded-xl flex flex-col bg-card hover:bg-card-secondary`}>
             <div className="flex justify-between items-center">
                 <div className="flex items-center gap-3">
-                    <i className={`fa-solid ${icon} text-xl w-6 text-center text-${themeColor}`}></i>
+                    {/* <i className={`fa-solid ${icon} text-xl w-6 text-center text-${themeColor}`}></i> */}
                     <h4 className="font-bold text-text-primary">{name}</h4>
                 </div>
-                <button className={`text-text-secondary hover:text-${hoverThemeColor}`}>
-                    <i className="fa-solid fa-ellipsis-vertical"></i>
-                </button>
             </div>
             <div className="mt-4 flex-grow">
                 <p className="text-sm font-medium text-text-secondary">Remaining</p>
@@ -24,7 +23,7 @@ const JarCard = ({ icon, color, name, remaining, total, percentage }) => {
             </div>
             <div className="mt-2">
                 <div className="w-full bg-card-secondary rounded-full h-2.5">
-                    <div className={`bg-${themeColor} h-2.5 rounded-full`} style={{ width: `${percentage}%` }}></div>
+                    <div className={`${themeColor} h-2.5 rounded-full`} style={{ width: `${percentage}%` }}></div>
                 </div>
             </div>
         </div>
@@ -37,7 +36,7 @@ const JarsAllocationCard = () => {
             <div className="flex justify-between items-center mb-6">
                 <h3 className="text-xl font-bold text-text-primary">Jars Allocation & Status</h3>
                 <a href="#" className="flex items-center gap-2 text-sm font-semibold text-text-accent hover:underline transition-colors">
-                    <i className="fa-solid fa-pencil"></i>
+                    <FontAwesomeIcon icon={faPencil} />
                     <span>Manage Allocation</span>
                 </a>
             </div>
