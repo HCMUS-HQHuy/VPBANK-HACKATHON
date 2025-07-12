@@ -4,6 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faLayerGroup } from '@fortawesome/free-solid-svg-icons';
 import { faBell } from '@fortawesome/free-regular-svg-icons';
 
+import ThemeToggle from "@/common/ThemeToggle.jsx"
+
 const Navbar = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -16,6 +18,7 @@ const Navbar = () => {
         <nav className="bg-card shadow-sm border-b border-border sticky top-0 z-50">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16">
+                    
                     {/* Logo */}
                     <div className="flex items-center">
                         <Link to="/" className="flex-shrink-0 flex items-center gap-2">
@@ -70,6 +73,7 @@ const Navbar = () => {
                             </button>
                         </div>
                     </div>
+                    <ThemeToggle/>
                 </div>
             </div>
 
