@@ -1,9 +1,7 @@
-import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
 import JarsIcon from '@/common/JarsIcon';
 
-// This is the individual, theme-aware card for a single jar.
 const JarCard = ({ icon, color, name, remaining, total }) => {
   const percentage = remaining * 100 /total;
   const themeColor = `bg-${color}`;
@@ -12,7 +10,6 @@ const JarCard = ({ icon, color, name, remaining, total }) => {
     <div className={`relative p-5 border border-border rounded-xl flex flex-col bg-card hover:bg-card-secondary`}>
         <div className="flex justify-between items-center">
             <div className="flex items-center gap-3">
-                {/* <i className={`fa-solid ${icon} text-xl w-6 text-center text-${themeColor}`}></i> */}
                 <FontAwesomeIcon icon={icon} className={`text-xl w-6 text-center ${iconColor}`}/>
                 <h4 className="font-bold text-text-primary">{name}</h4>
             </div>
