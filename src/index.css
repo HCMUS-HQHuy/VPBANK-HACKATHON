@@ -62,9 +62,9 @@
 
   .dark {
     /* Base Surfaces */
-    --color-background: hsl(222 47% 11%);
-    --color-card: hsl(222 37% 16%);
-    --color-card-secondary: hsl(222 40% 13%);
+    --color-background: hsl(224 48% 11%);
+    --color-card: hsla(222 37% 16%, 0.5);
+    --color-card-secondary: hsla(222 40% 13%, 0.5);
 
     /* Base Text */
     --color-text-primary: hsl(210 40% 98%);
@@ -90,5 +90,14 @@
     --color-danger-light: hsl(0 40% 15%);
     --color-pink: hsl(326 84% 70%);
     --color-pink-light: hsl(330 40% 15%);
+  }
+}
+
+/* THÊM LỚP TIỆN ÍCH MỚI */
+@layer utilities {
+  .glass-card {
+    @apply bg-card border border-border shadow-2xl;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px); /* Hỗ trợ cho Safari */
   }
 }
