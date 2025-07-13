@@ -40,7 +40,7 @@ const transactionsData = [
 const TransactionsPage = () => {
 
     const getJarPillClasses = (jarName) => {
-        const jarInfo = JarsIcon.find(j => j.label === jarName);
+        const jarInfo = Object.values(JarsIcon).find(j => j.label === jarName);
         if (!jarInfo) return 'text-text-secondary text-text-secondary';
         
         // Tạo tên lớp Tailwind động từ thông tin trong JarsIcon
@@ -65,7 +65,7 @@ const TransactionsPage = () => {
                         </div>
                         <select className="px-4 py-2 text-text-secondary border border-border rounded-lg focus:ring-2 focus:ring-ring">
                             <option>All Jars</option>
-                            {JarsIcon.map(jar => <option key={jar.label}>{jar.label}</option>)}
+                            {Object.values(JarsIcon).map(jar => <option key={jar.label}>{jar.label}</option>)}
                         </select>
                         <div className="flex items-center gap-2 text-text-secondary">
                             <input type="text" defaultValue="06/01/2024" className="w-28 p-2 text-text-secondary border border-border rounded-lg focus:ring-2 focus:ring-ring" />
