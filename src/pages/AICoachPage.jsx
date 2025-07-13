@@ -1,7 +1,6 @@
-import React from 'react';
-import JarsAllocation from '@/dashboard/JarsAllocation'; // Tái sử dụng từ dashboard
-import CategorizeExpenseCard from './CategorizeExpenseCard';
-import ChatInterface from './ChatInterface';
+import JarsAllocation from '@/components/dashboard/JarsAllocation'; // Tái sử dụng từ dashboard
+import CategorizeExpenseCard from '@/components/aiCoach/CategorizeExpenseCard';
+import ChatInterface from '@/components/aiCoach/ChatInterface';
 
 const AiCoachPage = () => {
   return (

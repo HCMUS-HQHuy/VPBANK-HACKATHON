@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
-import JarsIcon from '@/common/JarsIcon';
+import JarsIcon from '@/utils/JarsIcon'; 
 
 const JarCard = ({ icon, color, name, remaining, total }) => {
   const percentage = remaining * 100 /total;

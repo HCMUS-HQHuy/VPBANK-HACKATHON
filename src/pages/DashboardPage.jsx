@@ -1,9 +1,9 @@
-import Navbar from '@/common/Navbar';
-import JarsAllocation from './JarsAllocation';
-import Spending from './Spending';
-import TotalIncomeCard from '@/common/financialOverview/TotalIncomeCard';
-import RemainingCard from '@/common/financialOverview/RemainingCard';
-import ExpensesCard from '@/common/financialOverview/ExpensesCard';
+// import Navbar from '@/common/Navbar';
+import JarsAllocation from '@/components/dashboard/JarsAllocation';
+import Spending from '@/components/dashboard/Spending';
+import TotalIncomeCard from '@/components/financialOverview/TotalIncomeCard';
+import RemainingCard from '@/components/financialOverview/RemainingCard';
+import ExpensesCard from '@/components/financialOverview/ExpensesCard';
 
 const Dashboard = () => {
   return (

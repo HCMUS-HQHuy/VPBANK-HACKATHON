@@ -1,8 +1,8 @@
 import React from 'react';
-import TotalIncomeCard from '@/common/financialOverview/TotalIncomeCard';
-import RecurringFeesCard from './RecurringFeesCard';
-import JarsAllocationCard from './JarsAllocationCard';
-import SpendingTrendsChart from './SpendingTrendsChart';
+import TotalIncomeCard from '@/components/financialOverview/TotalIncomeCard';
+import RecurringFeesCard from '@/components/jars/RecurringFeesCard';
+import JarsAllocationCard from '@/components/jars/JarsAllocationCard';
+// import SpendingTrendsChart from '@/components/jars/SpendingTrendsChart'; 
 
 const JarsManagementPage = () => {
   return (

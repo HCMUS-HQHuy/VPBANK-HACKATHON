@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMoneyBillWave, faCreditCard, faBell } from '@fortawesome/free-solid-svg-icons';
-import JarsIcon from '@/common/JarsIcon';
+import JarsIcon from '@/utils/JarsIcon'; 
 
 // --- THE DYNAMIC CHILD COMPONENT ---
 // This component is purely presentational. It just receives props and renders them.

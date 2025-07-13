@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // CHANGED: Import the data from its new file
-import JarsIcon from '@/common/JarsIcon'; 
+import JarsIcon from '@/utils/JarsIcon'; // Assuming JarsIcon is an object with jar details
 
 const JarsAllocation = () => {
     return (

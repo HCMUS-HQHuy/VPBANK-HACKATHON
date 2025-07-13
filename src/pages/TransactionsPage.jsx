@@ -1,7 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faCalendar, faPlus } from '@fortawesome/free-solid-svg-icons';
-import JarsIcon from '@/common/JarsIcon'; // Tái sử dụng để lấy thông tin màu sắc
+import JarsIcon from '@/utils/JarsIcon'; // Assuming JarsIcon is an object with jar details
 
 // Dữ liệu mẫu cho bảng giao dịch
 const transactionsData = [

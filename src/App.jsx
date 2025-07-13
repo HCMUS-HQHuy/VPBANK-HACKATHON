@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import DashboardPage from './dashboard/Page';
-import JarsManagementPage from './jars/Page';
-import AiCoachPage from './ai-coach/Page'; 
-import TransactionsPage from './transactions/Page'; 
-import Navbar from "./common/Navbar";
+import DashboardPage from './pages/DashboardPage';
+import JarsManagementPage from './pages/JarsManagementPage';
+import AiCoachPage from './pages/AICoachPage'; 
+import TransactionsPage from './pages/TransactionsPage'; 
+import Navbar from "./components/Navbar";
 
 export default function App() {
   return (
