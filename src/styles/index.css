@@ -11,6 +11,8 @@
 
   --color-border: var(--color-border);
   --color-ring: var(--color-ring);
+  --color-brand: var(--color-primary);
+  --color-brand-text: var(--color-text-primary);
 
   --color-primary: var(--color-primary);
   --color-primary-light: var(--color-primary-light);
@@ -62,9 +64,9 @@
 
   .dark {
     /* Base Surfaces */
-    --color-background: hsl(224 48% 11%);
-    --color-card: hsla(222 37% 16%, 0.5);
-    --color-card-secondary: hsla(222 40% 13%, 0.5);
+    --color-background: hsl(222 47% 11%);
+    --color-card: hsl(222 37% 16%);
+    --color-card-secondary: hsl(222 40% 13%);
 
     /* Base Text */
     --color-text-primary: hsl(210 40% 98%);

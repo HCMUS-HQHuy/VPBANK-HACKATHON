@@ -22,8 +22,8 @@ const Navbar = () => {
                     {/* Logo */}
                     <div className="flex items-center">
                         <Link to="/" className="flex-shrink-0 flex items-center gap-2">
-                            <FontAwesomeIcon icon={faLayerGroup} className="text-2xl text-primary"/>
-                            <span className="font-bold text-xl text-text-primary">FinCoach</span>
+                            <FontAwesomeIcon icon={faLayerGroup} className="text-2xl text-brand"/>
+                            <span className="font-bold text-xl text-brand-text">FinCoach</span>
                         </Link>
                     </div>
 
