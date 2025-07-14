@@ -6,6 +6,8 @@ const JarCard = ({ icon, color, name, remaining, total }) => {
   const percentage = remaining * 100 /total;
   const themeColor = `bg-${color}`;
   const iconColor =  `text-${color}`;
+  console.log(themeColor);
+  console.log(iconColor);
   return (
     <div className={`relative p-5 border border-border rounded-xl flex flex-col bg-card hover:bg-card-secondary`}>
         <div className="flex justify-between items-center">
