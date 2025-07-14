@@ -5,16 +5,7 @@ import JarsIcon from '@/utils/JarsIcon';
 
 // --- THE DYNAMIC CHILD COMPONENT ---
 // This component is purely presentational. It just receives props and renders them.
-const RecurringFeeItem = ({
-    name,
-    jar,
-    amount,
-    frequency,
-    alert,
-    icon,
-    color,
-    bgLight
-}) => {
+const RecurringFeeItem = ({ name, jar, amount, frequency, alert, icon, color, bgLight }) => {
     return (
         <div className="bg-card border border-border rounded-xl shadow-md text-text-primary overflow-hidden">
             <div className="p-4 flex justify-between items-center">
