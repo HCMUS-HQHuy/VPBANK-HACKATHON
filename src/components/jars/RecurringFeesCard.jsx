@@ -13,16 +13,14 @@ const RecurringFeeItem = ({
     alert,
     icon,
     color,
-    themeColor
+    bgLight
 }) => {
-    const iconColor =  `text-${color}`;
-    const iconBg =  `bg-${themeColor}`;
     return (
         <div className="bg-card border border-border rounded-xl shadow-md text-text-primary overflow-hidden">
             <div className="p-4 flex justify-between items-center">
                 <div className="flex items-center gap-4">
-                    <div className={`w-12 h-12 ${iconBg} rounded-full flex items-center justify-center`}>
-                        <FontAwesomeIcon icon={icon} className={`text-2xl ${iconColor}`} />
+                    <div className={`w-12 h-12 ${bgLight} rounded-full flex items-center justify-center`}>
+                        <FontAwesomeIcon icon={icon} className={`text-2xl ${color}`} />
                     </div>
                     <div>
                         <h3 className="font-bold text-lg text-text-primary">{name}</h3>
@@ -55,7 +53,7 @@ const RecurringFeesCard = () => {
     const mapFeeToCardProps = (fee) => {
         const icon = JarsIcon[fee.target_jar].icon;
         const color = JarsIcon[fee.target_jar].color;
-        const colorLight = JarsIcon[fee.target_jar].colorLight;
+        const bgLight = JarsIcon[fee.target_jar].bgLight;
 
         let alertText = `on day ${fee.pattern_details[0]}`;
         return {
@@ -65,7 +63,7 @@ const RecurringFeesCard = () => {
             jar: fee.target_jar,
             alert: alertText,
             icon: icon,
-            themeColor: colorLight,
+            bgLight: bgLight,
             color: color
         };
     };

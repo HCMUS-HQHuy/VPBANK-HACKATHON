@@ -2,17 +2,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
 import JarsIcon from '@/utils/JarsIcon'; 
 
-const JarCard = ({ icon, color, name, remaining, total }) => {
+const JarCard = ({ icon, name, remaining, total, color, bgColor }) => {
   const percentage = remaining * 100 /total;
-  const themeColor = `bg-${color}`;
-  const iconColor =  `text-${color}`;
-  console.log(themeColor);
-  console.log(iconColor);
   return (
     <div className={`relative p-5 border border-border rounded-xl flex flex-col bg-card hover:bg-card-secondary`}>
         <div className="flex justify-between items-center">
             <div className="flex items-center gap-3">
-                <FontAwesomeIcon icon={icon} className={`text-xl w-6 text-center ${iconColor}`}/>
+                <FontAwesomeIcon icon={icon} className={`text-xl w-6 text-center ${color}`}/>
                 <h4 className="font-bold text-text-primary">{name}</h4>
             </div>
         </div>
@@ -24,7 +20,7 @@ const JarCard = ({ icon, color, name, remaining, total }) => {
         </div>
         <div className="mt-2">
             <div className="w-full bg-card-secondary rounded-full h-2.5">
-                <div className={`${themeColor} h-2.5 rounded-full`} style={{ width: `${percentage}%` }}></div>
+                <div className={`${bgColor} h-2.5 rounded-full`} style={{ width: `${percentage}%` }}></div>
             </div>
         </div>
     </div>
@@ -69,11 +65,12 @@ const JarsAllocationCard = () => {
             </a>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
-          {Object.values(JarsIcon).map(({ label, icon, color }) => (
+          {Object.values(JarsIcon).map(({ label, icon, color, bg }) => (
             <JarCard 
               key={label}
               icon={icon}
-              color={color} 
+              color={color}
+              bgColor={bg}
               name={label} 
               remaining={data[label].remaining} 
               total={data[label].total} />

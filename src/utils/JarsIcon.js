@@ -1,49 +1,67 @@
-import { faHouseChimney, faPiggyBank, faMartiniGlassCitrus, faGraduationCap, faHandHoldingDollar, faGift } from '@fortawesome/free-solid-svg-icons'
+import {
+  faHouseChimney,
+  faPiggyBank,
+  faMartiniGlassCitrus,
+  faGraduationCap,
+  faHandHoldingDollar,
+  faGift
+} from '@fortawesome/free-solid-svg-icons';
 
 const JarsIcon = {
   Necessities: {
     label: 'Necessities',
     percent: '55%',
     icon: faHouseChimney,
-    colorLight: 'primary-light',
-    color: 'primary'
+    bgLight: 'bg-primary-light',
+    bg: 'bg-primary',
+    color: 'text-primary',
+    colorLight: 'text-primary-light'
   },
   Savings: {
     label: 'Savings',
     percent: '10%',
     icon: faPiggyBank,
-    colorLight: 'green-light',
-    color: 'green'
+    bgLight: 'bg-green-light',
+    bg: 'bg-green',
+    color: 'text-green',
+    colorLight: 'text-green-light'
   },
   Fun: {
     label: 'Fun',
     percent: '10%',
     icon: faMartiniGlassCitrus,
-    colorLight: 'yellow-light',
-    color: 'yellow'
+    bgLight: 'bg-yellow-light',
+    bg: 'bg-yellow',
+    color: 'text-yellow',
+    colorLight: 'text-yellow-light'
   },
   Education: {
     label: 'Education',
     percent: '10%',
     icon: faGraduationCap,
-    colorLight: 'blue-light',
-    color: 'blue'
+    bgLight: 'bg-blue-light',
+    bg: 'bg-blue',
+    color: 'text-blue',
+    colorLight: 'text-blue-light'
   },
   Invest: {
     label: 'Invest',
     percent: '10%',
     icon: faHandHoldingDollar,
-    colorLight: 'danger-light',
-    color: 'danger'
+    bgLight: 'bg-danger-light',
+    bg: 'bg-danger',
+    color: 'text-danger',
+    colorLight: 'text-danger-light'
   },
   Give: {
     label: 'Give',
     percent: '5%',
     icon: faGift,
-    colorLight: 'pink-light',
-    color: 'pink'
+    bgLight: 'bg-pink-light',
+    bg: 'bg-pink',
+    color: 'text-pink',
+    colorLight: 'text-pink-light'
   }
 };
-
 
 export default JarsIcon;
