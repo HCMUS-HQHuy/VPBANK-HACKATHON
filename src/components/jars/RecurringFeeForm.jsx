@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCalendarDay, faCalendarWeek } from '@fortawesome/free-solid-svg-icons';
 
 // A helper component for the conditional frequency details
 const FrequencyDetails = ({ frequency, value, onChange }) => {
@@ -47,7 +45,7 @@ const FrequencyDetails = ({ frequency, value, onChange }) => {
     }
 };
 
-const RecurringFeeForm = ({ initialData, onSubmit, onCancel, title = "Recurring Fee" }) => {
+const RecurringFeeForm = ({ initialData, onSubmit, onCancel, onDelete, title = "Recurring Fee" }) => {
     // Default empty state for adding a new fee
     const defaultState = {
         name: '',
@@ -87,8 +85,11 @@ const RecurringFeeForm = ({ initialData, onSubmit, onCancel, title = "Recurring 
     };
 
     return (
-        <div className="bg-card p-6 rounded-xl border border-border shadow-lg w-full max-w-lg">
-            <h2 className="text-2xl font-bold text-text-primary mb-6">{title}</h2>
+        <div className="bg-card p-6 rounded-xl border border-border shadow-lg w-full max-w-lg flex flex-col">
+			<div className="flex justify-between items-center mb-6">
+            	<h3 className="text-2xl font-bold text-text-primary">{title}</h3>
+                {onCancel && <button onClick={onCancel} className="text-text-secondary hover:text-text-primary text-2xl">×</button>}
+            </div>
             <form onSubmit={handleSubmit} className="space-y-5">
                 {/* Name and Amount */}
                 <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
@@ -107,10 +108,9 @@ const RecurringFeeForm = ({ initialData, onSubmit, onCancel, title = "Recurring 
                     <div>
                         <label htmlFor="pattern_type" className="text-sm font-medium text-text-secondary">Frequency</label>
                         <select id="pattern_type" name="pattern_type" value={formData.pattern_type} onChange={handleChange} className="mt-1 w-full p-3 bg-card-secondary border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-ring">
-                            <option value="monthly">Monthly</option>
-                            <option value="weekly">Weekly</option>
                             <option value="daily">Daily</option>
-                            <option value="yearly">Yearly</option>
+                            <option value="weekly">Weekly</option>
+                            <option value="monthly">Monthly</option>
                         </select>
                     </div>
                     {/* Conditional input for frequency details */}
@@ -136,19 +136,10 @@ const RecurringFeeForm = ({ initialData, onSubmit, onCancel, title = "Recurring 
                         <input id="end_date" name="end_date" type="date" value={formData.end_date} onChange={handleChange} className="mt-1 w-full p-3 bg-card-secondary border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-ring" />
                     </div>
                 </div>
-
-                {/* Active Toggle */}
-                <div className="flex items-center justify-between bg-card-secondary p-3 rounded-lg">
-                    <label htmlFor="is_active" className="font-medium text-text-primary">Set as Active</label>
-                    <label className="relative inline-flex items-center cursor-pointer">
-                        <input id="is_active" name="is_active" type="checkbox" checked={formData.is_active} onChange={handleChange} className="sr-only peer" />
-                        <div className="w-11 h-6 bg-slate-300 dark:bg-slate-600 peer-focus:outline-none rounded-full peer peer-checked:bg-brand-primary peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
-                    </label>
-                </div>
-
+				
                 {/* Action Buttons */}
                 <div className="flex justify-end gap-3 pt-4">
-                    <button type="button" onClick={onCancel} className="px-5 py-2.5 bg-card-secondary text-text-primary font-semibold rounded-lg hover:bg-border">Cancel</button>
+                    {onDelete && <button type="button" onClick={onDelete} className="px-5 py-2.5 bg-card-secondary text-text-primary font-semibold rounded-lg hover:bg-border">Delete</button>}
                     <button type="submit" className="px-5 py-2.5 bg-brand-primary text-white font-semibold rounded-lg hover:opacity-90">Save Fee</button>
                 </div>
             </form>

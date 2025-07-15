@@ -3,6 +3,7 @@ import TotalIncomeCard from '@/components/financialOverview/TotalIncomeCard';
 import RecurringFeesCard from '@/components/jars/RecurringFeesCard';
 import JarsAllocationCard from '@/components/jars/JarsAllocationCard';
 import RecommendationCard from '../components/jars/RecommendationCard';
+import RecurringFeeForm from '../components/jars/RecurringFeeForm';
 // import SpendingTrendsChart from '@/components/jars/SpendingTrendsChart'; 
 
 const JarsManagementPage = () => {
@@ -16,6 +17,7 @@ const JarsManagementPage = () => {
           {/* Left Column: Controls (Income, Recurring Fees) */}
           <div className="lg:col-span-1 space-y-8">
             <TotalIncomeCard/>
+            <RecurringFeeForm title='Add Recurring Fee'/>
             <RecurringFeesCard />
           </div>
 

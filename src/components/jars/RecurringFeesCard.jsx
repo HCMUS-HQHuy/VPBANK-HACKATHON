@@ -16,7 +16,7 @@ const RecurringFeeItem = ({ name, jar, amount, frequency, alert, icon, color, bg
     const [isFormOpen, setIsFormOpen] = useState(false);
     return (
         <>
-            <div className="bg-card border border-border rounded-xl shadow-md text-text-primary overflow-hidden">
+            <div className="bg-card border border-border rounded-xl shadow-md text-text-primary overflow-hidden mb-2">
                 <div className="p-4 flex justify-between items-center">
                     <div className="flex items-center gap-4">
                         <div className={`w-10 h-10 ${bgLight} rounded-full flex items-center justify-center`}>
@@ -46,19 +46,20 @@ const RecurringFeeItem = ({ name, jar, amount, frequency, alert, icon, color, bg
                     </div>
                 </div>
             </div>
-            {isFormOpen && <RecurringFeeForm onSubmit={()=>{}} onCancel={() => setIsFormOpen(false)} />}
+            {isFormOpen && <RecurringFeeForm onSubmit={()=>{}} onDelete={()=>{}} onCancel={() => setIsFormOpen(false)} />}
         </>
     );
 };
 
 const RecurringFeesModal = ({ fees, onClose }) => {
     return (
-        <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 z-50">
-            <div className="bg-card w-full max-w-md p-6 md:p-8 rounded-xl shadow-2xl flex flex-col" style={{ maxHeight: '80vh' }}>
-                <div className="flex justify-between items-center mb-6"><h3 className="text-2xl font-bold text-text-primary">All Recurring Fees</h3><button onClick={onClose} className="text-text-secondary hover:text-text-primary text-2xl">×</button></div>
-                <div className="overflow-y-auto space-y-4 pr-2">
-                    {fees.map(fee => <RecurringFeeItem key={fee.name} {...fee} />)}
-                </div>
+        <div className="bg-card w-full max-w-md p-6 md:p-8 rounded-xl shadow-2xl flex flex-col">
+            <div className="flex justify-between items-center mb-6">
+                <h3 className="text-2xl font-bold text-text-primary">All Recurring Fees</h3>
+                <button onClick={onClose} className="text-text-secondary hover:text-text-primary text-2xl">×</button>
+            </div>
+            <div className="overflow-y-auto space-y-4 pr-2">
+                {fees.map(fee => <RecurringFeeItem key={fee.name} {...fee} />)}
             </div>
         </div>
     );
@@ -96,52 +97,53 @@ const RecurringFeesCard = () => {
 
     return (
         <>
-            <div className="bg-card p-6 rounded-xl border border-border shadow-sm">
-                <div className="flex justify-between items-center mb-4">
-                    <h3 className="text-xl font-bold text-text-primary">Recurring Fees</h3>
-                    {/* NEW: View All Button */}
-                    <button onClick={() => setIsModalOpen(true)} className="text-sm font-semibold text-text-accent hover:underline">
-                        View All
-                    </button>
-                </div>
-
-                {/* START: Carousel Container */}
-                <div className="relative">
-                    {/* This div hides the overflowing content */}
-                    <div className="overflow-hidden">
-                        {/* This div is the "track" that moves left and right */}
-                        <div
-                            className="flex transition-transform duration-500 ease-in-out"
-                            style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-                        >
-                            {allFeeProps.map(props => (
-                                <div key={props.name} className="w-full flex-shrink-0 px-1">
-                                    <RecurringFeeItem {...props} />
-                                </div>
-                            ))}
-                        </div>
+            {isModalOpen == false && 
+                <div className="bg-card p-6 rounded-xl border border-border shadow-sm">
+                    <div className="flex justify-between items-center mb-4">
+                        <h3 className="text-xl font-bold text-text-primary">Recurring Fees</h3>
+                        {/* NEW: View All Button */}
+                        <button onClick={() => setIsModalOpen(true)} className="text-sm font-semibold text-text-accent hover:underline">
+                            View All
+                        </button>
                     </div>
 
-                    {/* Navigation Buttons */}
-                    <button onClick={handlePrev} disabled={currentIndex === 0} className="absolute top-1/2 left-[-20px] -translate-y-1/2 bg-card border border-border w-8 h-8 rounded-full flex items-center justify-center text-text-secondary hover:text-text-primary disabled:opacity-20 disabled:cursor-not-allowed">
-                        <FontAwesomeIcon icon={faChevronLeft} />
-                    </button>
-                    <button onClick={handleNext} disabled={currentIndex === allFeeProps.length - 1} className="absolute top-1/2 right-[-20px] -translate-y-1/2 bg-card border border-border w-8 h-8 rounded-full flex items-center justify-center text-text-secondary hover:text-text-primary disabled:opacity-20 disabled:cursor-not-allowed">
-                        <FontAwesomeIcon icon={faChevronRight} />
-                    </button>
-                </div>
-                {/* END: Carousel Container */}
-                
-                {/* NEW: Custom Scrollbar / Progress Bar */}
-                <div className="w-full h-2 bg-card-secondary rounded-full mt-6">
-                    <div
-                        className="h-full bg-slate-400 dark:bg-slate-500 rounded-full transition-all duration-500"
-                        style={{ width: `${progressPercentage}%` }}
-                    ></div>
-                </div>
-            </div>
+                    {/* START: Carousel Container */}
+                    <div className="relative">
+                        {/* This div hides the overflowing content */}
+                        <div className="overflow-hidden">
+                            {/* This div is the "track" that moves left and right */}
+                            <div
+                                className="flex transition-transform duration-500 ease-in-out"
+                                style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+                            >
+                                {allFeeProps.map(props => (
+                                    <div key={props.name} className="w-full flex-shrink-0 px-1">
+                                        <RecurringFeeItem {...props} />
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
 
-            {/* Conditionally render the modal */}
+                        {/* Navigation Buttons */}
+                        <button onClick={handlePrev} disabled={currentIndex === 0} className="absolute top-1/2 left-[-20px] -translate-y-1/2 bg-card border border-border w-8 h-8 rounded-full flex items-center justify-center text-text-secondary hover:text-text-primary disabled:opacity-20 disabled:cursor-not-allowed">
+                            <FontAwesomeIcon icon={faChevronLeft} />
+                        </button>
+                        <button onClick={handleNext} disabled={currentIndex === allFeeProps.length - 1} className="absolute top-1/2 right-[-20px] -translate-y-1/2 bg-card border border-border w-8 h-8 rounded-full flex items-center justify-center text-text-secondary hover:text-text-primary disabled:opacity-20 disabled:cursor-not-allowed">
+                            <FontAwesomeIcon icon={faChevronRight} />
+                        </button>
+                    </div>
+                    {/* END: Carousel Container */}
+                    
+                    {/* NEW: Custom Scrollbar / Progress Bar */}
+                    <div className="w-full h-2 bg-card-secondary rounded-full mt-6">
+                        <div
+                            className="h-full bg-slate-400 dark:bg-slate-500 rounded-full transition-all duration-500"
+                            style={{ width: `${progressPercentage}%` }}
+                        ></div>
+                    </div>
+                </div>
+            }
+
             {isModalOpen && <RecurringFeesModal fees={allFeeProps} onClose={() => setIsModalOpen(false)} />}
         </>
     );
