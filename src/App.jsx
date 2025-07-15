@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import MainLayout from "./components/layout/MainLayout"; 
 import AuthLayout from "./components/layout/AuthLayout";
+import ProtectedRoute from "./components/layout/ProtectedRoute";
 
 import DashboardPage from './pages/DashboardPage';
 import JarsManagementPage from './pages/JarsManagementPage';
@@ -15,12 +16,14 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-          <Route path="/" element={<MainLayout />}>
-            <Route index element={<DashboardPage />} />
-            <Route path="dashboard" element={<DashboardPage />} />
-            <Route path="jars" element={<JarsManagementPage />} />
-            <Route path="transactions" element={<TransactionsPage />} />
-            <Route path="ai-coach" element={<AiCoachPage />} />
+          <Route element={<ProtectedRoute />}>
+            <Route path="/" element={<MainLayout />}>
+              <Route index element={<DashboardPage />} />
+              <Route path="dashboard" element={<DashboardPage />} />
+              <Route path="jars" element={<JarsManagementPage />} />
+              <Route path="transactions" element={<TransactionsPage />} />
+              <Route path="ai-coach" element={<AiCoachPage />} />
+            </Route>
           </Route>
 
           <Route element={<AuthLayout />}>

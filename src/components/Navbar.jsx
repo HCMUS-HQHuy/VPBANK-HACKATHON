@@ -1,13 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, use } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faLayerGroup } from '@fortawesome/free-solid-svg-icons';
 import { faBell } from '@fortawesome/free-regular-svg-icons';
 
-import ThemeToggle from "@/components/ThemeToggle.jsx"
+import UserSettingsDropdown from '@/components/UserSettingDropdown';
+import useClickOutside from '@/hooks/UseClickOutside';
 
 const Navbar = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+    const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+    const userMenuRef = useRef(null);
+
+    useClickOutside(userMenuRef, () => setIsUserMenuOpen(false));
 
     const baseLinkClass = "px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200";
     const activeLinkClass = `${baseLinkClass} bg-primary-light text-primary`;
@@ -45,18 +51,28 @@ const Navbar = () => {
 
                     {/* User Actions */}
                     <div className="flex items-center">
-                        {/* Notifications and Avatar */}
-                        <div className="hidden md:flex items-center gap-4">
+                        {/* BƯỚC 3.3: TẠO MỘT CONTAINER TƯƠNG ĐỐI (RELATIVE) */}
+                        <div className="relative flex items-center gap-4">
+
+                            {/* Notifications */}
                             <button type="button" className="relative p-1 text-text-secondary hover:text-text-primary">
-                                <span className="sr-only">View notifications</span>
-                                <FontAwesomeIcon icon={faBell} className="fa-regular text-xl" />
-                                {/* CHANGED: Replaced hardcoded color with theme-aware class */}
-                                <span className="absolute top-0 right-0 block h-2 w-2 rounded-full bg-danger ring-2 ring-card"></span>
+                                {/* ... */}
                             </button>
-                            <button type="button" className="flex text-sm bg-slate-200 rounded-full focus:outline-none ring-2 ring-offset-2 ring-ring">
+
+                            {/* Avatar Button */}
+                            <button
+                                type="button"
+                                className="flex text-sm bg-slate-200 rounded-full focus:outline-none ring-2 ring-offset-2 ring-ring"
+                                onClick={() => setIsUserMenuOpen(prev => !prev)} // Toggle menu khi click
+                            >
                                 <span className="sr-only">Open user menu</span>
                                 <img className="h-8 w-8 rounded-full" src="https://i.pravatar.cc/40?u=alex" alt="User avatar" />
                             </button>
+
+                            {/* BƯỚC 3.4: HIỂN THỊ DROPDOWN CÓ ĐIỀU KIỆN */}
+                            {isUserMenuOpen && (
+                                <UserSettingsDropdown ref={userMenuRef} onClose={() => setIsUserMenuOpen(false)} />
+                            )}
                         </div>
 
                         {/* Mobile Menu Button */}
@@ -71,7 +87,6 @@ const Navbar = () => {
                             </button>
                         </div>
                     </div>
-                    <ThemeToggle/>
                 </div>
             </div>
 
