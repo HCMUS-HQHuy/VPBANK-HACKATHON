@@ -107,11 +107,8 @@ const RecurringFeesCard = () => {
                         </button>
                     </div>
 
-                    {/* START: Carousel Container */}
                     <div className="relative">
-                        {/* This div hides the overflowing content */}
                         <div className="overflow-hidden">
-                            {/* This div is the "track" that moves left and right */}
                             <div
                                 className="flex transition-transform duration-500 ease-in-out"
                                 style={{ transform: `translateX(-${currentIndex * 100}%)` }}
@@ -124,7 +121,6 @@ const RecurringFeesCard = () => {
                             </div>
                         </div>
 
-                        {/* Navigation Buttons */}
                         <button onClick={handlePrev} disabled={currentIndex === 0} className="absolute top-1/2 left-[-20px] -translate-y-1/2 bg-card border border-border w-8 h-8 rounded-full flex items-center justify-center text-text-secondary hover:text-text-primary disabled:opacity-20 disabled:cursor-not-allowed">
                             <FontAwesomeIcon icon={faChevronLeft} />
                         </button>
@@ -132,9 +128,7 @@ const RecurringFeesCard = () => {
                             <FontAwesomeIcon icon={faChevronRight} />
                         </button>
                     </div>
-                    {/* END: Carousel Container */}
                     
-                    {/* NEW: Custom Scrollbar / Progress Bar */}
                     <div className="w-full h-2 bg-card-secondary rounded-full mt-6">
                         <div
                             className="h-full bg-slate-400 dark:bg-slate-500 rounded-full transition-all duration-500"

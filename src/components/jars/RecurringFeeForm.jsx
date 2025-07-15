@@ -1,45 +1,98 @@
 import React, { useState, useEffect } from 'react';
 
-// A helper component for the conditional frequency details
+// --- NEW COMPONENT: Day of the Week Button ---
+// A small, reusable component for the day buttons.
+const DayButton = ({ day, short, onClick, isSelected }) => {
+    return (
+        <button
+            type="button"
+            onClick={() => onClick(day)}
+            className={`w-8 h-8 rounded-full text-sm font-semibold transition-colors
+                ${isSelected 
+                    ? 'bg-blue-500 text-white' 
+                    : 'bg-card-secondary text-text-secondary hover:bg-border'
+                }`}
+        >
+            {short}
+        </button>
+    );
+};
+
 const FrequencyDetails = ({ frequency, value, onChange }) => {
+    const [repeatInterval, setRepeatInterval] = useState(value.interval || 1);
+    const [selectedDays, setSelectedDays] = useState(value.days || ['T']);
+
+    useEffect(() => {
+        if (frequency === 'weekly') {
+            onChange({
+                interval: repeatInterval,
+                days: selectedDays
+            });
+        }
+    }, [repeatInterval, selectedDays, frequency]);
+
+    const handleDayClick = (day) => {
+        setSelectedDays(prevDays => {
+            if (prevDays.includes(day)) {
+                return prevDays.length > 1 ? prevDays.filter(d => d !== day) : prevDays;
+            } else {
+                return [...prevDays, day];
+            }
+        });
+    };
+
+    const daysOfWeek = [
+        { full: 'monday', short: 'M' },
+        { full: 'tuesday', short: 'T' },
+        { full: 'wednesday', short: 'W' },
+        { full: 'thursday', short: 'T' },
+        { full: 'friday', short: 'F' },
+        { full: 'saturday', short: 'S' },
+        { full: 'sunday', short: 'S' }
+    ];
+
     switch (frequency) {
         case 'monthly':
             return (
                 <div>
                     <label htmlFor="dayOfMonth" className="text-sm font-medium text-text-secondary">Day of Month (1-31)</label>
-                    <input
-                        id="dayOfMonth"
-                        name="pattern_details"
-                        type="number"
-                        value={value[0] || ''}
-                        onChange={(e) => onChange([parseInt(e.target.value, 10)])}
-                        min="1"
-                        max="31"
-                        className="mt-1 w-full p-3 bg-card-secondary border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-ring"
-                    />
+                    <input id="dayOfMonth" name="pattern_details" type="number" value={value[0] || ''} onChange={(e) => onChange([parseInt(e.target.value, 10)])} min="1" max="31" className="mt-1 w-full p-3 bg-card-secondary border border-border rounded-md no-spinner" />
                 </div>
             );
+
         case 'weekly':
             return (
-                <div>
-                    <label htmlFor="dayOfWeek" className="text-sm font-medium text-text-secondary">Day of Week</label>
-                    <select
-                        id="dayOfWeek"
-                        name="pattern_details"
-                        value={value[0] || 'monday'}
-                        onChange={(e) => onChange([e.target.value])}
-                        className="mt-1 w-full p-3 bg-card-secondary border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-ring"
-                    >
-                        <option value="monday">Monday</option>
-                        <option value="tuesday">Tuesday</option>
-                        <option value="wednesday">Wednesday</option>
-                        <option value="thursday">Thursday</option>
-                        <option value="friday">Friday</option>
-                        <option value="saturday">Saturday</option>
-                        <option value="sunday">Sunday</option>
-                    </select>
+                <div className="col-span-full space-y-4 flex justify-between">
+                    <div>
+                        <label className="text-sm font-medium text-text-secondary">Repeat every</label>
+                        <div className="flex items-center gap-2 mt-1">
+                            <input
+                                type="number"
+                                value={repeatInterval}
+                                onChange={(e) => setRepeatInterval(parseInt(e.target.value, 10) || 1)}
+                                min="1"
+                                className="w-10 p-2 text-center bg-card-secondary border border-border rounded-md no-spinner"
+                            />
+                            <p className="text-text-primary">week(s)</p>
+                        </div>
+                    </div>
+                    <div>
+                        <label className="text-sm font-medium text-text-secondary">Repeat on</label>
+                        <div className="flex items-center justify-between gap-1 mt-2">
+                            {daysOfWeek.map((day, index) => (
+                                <DayButton
+                                    key={index}
+                                    day={day.full}
+                                    short={day.short}
+                                    onClick={handleDayClick}
+                                    isSelected={selectedDays.includes(day.full)}
+                                />
+                            ))}
+                        </div>
+                    </div>
                 </div>
             );
+
         default:
             return null; // No details needed for daily or yearly
     }
@@ -99,7 +152,7 @@ const RecurringFeeForm = ({ initialData, onSubmit, onCancel, onDelete, title = "
                     </div>
                     <div className="md:col-span-2">
                         <label htmlFor="amount" className="text-sm font-medium text-text-secondary">Amount ($)</label>
-                        <input id="amount" name="amount" type="number" value={formData.amount} onChange={handleChange} required placeholder="0.00" step="0.01" className="mt-1 w-full p-3 bg-card-secondary border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-ring" />
+                        <input id="amount" name="amount" type="number" value={formData.amount} onChange={handleChange} required placeholder="0.00" step="0.01" className="mt-1 w-full p-3 bg-card-secondary border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-ring  no-spinner" />
                     </div>
                 </div>
 
