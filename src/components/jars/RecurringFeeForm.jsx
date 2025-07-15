@@ -192,8 +192,8 @@ const RecurringFeeForm = ({ initialData, onSubmit, onCancel, onDelete, title = "
 				
                 {/* Action Buttons */}
                 <div className="flex justify-end gap-3 pt-4">
-                    {onDelete && <button type="button" onClick={onDelete} className="px-5 py-2.5 bg-card-secondary text-text-primary font-semibold rounded-lg hover:bg-border">Delete</button>}
-                    <button type="submit" className="px-5 py-2.5 bg-brand-primary text-white font-semibold rounded-lg hover:opacity-90">Save Fee</button>
+                    {onDelete && <button type="button" onClick={onDelete} className="px-5 py-2.5 bg-danger-light text-brand-text font-semibold rounded-lg hover:bg-danger">Delete</button>}
+                    <button type="submit" className="px-5 py-2.5 bg-brand text-card font-semibold rounded-lg hover:opacity-90">Save Fee</button>
                 </div>
             </form>
         </div>
