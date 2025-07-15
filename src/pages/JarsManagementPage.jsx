@@ -2,6 +2,7 @@ import React from 'react';
 import TotalIncomeCard from '@/components/financialOverview/TotalIncomeCard';
 import RecurringFeesCard from '@/components/jars/RecurringFeesCard';
 import JarsAllocationCard from '@/components/jars/JarsAllocationCard';
+import RecommendationCard from '../components/jars/RecommendationCard';
 // import SpendingTrendsChart from '@/components/jars/SpendingTrendsChart'; 
 
 const JarsManagementPage = () => {
@@ -20,6 +21,7 @@ const JarsManagementPage = () => {
 
           {/* Right Column: Jars & Statistics */}
           <div className="lg:col-span-3 space-y-8">
+            <RecommendationCard/>
             <JarsAllocationCard />
             {/* <SpendingTrendsChart /> */}
           </div>
