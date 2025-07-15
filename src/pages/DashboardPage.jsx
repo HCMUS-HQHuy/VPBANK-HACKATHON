@@ -1,4 +1,7 @@
-// import Navbar from '@/common/Navbar';
+// src/pages/DashboardPage.jsx
+import { useAuth } from '@/contexts/AuthContext'; // Để lấy tên người dùng
+import { useDashboardData } from '@/hooks/useDashboardData'; // Hook mới của chúng ta
+
 import JarsAllocation from '@/components/dashboard/JarsAllocation';
 import Spending from '@/components/dashboard/Spending';
 import TotalIncomeCard from '@/components/financialOverview/TotalIncomeCard';
@@ -6,46 +9,70 @@ import RemainingCard from '@/components/financialOverview/RemainingCard';
 import ExpensesCard from '@/components/financialOverview/ExpensesCard';
 
 const Dashboard = () => {
+  const { user } = useAuth(); // Lấy thông tin user
+  const { data, isLoading, error } = useDashboardData(); // Lấy dữ liệu từ hook
+
+  // Hiển thị trạng thái loading hoặc lỗi
+  if (isLoading) {
+    return <div className="text-center p-8">Loading dashboard...</div>;
+  }
+
+  if (error) {
+    return <div className="text-center p-8 text-danger">Failed to load dashboard data. Please try again later.</div>;
+  }
+
+  // Logic cho thông báo Heads up (ví dụ)
+  const funJar = data.jars.find(j => j.name.toLowerCase() === 'play');
+  let headsUpMessage = null;
+  if (funJar && funJar.amount > 0) {
+    const funJarUsage = (funJar.current_amount / funJar.amount) * 100;
+    if (funJarUsage > 70) {
+        headsUpMessage = `Heads up! Your 'Fun' budget is ${funJarUsage.toFixed(0)}% used, but we're only halfway through the month.`;
+    }
+  }
+
   return (
-	<>
+    <>
       {/* Main Container */}
       <div className="container mx-auto p-4 md:p-8">
         {/* Header Greeting */}
         <header className="mb-8">
-          <h1 className="text-3xl font-bold text-text-primary mb-2">Good morning, Alex!</h1>
-          <div className="flex items-start gap-4 p-4 bg-green text-green-light border border-green-light rounded-lg">
-            <i className="fa-solid fa-lightbulb text-xl mt-1"></i>
-            <p className="text-base">
-              <span className="font-semibold">Heads up!</span> Your 'Fun' budget is 70% used, but we're only halfway through the month.
-            </p>
-          </div>
+          <h1 className="text-3xl font-bold text-text-primary mb-2">
+            Good morning, {user?.username || 'User'}!
+          </h1>
+          {headsUpMessage && (
+            <div className="flex items-start gap-4 p-4 bg-yellow-light text-yellow border border-yellow rounded-lg">
+              <i className="fa-solid fa-lightbulb text-xl mt-1"></i>
+              <p className="text-base">
+                <span className="font-semibold">Heads up!</span> {headsUpMessage}
+              </p>
+            </div>
+          )}
         </header>
 
-        {/* Financial Overview */}
+        {/* Financial Overview - Truyền dữ liệu động vào props */}
         <section className="mb-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <TotalIncomeCard/>
-            <RemainingCard/>
-            <ExpensesCard/>
+            <TotalIncomeCard income={data.totalIncome} />
+            <RemainingCard remaining={data.remainingAmount} />
+            <ExpensesCard expenses={data.totalExpenses} />
           </div>
         </section>
 
-        {/* Weekly Spending & Jars */}
+        {/* Weekly Spending & Jars - Truyền dữ liệu động vào props */}
         <section>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Weekly Spending Chart */}
             <div className="lg:col-span-2 bg-card p-6 rounded-xl border border-border shadow-sm">
-              <Spending />
+              <Spending weeklyData={data.weeklySpending} />
             </div>
             
-			<div className="lg:col-span-1 bg-card p-6 rounded-xl border border-border shadow-sm">
-                <JarsAllocation/>
+            <div className="lg:col-span-1 bg-card p-6 rounded-xl border border-border shadow-sm">
+              <JarsAllocation jars={data.jars} />
             </div>
           </div>
         </section>
       </div>
-
-	</>
+    </>
   );
 };
 

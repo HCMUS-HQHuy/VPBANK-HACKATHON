@@ -5,7 +5,7 @@ import { faBars, faLayerGroup } from '@fortawesome/free-solid-svg-icons';
 import { faBell } from '@fortawesome/free-regular-svg-icons';
 
 import UserSettingsDropdown from '@/components/UserSettingDropdown';
-import useClickOutside from '@/hooks/UseClickOutside';
+import useClickOutside from '@/hooks/useClickOutside';
 
 const Navbar = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -52,8 +52,7 @@ const Navbar = () => {
                     {/* User Actions */}
                     <div className="flex items-center">
                         {/* BƯỚC 3.3: TẠO MỘT CONTAINER TƯƠNG ĐỐI (RELATIVE) */}
-                        <div className="relative flex items-center gap-4">
-
+                        <div ref={userMenuRef} className="relative flex items-center gap-4">
                             {/* Notifications */}
                             <button type="button" className="relative p-1 text-text-secondary hover:text-text-primary">
                                 {/* ... */}
@@ -63,7 +62,7 @@ const Navbar = () => {
                             <button
                                 type="button"
                                 className="flex text-sm bg-slate-200 rounded-full focus:outline-none ring-2 ring-offset-2 ring-ring"
-                                onClick={() => setIsUserMenuOpen(prev => !prev)} // Toggle menu khi click
+                                onClick={() => setIsUserMenuOpen(prev => !prev)}
                             >
                                 <span className="sr-only">Open user menu</span>
                                 <img className="h-8 w-8 rounded-full" src="https://i.pravatar.cc/40?u=alex" alt="User avatar" />
@@ -71,7 +70,7 @@ const Navbar = () => {
 
                             {/* BƯỚC 3.4: HIỂN THỊ DROPDOWN CÓ ĐIỀU KIỆN */}
                             {isUserMenuOpen && (
-                                <UserSettingsDropdown ref={userMenuRef} onClose={() => setIsUserMenuOpen(false)} />
+                                <UserSettingsDropdown closeDropdown={() => setIsUserMenuOpen(false)} />
                             )}
                         </div>
 

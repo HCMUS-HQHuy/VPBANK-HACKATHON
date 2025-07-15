@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 
-const TotalIncomeCard = () => {
+const TotalIncomeCard = ({ income = 0 }) => {
     return (
         // The unnecessary fragment is removed, and theme classes are applied.
         <div className="bg-card p-6 rounded-xl border border-border shadow-sm">
@@ -17,7 +17,7 @@ const TotalIncomeCard = () => {
             </div>
             
             <p className="text-4xl font-bold text-text-primary mt-2">
-                $3,500.00 
+                ${income.toFixed(2)}
                 {/* CHANGED: text-slate-500 -> text-text-secondary */}
                 <span className="text-xl font-medium text-text-secondary"> / month</span>
             </p>

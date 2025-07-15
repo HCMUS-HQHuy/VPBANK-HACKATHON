@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWallet } from '@fortawesome/free-solid-svg-icons';
 
-const RemainingCard = () => {
+const RemainingCard = ({ remaining = 0 }) => {
     return (
         // The unnecessary fragment is removed, and theme classes are applied.
         <div className="bg-card p-6 rounded-xl border border-border shadow-sm flex items-center gap-6">
@@ -20,7 +20,7 @@ const RemainingCard = () => {
                 <p className="text-sm font-medium text-text-secondary">Remaining this Month</p>
                 
                 {/* CHANGED: text-slate-800 -> text-text-primary */}
-                <p className="text-3xl font-bold text-text-primary mt-1">$2,350</p>
+                <p className="text-3xl font-bold text-text-primary mt-1">${remaining.toFixed(2)}</p>
             </div>
         </div>
     );

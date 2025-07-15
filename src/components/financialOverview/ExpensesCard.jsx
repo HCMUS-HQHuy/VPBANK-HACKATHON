@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowTrendDown } from '@fortawesome/free-solid-svg-icons';
 
-const ExpensesCard = () => {
+const ExpensesCard = ({ expenses = 0 }) => {
     return (
         // The unnecessary fragment is removed, and theme classes are applied.
         <div className="bg-card p-6 rounded-xl border border-border shadow-sm flex items-center gap-6">
@@ -20,7 +20,7 @@ const ExpensesCard = () => {
                 <p className="text-sm font-medium text-text-secondary">Expenses this Month</p>
 
                 {/* CHANGED: text-slate-800 -> text-text-primary */}
-                <p className="text-3xl font-bold text-text-primary mt-1">$1,150</p>
+                <p className="text-3xl font-bold text-text-primary mt-1">${expenses.toFixed(2)}</p>
             </div>
         </div>
     );

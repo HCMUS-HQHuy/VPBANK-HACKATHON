@@ -1,66 +1,62 @@
-import {
-  faHouseChimney,
-  faPiggyBank,
-  faMartiniGlassCitrus,
-  faGraduationCap,
-  faHandHoldingDollar,
-  faGift
-} from '@fortawesome/free-solid-svg-icons';
+// file: src/utils/JarsIcon.js
+
+import { faHome, faPiggyBank, faMugHot, faBook, faChartLine, faGift, faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
 
 const JarsIcon = {
-  Necessities: {
-    label: 'Necessities',
-    percent: '55%',
-    icon: faHouseChimney,
-    bgLight: 'bg-primary-light',
-    bg: 'bg-primary',
-    color: 'text-primary',
-    colorLight: 'text-primary-light'
-  },
-  Savings: {
-    label: 'Savings',
-    percent: '10%',
-    icon: faPiggyBank,
-    bgLight: 'bg-green-light',
-    bg: 'bg-green',
-    color: 'text-green',
-    colorLight: 'text-green-light'
-  },
-  Fun: {
-    label: 'Fun',
-    percent: '10%',
-    icon: faMartiniGlassCitrus,
-    bgLight: 'bg-yellow-light',
-    bg: 'bg-yellow',
-    color: 'text-yellow',
-    colorLight: 'text-yellow-light'
-  },
-  Education: {
-    label: 'Education',
-    percent: '10%',
-    icon: faGraduationCap,
-    bgLight: 'bg-blue-light',
-    bg: 'bg-blue',
+  // THAY ĐỔI KEY Ở ĐÂY: "Necessities" -> "necessities"
+  necessities: {
+    label: "Necessities",
+    icon: faHome,
     color: 'text-blue',
-    colorLight: 'text-blue-light'
+    bgLight: 'bg-blue-light',
+    bg: 'bg-blue'
   },
-  Invest: {
-    label: 'Invest',
-    percent: '10%',
-    icon: faHandHoldingDollar,
-    bgLight: 'bg-danger-light',
-    bg: 'bg-danger',
-    color: 'text-danger',
-    colorLight: 'text-danger-light'
+  // THAY ĐỔI KEY Ở ĐÂY: "Savings" -> "long_term_savings" (khớp với database.py)
+  long_term_savings: {
+    label: "Savings",
+    icon: faPiggyBank,
+    color: 'text-green',
+    bgLight: 'bg-green-light',
+    bg: 'bg-green'
   },
-  Give: {
-    label: 'Give',
-    percent: '5%',
-    icon: faGift,
-    bgLight: 'bg-pink-light',
-    bg: 'bg-pink',
+  // THAY ĐỔI KEY Ở ĐÂY: "Fun" -> "play" (khớp với database.py)
+  play: {
+    label: "Fun",
+    icon: faMugHot,
+    color: 'text-yellow',
+    bgLight: 'bg-yellow-light',
+    bg: 'bg-yellow'
+  },
+  // THAY ĐỔI KEY Ở ĐÂY: "Education" -> "education"
+  education: {
+    label: "Education",
+    icon: faBook,
+    color: 'text-primary',
+    bgLight: 'bg-primary-light',
+    bg: 'bg-primary'
+  },
+  // THAY ĐỔI KEY Ở ĐÂY: "Invest" -> "financial_freedom" (khớp với database.py)
+  financial_freedom: {
+    label: "Invest",
+    icon: faChartLine,
     color: 'text-pink',
-    colorLight: 'text-pink-light'
+    bgLight: 'bg-pink-light',
+    bg: 'bg-pink'
+  },
+  // THAY ĐỔI KEY Ở ĐÂY: "Give" -> "give"
+  give: {
+    label: "Give",
+    icon: faGift,
+    color: 'text-danger',
+    bgLight: 'bg-danger-light',
+    bg: 'bg-danger'
+  },
+  Default: {
+    label: "Other",
+    icon: faQuestionCircle,
+    color: 'text-text-secondary',
+    bgLight: 'bg-card-secondary',
+    bg: 'bg-border'
   }
 };
 
