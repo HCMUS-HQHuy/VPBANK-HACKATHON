@@ -1,5 +1,5 @@
-import Footer from '../auth/Footer';
-import Header from '../auth/Header';
+import Footer from '../components/auth/Footer';
+import Header from '../components/auth/Header';
 
 const FormField = ({ id, label, type, placeholder, autoComplete }) => (
   <div>
