@@ -1,30 +1,55 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMoneyBillWave, faCreditCard, faBell } from '@fortawesome/free-solid-svg-icons';
-import JarsIcon from '@/utils/JarsIcon'; 
+// Thêm icon thùng rác vào import
+import { faMoneyBillWave, faCreditCard, faBell, faTrash } from '@fortawesome/free-solid-svg-icons';
+import JarsIcon from '@/utils/JarsIcon';
+import apiClient from '@/services/apiClient';
 
 // --- THE DYNAMIC CHILD COMPONENT ---
 // This component is purely presentational. It just receives props and renders them.
-const RecurringFeeItem = ({ name, jar, amount, frequency, alert, icon, color, bgLight }) => {
+// Component con được cập nhật để có nút xóa
+const RecurringFeeItem = ({ fee, icon, color, bgLight, onDelete }) => {
+    
+    // Hàm trợ giúp để định dạng ngày tháng đẹp hơn
+    const formatDate = (dateString) => {
+        if (!dateString) return 'N/A';
+        const date = new Date(dateString);
+        return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    };
+
+    let alertText = fee.pattern_type === 'daily' ? 'Daily' : `on day ${fee.pattern_details.join(', ')}`;
+    if (fee.pattern_type === 'weekly') {
+        const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+        alertText = fee.pattern_details.map(d => days[d - 1]).join(', ');
+    }
+    
     return (
         <div className="bg-card border border-border rounded-xl shadow-md text-text-primary overflow-hidden">
             <div className="p-4 flex justify-between items-center">
                 <div className="flex items-center gap-4">
-                    <div className={`w-12 h-12 ${bgLight} rounded-full flex items-center justify-center`}>
+                    <div className={`w-12 h-12 ${bgLight} rounded-full flex items-center justify-center flex-shrink-0`}>
                         <FontAwesomeIcon icon={icon} className={`text-2xl ${color}`} />
                     </div>
                     <div>
-                        <h3 className="font-bold text-lg text-text-primary">{name}</h3>
-                        <p className="text-sm text-text-secondary">{jar}</p>
+                        <h3 className="font-bold text-lg text-text-primary">{fee.name}</h3>
+                        <p className="text-sm text-text-secondary capitalize">{fee.target_jar.replace(/_/g, ' ')}</p>
                     </div>
                 </div>
+                {/* === THÊM NÚT XÓA MỚI === */}
+                <button 
+                    onClick={() => onDelete(fee.name)} 
+                    className="text-text-secondary hover:text-danger transition-colors p-2"
+                    aria-label={`Delete ${fee.name}`}
+                >
+                    <FontAwesomeIcon icon={faTrash} />
+                </button>
             </div>
             <div className="bg-card-secondary border-t border-border px-4 py-2.5 flex items-center justify-between text-sm text-text-secondary">
-                <div className="flex items-center gap-2"><FontAwesomeIcon icon={faMoneyBillWave} /><span>${amount.toFixed(2)}</span></div>
+                <div className="flex items-center gap-2" title="Amount"><FontAwesomeIcon icon={faMoneyBillWave} /><span>${fee.amount.toFixed(2)}</span></div>
                 <div className="w-px h-4 bg-border"></div>
-                <div className="flex items-center gap-2"><FontAwesomeIcon icon={faCreditCard} /><span>{frequency}</span></div>
+                <div className="flex items-center gap-2 capitalize" title="Frequency"><FontAwesomeIcon icon={faCreditCard} /><span>{fee.pattern_type}</span></div>
                 <div className="w-px h-4 bg-border"></div>
-                <div className="flex items-center gap-2"><FontAwesomeIcon icon={faBell} /><span>{alert}</span></div>
+                <div className="flex items-center gap-2" title="Next Due"><FontAwesomeIcon icon={faBell} /><span>Next: {formatDate(fee.next_occurrence)}</span></div>
             </div>
         </div>
     );
@@ -32,30 +57,40 @@ const RecurringFeeItem = ({ name, jar, amount, frequency, alert, icon, color, bg
 
 
 // --- THE PARENT CONTAINER COMPONENT ---
-const RecurringFeesCard = () => {
-    // This is the raw data from your API.
-    const recurringFeesFromAPI = [
-        { name: "Rent", amount: 1200.00, description: "Monthly apartment rent payment", target_jar: "Necessities", pattern_type: "monthly", pattern_details: [1], created_date: new Date("2024-01-01"), next_occurrence: new Date("2025-07-01"), last_occurrence: new Date("2025-06-01"), end_date: null, is_active: true },
-        { name: "Spotify", amount: 9.99, description: "Spotify Premium subscription", target_jar: "Fun", pattern_type: "monthly", pattern_details: [28], created_date: new Date("2023-06-01"), next_occurrence: new Date("2025-08-01"), last_occurrence: new Date("2025-07-01"), end_date: null, is_active: true },
-        { name: "Gym", amount: 35.00, description: "Monthly gym membership fee", target_jar: "Fun", pattern_type: "monthly", pattern_details: [25], created_date: new Date("2023-05-15"), next_occurrence: new Date("2025-07-25"), last_occurrence: new Date("2025-06-25"), end_date: null, is_active: false }
-    ];
 
-    // Helper function to map API data to the props our UI component needs.
+// Component cha được cập nhật để xử lý logic xóa
+const RecurringFeesCard = ({ fees = [], onAddFeeClick, onSuccess }) => {
+
+    // === HÀM XỬ LÝ LOGIC XÓA ===
+    const handleDelete = async (feeName) => {
+        // Hỏi người dùng xác nhận trước khi xóa
+        if (!window.confirm(`Are you sure you want to delete the recurring fee: "${feeName}"?`)) {
+            return;
+        }
+
+        try {
+            // Gọi API endpoint với fee_name (đã được URL-encode tự động bởi axios)
+            await apiClient.delete(`/fees/${feeName}`);
+            alert('Fee deleted successfully!');
+            if (typeof onSuccess === 'function') {
+                onSuccess(); 
+            }
+        } catch (err) {
+            console.error("Failed to delete fee:", err);
+            // Hiển thị thông báo lỗi từ backend nếu có
+            alert(err.response?.data?.detail || "Could not delete the fee.");
+        }
+    };
+
     const mapFeeToCardProps = (fee) => {
-        const icon = JarsIcon[fee.target_jar].icon;
-        const color = JarsIcon[fee.target_jar].color;
-        const bgLight = JarsIcon[fee.target_jar].bgLight;
-
-        let alertText = `on day ${fee.pattern_details[0]}`;
+        const jarKey = fee.target_jar.toLowerCase().replace(/\s/g, '_');
+        const iconInfo = JarsIcon[jarKey] || JarsIcon.Default;
         return {
-            name: fee.name,
-            amount: fee.amount,
-            frequency: fee.pattern_type,
-            jar: fee.target_jar,
-            alert: alertText,
-            icon: icon,
-            bgLight: bgLight,
-            color: color
+            fee: fee, // Truyền toàn bộ object fee xuống
+            icon: iconInfo.icon,
+            color: iconInfo.color,
+            bgLight: iconInfo.bgLight,
+            onDelete: handleDelete, // TRUYỀN HÀM XỬ LÝ XÓA XUỐNG COMPONENT CON
         };
     };
 
@@ -63,16 +98,30 @@ const RecurringFeesCard = () => {
         <div className="bg-card p-6 rounded-xl border border-border shadow-sm">
             <div className="flex justify-between items-center mb-4">
                 <h3 className="text-xl font-bold text-text-primary">Recurring Fees</h3>
-                <button className="px-4 py-2 bg-brand-primary text-text-accent text-sm font-semibold rounded-lg hover:opacity-90 transition-opacity">
+                <button onClick={onAddFeeClick} className="px-4 py-2 bg-primary text-white text-sm font-semibold rounded-lg hover:opacity-90 transition-opacity">
                     + Add New Fee
                 </button>
             </div>
             <div className="space-y-4">
-                {/* We map over the API data, transform it, and then render the component */}
-                {recurringFeesFromAPI.map(fee => {
-                    const cardProps = mapFeeToCardProps(fee);
-                    return <RecurringFeeItem key={cardProps.name} {...cardProps} />;
-                })}
+                {fees.length > 0 ? (
+                    fees.map(fee => {
+                        const jarKey = fee.target_jar.toLowerCase().replace(/\s/g, '_');
+                        const iconInfo = JarsIcon[jarKey] || JarsIcon.Default;
+                        
+                        return (
+                            <RecurringFeeItem 
+                                key={fee._id} 
+                                fee={fee}
+                                icon={iconInfo.icon}
+                                color={iconInfo.color}
+                                bgLight={iconInfo.bgLight}
+                                onDelete={handleDelete} // <-- TRUYỀN THẲNG HÀM handleDelete XUỐNG
+                            />
+                        );
+                    })
+                ) : (
+                    <p className="text-center text-text-secondary py-4">No active recurring fees.</p>
+                )}
             </div>
         </div>
     );

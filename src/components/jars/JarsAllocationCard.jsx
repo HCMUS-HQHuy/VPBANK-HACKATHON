@@ -1,9 +1,9 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPencil } from '@fortawesome/free-solid-svg-icons';
+import { faPencil, faPencilAlt } from '@fortawesome/free-solid-svg-icons'; 
 import JarsIcon from '@/utils/JarsIcon'; 
 
 const JarCard = ({ icon, name, remaining, total, color, bgColor }) => {
-  const percentage = remaining * 100 /total;
+    const percentage = total > 0 ? (remaining * 100) / total : 0; // Tránh chia cho 0
   return (
     <div className={`relative p-5 border border-border rounded-xl flex flex-col bg-card hover:bg-card-secondary`}>
         <div className="flex justify-between items-center">
@@ -27,54 +27,40 @@ const JarCard = ({ icon, name, remaining, total, color, bgColor }) => {
   );
 };
 
-const JarsAllocationCard = () => {
-  const data = {
-    Necessities: {
-      remaining: "925.00",
-      total: "1925.00"
-    },
-    Savings: {
-      remaining: "350.00",
-      total: "350.00"
-    },
-    Fun: {
-      remaining: "70.00",
-      total: "350.00"
-    },
-    Education: {
-      remaining: "300.00",
-      total: "350.00"
-    },
-    Invest: {
-      remaining: "17.50",
-      total: "175.00"
-    },
-    Give: {
-      remaining: "175.00",
-      total: "175.00"
-    }
-  }
+const JarsAllocationCard = ({ jars = [], onManageClick }) => {
+  // console.log("Jars data received in JarsAllocationCard:", jars);
 
   return (
     <div className="bg-card p-6 rounded-xl border border-border shadow-sm">
         <div className="flex justify-between items-center mb-6">
             <h3 className="text-xl font-bold text-text-primary">Jars Allocation & Status</h3>
-            <a href="#" className="flex items-center gap-2 text-sm font-semibold text-text-accent hover:underline transition-colors">
-                <FontAwesomeIcon icon={faPencil} />
+            {/* Dùng button và gọi onManageClick */}
+            <button onClick={onManageClick} className="flex items-center gap-2 text-sm font-semibold text-text-accent hover:underline transition-colors">
+                <FontAwesomeIcon icon={faPencilAlt} />
                 <span>Manage Allocation</span>
-            </a>
+            </button>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
-          {Object.values(JarsIcon).map(({ label, icon, color, bg }) => (
-            <JarCard 
-              key={label}
-              icon={icon}
-              color={color}
-              bgColor={bg}
-              name={label} 
-              remaining={data[label].remaining} 
-              total={data[label].total} />
-          ))}
+        {jars.length > 0 ? (
+          jars.map((jar) => {
+            const jarKey = jar.name.toLowerCase().replace(/\s/g, '_');
+            const iconInfo = JarsIcon[jarKey] || JarsIcon.Default;
+            
+            return (
+              <JarCard 
+                key={jar._id} // <-- THÊM DÒNG NÀY VÀO
+                icon={iconInfo.icon}
+                color={iconInfo.color}
+                bgColor={iconInfo.bg}
+                name={jar.name} 
+                remaining={jar.current_amount}
+                total={jar.amount}          
+              />
+            )
+          })
+        ) : (
+          <p className="col-span-full text-center text-text-secondary py-4">No jars have been set up.</p>
+        )}
         </div>
     </div>
   );

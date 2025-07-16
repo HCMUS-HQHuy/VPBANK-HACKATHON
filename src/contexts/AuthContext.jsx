@@ -32,6 +32,37 @@ export const AuthProvider = ({ children }) => {
     verifyUser();
   }, [token]);
 
+  // THÊM HÀM MỚI NÀY VÀO
+  const updateUserProfile = async (updateData) => {
+    try {
+      // Gọi API endpoint mới
+      const response = await apiClient.put('/auth/me', updateData);
+      
+      // Cập nhật lại state 'user' ngay lập tức để UI thay đổi
+      setUser(response.data); 
+      
+      // Trả về dữ liệu để form có thể xử lý (ví dụ: hiển thị thông báo thành công)
+      return response.data;
+    } catch (error) {
+      // Ném lỗi ra ngoài để component có thể bắt và hiển thị
+      console.error("Failed to update profile:", error);
+      throw error;
+    }
+  };
+
+  // --- THÊM HÀM MỚI ĐỂ ĐỔI MẬT KHẨU ---
+  const changePassword = async (passwordData) => {
+    // passwordData là object { current_password, new_password }
+    try {
+      await apiClient.post('/auth/change-password', passwordData);
+      // Không cần trả về gì, chỉ cần không có lỗi là thành công
+    } catch (error) {
+      console.error("Failed to change password:", error);
+      // Ném lỗi ra để component có thể bắt và hiển thị
+      throw error; 
+    }
+  };
+
   const login = async (username, password) => {
     // API yêu cầu form-data cho việc login, chúng ta tạo nó bằng URLSearchParams
     const params = new URLSearchParams();
@@ -72,7 +103,7 @@ export const AuthProvider = ({ children }) => {
     setIsAuthenticated(false);
   };
 
-  const value = { user, isAuthenticated, isLoading, login, register, logout };
+  const value = { user, isAuthenticated, isLoading, login, register, logout, updateUserProfile, changePassword };
 
   // Chỉ render children khi không còn loading để đảm bảo ProtectedRoute hoạt động đúng
   return (

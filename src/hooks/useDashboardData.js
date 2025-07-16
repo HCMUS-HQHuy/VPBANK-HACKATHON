@@ -1,6 +1,6 @@
-// file: src/hooks/useDashboardData.js
+// src/hooks/useDashboardData.js
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import apiClient from '@/services/apiClient';
 
 export const useDashboardData = () => {
@@ -8,68 +8,93 @@ export const useDashboardData = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-      setError(null);
-      try {
-        // Gọi đồng thời nhiều API để tăng tốc
-        const [settingsRes, jarsRes, transactionsRes] = await Promise.all([
-          apiClient.get('/user/settings'),
-          apiClient.get('/jars/'),
-          apiClient.get('/transactions/?limit=100') // Lấy 100 giao dịch gần nhất
-        ]);
-
-        // Xử lý dữ liệu
-        const totalIncome = settingsRes.data.total_income;
-        const jars = jarsRes.data;
-        const transactions = transactionsRes.data;
-
-        const totalExpenses = transactions.reduce((sum, tx) => sum + tx.amount, 0);
-        const remainingAmount = totalIncome - totalExpenses;
-
-        // Xử lý dữ liệu cho biểu đồ chi tiêu tuần
-        const weeklySpending = processWeeklySpending(transactions);
-
-        setData({
-          totalIncome,
-          jars,
-          transactions,
-          totalExpenses,
-          remainingAmount,
-          weeklySpending,
-        });
-
-      } catch (err) {
-        setError(err);
-        console.error("Failed to fetch dashboard data:", err);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
-  
-  // Hàm xử lý dữ liệu chi tiêu tuần (bạn có thể tùy chỉnh)
   const processWeeklySpending = (transactions) => {
-      const weeklyData = { Mon: 0, Tue: 0, Wed: 0, Thu: 0, Fri: 0, Sat: 0, Sun: 0 };
-      transactions.forEach(tx => {
-          const dayOfWeek = new Date(tx.date).getDay();
-          const dayName = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][dayOfWeek];
-          if(dayName) weeklyData[dayName] += tx.amount;
-      });
-      
-      let maxAmount = Math.max(...Object.values(weeklyData));
-      if (maxAmount === 0) maxAmount = 1; // Tránh chia cho 0
+    // Thứ tự các ngày mà component Spending.jsx sẽ render
+    const daysOrder = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+    
+    const weeklyData = { Mon: 0, Tue: 0, Wed: 0, Thu: 0, Fri: 0, Sat: 0, Sun: 0 };
+    
+    transactions.forEach(tx => {
+        // Đọc từ trường transaction_datetime thay vì date
+        const txDate = new Date(tx.transaction_datetime); 
+        
+        // getDay() trả về 0 cho Chủ Nhật, 1 cho Thứ Hai, ..., 6 cho Thứ Bảy.
+        // Điều chỉnh để 0 là Thứ Hai... 6 là Chủ Nhật để khớp với mảng daysOrder
+        let dayIndex = txDate.getDay() - 1;
+        if (dayIndex === -1) { // Nếu là Chủ Nhật (0), chuyển thành index 6
+            dayIndex = 6;
+        }
 
-      return Object.entries(weeklyData).map(([day, amount]) => ({
-          day,
-          amount: `$${amount.toFixed(2)}`,
-          height: `h-[${(amount / maxAmount) * 180}px]` // 180px là chiều cao tối đa của biểu đồ
-      }));
+        const dayName = daysOrder[dayIndex];
+        if (dayName) {
+          weeklyData[dayName] += tx.amount;
+        }
+    });
+    
+    const allAmounts = Object.values(weeklyData);
+    const maxAmount = allAmounts.length > 0 ? Math.max(...allAmounts) : 1;
+    
+    // Trả về dữ liệu theo đúng thứ tự render
+    return daysOrder.map(day => ({
+        day,
+        amount: `$${weeklyData[day].toFixed(2)}`,
+        height: `h-[${(weeklyData[day] / (maxAmount || 1)) * 150}px]` // 150px là chiều cao tối đa ví dụ
+    }));
   };
 
+  const fetchData = useCallback(async () => {
+    try {
+      const [settingsRes, jarsRes, transactionsRes] = await Promise.all([
+        apiClient.get('/user/settings'),
+        apiClient.get('/jars/'),
+        apiClient.get('/transactions/?limit=100')
+      ]);
 
-  return { data, isLoading, error };
+      const totalIncome = settingsRes.data.total_income;
+      const jars = jarsRes.data;
+      const transactions = transactionsRes.data;
+
+      // Logic tính toán các chỉ số khác giữ nguyên
+      const currentMonth = new Date().getMonth();
+      const currentYear = new Date().getFullYear();
+      const totalExpenses = transactions
+        .filter(t => {
+          const tDate = new Date(t.transaction_datetime);
+          return tDate.getMonth() === currentMonth && tDate.getFullYear() === currentYear;
+        })
+        .reduce((sum, t) => sum + t.amount, 0);
+        
+      const remainingAmount = totalIncome - totalExpenses;
+      const weeklySpending = processWeeklySpending(transactions);
+
+      setData({
+        totalIncome,
+        jars,
+        transactions,
+        totalExpenses,
+        remainingAmount,
+        weeklySpending,
+      });
+
+    } catch (err) {
+      setError(err);
+      console.error("Failed to fetch dashboard data:", err);
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchData();
+    
+    const handleFocus = () => {
+      fetchData();
+    };
+    window.addEventListener('focus', handleFocus);
+    return () => {
+      window.removeEventListener('focus', handleFocus);
+    };
+  }, [fetchData]);
+
+  return { data, isLoading, error, refetch: fetchData };
 };

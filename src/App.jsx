@@ -11,6 +11,7 @@ import TransactionsPage from './pages/TransactionsPage';
 import NotFoundPage from './pages/NotFoundPage'
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+import ProfilePage from "./pages/ProfilePage";
 
 export default function App() {
   return (
@@ -23,6 +24,8 @@ export default function App() {
               <Route path="jars" element={<JarsManagementPage />} />
               <Route path="transactions" element={<TransactionsPage />} />
               <Route path="ai-coach" element={<AiCoachPage />} />
+              <Route path="profile" element={<ProfilePage />} />
+              {/* <Route path="settings" element={<SettingsPage />} /> */}
             </Route>
           </Route>
 

@@ -1,18 +1,22 @@
 // src/pages/DashboardPage.jsx
-import { useAuth } from '@/contexts/AuthContext'; // Để lấy tên người dùng
-import { useDashboardData } from '@/hooks/useDashboardData'; // Hook mới của chúng ta
+import { useState } from 'react';
+import { useAuth } from '@/contexts/AuthContext';
+import { useDashboardData } from '@/hooks/useDashboardData';
 
 import JarsAllocation from '@/components/dashboard/JarsAllocation';
 import Spending from '@/components/dashboard/Spending';
 import TotalIncomeCard from '@/components/financialOverview/TotalIncomeCard';
 import RemainingCard from '@/components/financialOverview/RemainingCard';
 import ExpensesCard from '@/components/financialOverview/ExpensesCard';
+import EditIncomeModal from '@/components/financialOverview/EditIncomeModal';
 
 const Dashboard = () => {
-  const { user } = useAuth(); // Lấy thông tin user
-  const { data, isLoading, error } = useDashboardData(); // Lấy dữ liệu từ hook
+  const { user } = useAuth();
+  // CẬP NHẬT DÒNG NÀY: Thêm 'refetch' vào danh sách các biến được lấy ra từ hook
+  const { data, isLoading, error, refetch } = useDashboardData();
 
-  // Hiển thị trạng thái loading hoặc lỗi
+  const [isIncomeModalOpen, setIsIncomeModalOpen] = useState(false);
+
   if (isLoading) {
     return <div className="text-center p-8">Loading dashboard...</div>;
   }
@@ -22,7 +26,8 @@ const Dashboard = () => {
   }
 
   // Logic cho thông báo Heads up (ví dụ)
-  const funJar = data.jars.find(j => j.name.toLowerCase() === 'play');
+  // Thêm 'optional chaining' (?.) để tránh lỗi khi data chưa có
+  const funJar = data?.jars?.find(j => j.name.toLowerCase() === 'play');
   let headsUpMessage = null;
   if (funJar && funJar.amount > 0) {
     const funJarUsage = (funJar.current_amount / funJar.amount) * 100;
@@ -33,9 +38,18 @@ const Dashboard = () => {
 
   return (
     <>
-      {/* Main Container */}
+      <EditIncomeModal
+        isOpen={isIncomeModalOpen}
+        onClose={() => setIsIncomeModalOpen(false)}
+        currentIncome={data?.totalIncome}
+        // Cập nhật onSuccess để đóng modal sau khi refetch
+        onSuccess={() => {
+          refetch();
+          setIsIncomeModalOpen(false);
+        }}
+      />
+      
       <div className="container mx-auto p-4 md:p-8">
-        {/* Header Greeting */}
         <header className="mb-8">
           <h1 className="text-3xl font-bold text-text-primary mb-2">
             Good morning, {user?.username || 'User'}!
@@ -50,24 +64,25 @@ const Dashboard = () => {
           )}
         </header>
 
-        {/* Financial Overview - Truyền dữ liệu động vào props */}
         <section className="mb-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <TotalIncomeCard income={data.totalIncome} />
-            <RemainingCard remaining={data.remainingAmount} />
-            <ExpensesCard expenses={data.totalExpenses} />
+            <TotalIncomeCard 
+              income={data?.totalIncome} 
+              onEditClick={() => setIsIncomeModalOpen(true)}
+            />
+            <RemainingCard remaining={data?.remainingAmount} />
+            <ExpensesCard expenses={data?.totalExpenses} />
           </div>
         </section>
 
-        {/* Weekly Spending & Jars - Truyền dữ liệu động vào props */}
         <section>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="lg:col-span-2 bg-card p-6 rounded-xl border border-border shadow-sm">
-              <Spending weeklyData={data.weeklySpending} />
+              <Spending weeklyData={data?.weeklySpending} />
             </div>
             
             <div className="lg:col-span-1 bg-card p-6 rounded-xl border border-border shadow-sm">
-              <JarsAllocation jars={data.jars} />
+              <JarsAllocation jars={data?.jars} />
             </div>
           </div>
         </section>

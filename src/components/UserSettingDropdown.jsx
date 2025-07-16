@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faCog, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import ThemeToggle from '@/components/ThemeToggle';
-import { useAuth } from '@/contexts/AuthContext'; // <--- BƯỚC 1: IMPORT useAuth
+import { useAuth } from '@/contexts/AuthContext'; 
 
 // Sửa lại: không cần forwardRef và onClose nữa vì chúng ta sẽ xử lý trong AuthContext
 const UserSettingsDropdown = ({ closeDropdown }) => {
@@ -39,10 +39,7 @@ const UserSettingsDropdown = ({ closeDropdown }) => {
           <FontAwesomeIcon icon={faUser} className="w-4" />
           <span>Profile</span>
         </Link>
-        <Link to="/settings" onClick={closeDropdown} className="flex items-center gap-3 w-full px-3 py-2 text-sm text-text-primary rounded-md hover:bg-card-secondary">
-          <FontAwesomeIcon icon={faCog} className="w-4" />
-          <span>Settings</span>
-        </Link>
+
         {/* BƯỚC 3: GỌI HÀM handleLogout KHI CLICK */}
         <button
           onClick={handleLogout}
