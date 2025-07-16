@@ -211,7 +211,7 @@ const TransactionsPage = () => {
                                              </td>
                                              <td className="p-3 font-medium text-text-primary">- ${trx.amount.toFixed(2)}</td>
                                              <td className="p-3 text-sm text-right space-x-4">
-                                                 <button disabled className="font-semibold text-text-secondary/50 cursor-not-allowed"><FontAwesomeIcon icon={faEdit} /> Edit</button>
+                                                 {/* <button disabled className="font-semibold text-text-secondary/50 cursor-not-allowed"><FontAwesomeIcon icon={faEdit} /> Edit</button> */}
                                                  <button onClick={() => handleDelete(trx._id)} className="font-semibold text-danger hover:underline"><FontAwesomeIcon icon={faTrash} /> Delete</button>
                                              </td>
                                          </tr>
