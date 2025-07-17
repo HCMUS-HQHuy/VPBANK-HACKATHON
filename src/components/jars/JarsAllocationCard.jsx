@@ -71,7 +71,7 @@ const JarsAllocationCard = ({ jars = [], onManageClick }) => {
                                 title="Show all jars"
                             >
                                 <JarCard
-                                    className="opacity-40"
+                                    className="opacity-30"
                                     icon={iconInfo.icon}
                                     color={iconInfo.color}
                                     bgColor={iconInfo.bg}

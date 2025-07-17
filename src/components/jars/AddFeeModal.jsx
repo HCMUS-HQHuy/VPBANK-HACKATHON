@@ -20,17 +20,18 @@ const DayButton = ({ day, short, onClick, isSelected }) => {
 };
 
 const FrequencyDetails = ({ frequency, value, onChange }) => {
-    const [repeatInterval, setRepeatInterval] = useState(value.interval || 1);
-    const [selectedDays, setSelectedDays] = useState(value.days || ['T']);
+    // const [repeatInterval, setRepeatInterval] = useState(value.interval || 1);
+    const [selectedDays, setSelectedDays] = useState(value.days || []);
 
     useEffect(() => {
         if (frequency === 'weekly') {
             onChange({
-                interval: repeatInterval,
+                // interval: repeatInterval,
                 days: selectedDays
             });
         }
-    }, [repeatInterval, selectedDays, frequency]);
+    }, [selectedDays, frequency]);
+    // }, [repeatInterval, selectedDays, frequency]);
 
     const handleDayClick = (day) => {
         setSelectedDays(prevDays => {
@@ -43,13 +44,13 @@ const FrequencyDetails = ({ frequency, value, onChange }) => {
     };
 
     const daysOfWeek = [
-        { full: 'monday', short: 'M' },
-        { full: 'tuesday', short: 'T' },
-        { full: 'wednesday', short: 'W' },
-        { full: 'thursday', short: 'T' },
-        { full: 'friday', short: 'F' },
-        { full: 'saturday', short: 'S' },
-        { full: 'sunday', short: 'S' }
+        { full: '1', short: 'MON' },
+        { full: '2', short: 'TUE' },
+        { full: '3', short: 'WED' },
+        { full: '4', short: 'THU' },
+        { full: '5', short: 'FRI' },
+        { full: '6', short: 'SAT' },
+        { full: '7', short: 'SUN' }
     ];
 
     switch (frequency) {
@@ -64,7 +65,7 @@ const FrequencyDetails = ({ frequency, value, onChange }) => {
         case 'weekly':
             return (
                 <div className="col-span-full space-y-4 flex justify-between">
-                    <div>
+                    {/* <div>
                         <label className="text-sm font-medium text-text-secondary">Repeat every</label>
                         <div className="flex items-center gap-2 mt-1">
                             <input
@@ -76,7 +77,7 @@ const FrequencyDetails = ({ frequency, value, onChange }) => {
                             />
                             <p className="text-text-primary">week(s)</p>
                         </div>
-                    </div>
+                    </div> */}
                     <div>
                         <label className="text-sm font-medium text-text-secondary">Repeat on</label>
                         <div className="flex items-center justify-between gap-1 mt-2">
@@ -148,9 +149,10 @@ const AddFeeModal = ({ isOpen, onClose, jars, onSuccess }) => {
       if (formData.pattern_type === 'daily') {
         patternDetails = [];
       } else if (formData.pattern_type === 'weekly') {
-        const { interval, days } = formData.pattern_details || {};
-        if (!interval || !Array.isArray(days) || days.length === 0) {
-          setError('Please provide both repeat interval and at least one weekday for weekly pattern.');
+        const { days } = formData.pattern_details || {};
+        if (!Array.isArray(days) || days.length === 0) {
+        // if (!interval || !Array.isArray(days) || days.length === 0) {
+          setError('Please provide at least one weekday for weekly pattern.');
           setIsLoading(false);
           return;
         }

@@ -1,10 +1,12 @@
-import { useState } from 'react';
+// src/components/jars/RecurringFeesCard.jsx
+
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMoneyBillWave, faCreditCard, faBell, faTrash, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import AddFeeModal from '@/components/jars/AddFeeModal';
+import { faMoneyBillWave, faCreditCard, faBell, faTrash, faChevronLeft, faChevronRight, faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import JarsIcon from '@/utils/JarsIcon';
 import apiClient from '@/services/apiClient';
 
+// Component con giữ nguyên, không cần thay đổi
 const RecurringFeeItem = ({ fee, icon, color, bgLight, onDelete }) => {
     const formatDate = (dateString) => {
         if (!dateString) return 'N/A';
@@ -49,100 +51,95 @@ const RecurringFeeItem = ({ fee, icon, color, bgLight, onDelete }) => {
     );
 };
 
-const RecurringFeesModal = ({ fees, onClose }) => {
-    return (
-        <div className="bg-card w-full max-w-md p-6 md:p-8 rounded-xl shadow-2xl flex flex-col">
-            <div className="flex justify-between items-center mb-6">
-                <h3 className="text-2xl font-bold text-text-primary">All Recurring Fees</h3>
-                <button onClick={onClose} className="text-text-secondary hover:text-text-primary text-2xl">×</button>
-            </div>
-            <div className="overflow-y-auto space-y-4 pr-2">
-                {fees.map(fee => <RecurringFeeItem key={fee.name} {...fee} />)}
-            </div>
-        </div>
-    );
-};
-
-const RecurringFeesCard = ({ recurringFeesFromAPI = [], onAddFeeClick, onSuccess }) => {
+// CẬP NHẬT HOÀN TOÀN COMPONENT CHA
+const RecurringFeesCard = ({ fees = [], onAddFeeClick, onSuccess }) => {
+    // State để quản lý hiển thị
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [showAll, setShowAll] = useState(false);
+
     const handleDelete = async (feeName) => {
         if (!window.confirm(`Are you sure you want to delete the recurring fee: "${feeName}"?`)) {
             return;
         }
-
         try {
             await apiClient.delete(`/fees/${feeName}`);
-            alert('Fee deleted successfully!');
+            // Sau khi xóa, reset lại vị trí và fetch lại dữ liệu
+            setCurrentIndex(0);
             if (typeof onSuccess === 'function') {
                 onSuccess(); 
             }
         } catch (err) {
-            console.error("Failed to delete fee:", err);
             alert(err.response?.data?.detail || "Could not delete the fee.");
         }
     };
 
-    const mapFeeToCardProps = (fee) => {
-        const styleProps = JarsIcon[fee.target_jar] || { icon: faMoneyBillWave, color: 'text-text-secondary', bgLight: 'bg-card-secondary' };
-        let alertText = `on day ${fee.pattern_details[0]}`;
-        return { name: fee.name, amount: fee.amount, frequency: fee.pattern_type, jar: fee.target_jar, alert: alertText, ...styleProps, onDelete: handleDelete };
-    };
-    
-    const allFeeProps = recurringFeesFromAPI.map(mapFeeToCardProps);
-
-    const handlePrev = () => {
-        setCurrentIndex(prev => Math.max(0, prev - 1));
+    const goToNext = () => {
+        setCurrentIndex(prev => Math.min(prev + 1, fees.length - 1));
     };
 
-    const handleNext = () => {
-        setCurrentIndex(prev => Math.min(allFeeProps.length - 1, prev + 1));
+    const goToPrev = () => {
+        setCurrentIndex(prev => Math.max(prev - 1, 0));
     };
 
-    const progressPercentage = allFeeProps.length > 1 ? (currentIndex / (allFeeProps.length - 1)) * 100 : 0;
+    const toggleShowAll = () => {
+        setShowAll(!showAll);
+    }
 
     return (
-        <>
-            <div className="bg-card p-6 rounded-xl border border-border shadow-sm">
-                <div className="flex justify-between items-center mb-4">
-                    <h3 className="text-xl font-bold text-text-primary">Recurring Fees</h3>
-                    {/* NEW: View All Button */}
-                    <button onClick={() => setIsModalOpen(true)} className="text-sm font-semibold text-text-accent hover:underline">
-                        View All
+        <div className="bg-card p-6 rounded-xl border border-border shadow-sm">
+            <div className="flex justify-between items-center mb-4">
+                <h3 className="text-xl font-bold text-text-primary">Recurring Fees</h3>
+                {/* Nút View All / Show Less */}
+                {fees.length > 1 && (
+                    <button onClick={toggleShowAll} className="text-sm font-semibold text-text-accent hover:underline flex items-center gap-1">
+                        <span>{showAll ? 'Show Less' : 'View All'}</span>
+                        <FontAwesomeIcon icon={showAll ? faChevronUp : faChevronDown} />
                     </button>
-                </div>
-
-                <div className="relative">
-                    <div className="overflow-hidden">
-                        <div
-                            className="flex transition-transform duration-500 ease-in-out"
-                            style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-                        >
-                            {allFeeProps.map(props => (
-                                <div key={props.name} className="w-full flex-shrink-0 px-1">
-                                    <RecurringFeeItem {...props} />
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-
-                    <button onClick={handlePrev} disabled={currentIndex === 0} className="absolute top-1/2 left-[-20px] -translate-y-1/2 bg-card border border-border w-8 h-8 rounded-full flex items-center justify-center text-text-secondary hover:text-text-primary disabled:opacity-20 disabled:cursor-not-allowed">
-                        <FontAwesomeIcon icon={faChevronLeft} />
-                    </button>
-                    <button onClick={handleNext} disabled={currentIndex === allFeeProps.length - 1} className="absolute top-1/2 right-[-20px] -translate-y-1/2 bg-card border border-border w-8 h-8 rounded-full flex items-center justify-center text-text-secondary hover:text-text-primary disabled:opacity-20 disabled:cursor-not-allowed">
-                        <FontAwesomeIcon icon={faChevronRight} />
-                    </button>
-                </div>
-                
-                <div className="w-full h-2 bg-card-secondary rounded-full mt-6">
-                    <div
-                        className="h-full bg-slate-400 dark:bg-slate-500 rounded-full transition-all duration-500"
-                        style={{ width: `${progressPercentage}%` }}
-                    ></div>
-                </div>
+                )}
             </div>
+            
+            {/* Nội dung chính */}
+            <div className="space-y-4">
+                {fees.length === 0 ? (
+                    <p className="text-center text-text-secondary py-4">No active recurring fees.</p>
+                ) : showAll ? (
+                    // Chế độ xem tất cả
+                    fees.map(fee => {
+                        const jarKey = fee.target_jar.toLowerCase().replace(/\s/g, '_');
+                        const iconInfo = JarsIcon[jarKey] || JarsIcon.Default;
+                        return (
+                            <RecurringFeeItem key={fee._id} fee={fee} icon={iconInfo.icon} color={iconInfo.color} bgLight={iconInfo.bgLight} onDelete={handleDelete} />
+                        );
+                    })
+                ) : (
+                    // Chế độ xem từng cái (carousel)
+                    <div className="flex items-center gap-2">
+                        {/* Nút Previous */}
+                        <button onClick={goToPrev} disabled={currentIndex === 0} className="p-2 rounded-full hover:bg-card-secondary disabled:opacity-30 disabled:cursor-not-allowed">
+                            <FontAwesomeIcon icon={faChevronLeft} className="w-4 h-4 text-text-secondary"/>
+                        </button>
 
-            {/* {isModalOpen && <RecurringFeesModal fees={allFeeProps} onClose={() => setIsModalOpen(false)} />} */}
-        </>
+                        {/* Fee Item hiện tại */}
+                        <div className="flex-grow">
+                             {(() => {
+                                const fee = fees[currentIndex];
+                                if (!fee) return null;
+                                const jarKey = fee.target_jar.toLowerCase().replace(/\s/g, '_');
+                                const iconInfo = JarsIcon[jarKey] || JarsIcon.Default;
+                                return (
+                                    <RecurringFeeItem key={fee._id} fee={fee} icon={iconInfo.icon} color={iconInfo.color} bgLight={iconInfo.bgLight} onDelete={handleDelete} />
+                                );
+                            })()}
+                        </div>
+
+                        {/* Nút Next */}
+                        <button onClick={goToNext} disabled={currentIndex >= fees.length - 1} className="p-2 rounded-full hover:bg-card-secondary disabled:opacity-30 disabled:cursor-not-allowed">
+                             <FontAwesomeIcon icon={faChevronRight} className="w-4 h-4 text-text-secondary"/>
+                        </button>
+                    </div>
+                )}
+            </div>
+        </div>
     );
 };
 
