@@ -17,7 +17,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-          <Route element={<ProtectedRoute />}>
+          {/* <Route element={<ProtectedRoute />}> */}
             <Route path="/" element={<MainLayout />}>
               <Route index element={<DashboardPage />} />
               <Route path="dashboard" element={<DashboardPage />} />
@@ -27,7 +27,7 @@ export default function App() {
               <Route path="profile" element={<ProfilePage />} />
               {/* <Route path="settings" element={<SettingsPage />} /> */}
             </Route>
-          </Route>
+          {/* </Route> */}
 
           <Route element={<AuthLayout />}>
             <Route path="/login" element={<LoginPage />} />
