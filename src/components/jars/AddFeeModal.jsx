@@ -174,7 +174,8 @@ const AddFeeModal = ({ isOpen, onClose, jars, onSuccess }) => {
 
       await apiClient.post('/fees/', payload);
       onSuccess();
-      onClose();
+      if (onClose != null) 
+        onClose();
     } catch (err) {
       setError(err.response?.data?.detail || 'Failed to add recurring fee.');
     } finally {
@@ -185,13 +186,12 @@ const AddFeeModal = ({ isOpen, onClose, jars, onSuccess }) => {
   if (!isOpen) return null;
 
   return (
- <div className="fixed inset-0 bg-background/30 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-  <div className="bg-card p-6 rounded-xl border border-border shadow-lg w-full max-w-lg flex flex-col">
+  <div className="bg-card p-6 rounded-xl border border-border shadow-lg flex flex-col">
     <div className="flex justify-between items-center mb-6">
-      <h3 className="text-2xl font-bold text-text-primary">Add New Recurring Fee</h3>
-      <button onClick={onClose} className="text-text-secondary hover:text-text-primary text-2xl">
+      <h3 className="text-xl font-bold text-text-primary">Add New Recurring Fee</h3>
+      {onClose && <button onClick={onClose} className="text-text-secondary hover:text-text-primary text-2xl">
         <FontAwesomeIcon icon={faTimes} size="lg" />
-      </button>
+      </button>}
     </div>
 
     <form onSubmit={handleSubmit} className="space-y-5">
@@ -290,7 +290,7 @@ const AddFeeModal = ({ isOpen, onClose, jars, onSuccess }) => {
       </div>
     </form>
   </div>
-</div>
+// </div>
 
   );
 };
