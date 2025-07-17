@@ -9,9 +9,9 @@ const JarCard = ({ icon, name, spentAmount, total, color, bgColor }) => {
     const progressWidth = Math.min(100, usagePercentage);
 
     let progressBarColor;
-    if (usagePercentage >= 100) progressBarColor = 'bg-danger';
-    else if (usagePercentage >= 90) progressBarColor = 'bg-danger/70';
-    else if (usagePercentage >= 80) progressBarColor = 'bg-yellow';
+    if (usagePercentage >= 100) progressBarColor = 'bg-red-900';
+    else if (usagePercentage >= 90) progressBarColor = 'bg-red-600';
+    else if (usagePercentage >= 80) progressBarColor = 'bg-yellow-400';
     else progressBarColor = bgColor;
 
     return (
