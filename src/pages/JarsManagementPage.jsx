@@ -68,6 +68,12 @@ const JarsManagementPage = () => {
               onAddFeeClick={() => setIsFeeModalOpen(true)}
               onSuccess={refetch}
             />
+            <AddFeeModal
+              isOpen={true}
+              onClose={null}
+              jars={data.jars}
+              onSuccess={refetch}
+            />
           </div>
 
           <div className="lg:col-span-3 space-y-8">
