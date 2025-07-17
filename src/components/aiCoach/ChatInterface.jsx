@@ -51,7 +51,7 @@ const ChatMessage = ({ messageData, onAccept }) => {
                             onClick={onAccept}
                             className="px-4 py-1.5 bg-green text-white text-sm font-semibold rounded-lg hover:opacity-90 transition-opacity"
                         >
-                            Accept This Plan
+                            Accept
                         </button>
                     </div>
                 )}

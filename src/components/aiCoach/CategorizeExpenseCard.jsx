@@ -75,6 +75,7 @@ const CategorizeExpenseCard = ({ onCategorizeSuccess }) => {
             <div className="space-y-4">
                 {/* Bỏ đi ô input description */}
                 <input
+                    disabled
                     type="file"
                     ref={fileInputRef}
                     onChange={handleFileChange}
@@ -97,9 +98,9 @@ const CategorizeExpenseCard = ({ onCategorizeSuccess }) => {
                             </button>
                         </div>
                     ) : (
-                        <div className="text-text-secondary">
+                        <div disabled className="text-text-secondary">
                             <FontAwesomeIcon icon={faUpload} className="text-3xl mb-2" />
-                            <p className="text-sm font-medium">Click to upload receipt</p>
+                            <p className="text-sm font-medium">Click to upload receipt (coming soon...)</p>
                             <p className="text-xs text-text-secondary/70 mt-1">PNG, JPG, GIF</p>
                         </div>
                     )}
