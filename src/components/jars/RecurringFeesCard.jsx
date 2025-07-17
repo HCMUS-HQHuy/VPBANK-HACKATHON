@@ -1,16 +1,10 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// Thêm icon thùng rác vào import
 import { faMoneyBillWave, faCreditCard, faBell, faTrash } from '@fortawesome/free-solid-svg-icons';
 import JarsIcon from '@/utils/JarsIcon';
 import apiClient from '@/services/apiClient';
 
-// --- THE DYNAMIC CHILD COMPONENT ---
-// This component is purely presentational. It just receives props and renders them.
-// Component con được cập nhật để có nút xóa
 const RecurringFeeItem = ({ fee, icon, color, bgLight, onDelete }) => {
-    
-    // Hàm trợ giúp để định dạng ngày tháng đẹp hơn
     const formatDate = (dateString) => {
         if (!dateString) return 'N/A';
         const date = new Date(dateString);
@@ -35,7 +29,6 @@ const RecurringFeeItem = ({ fee, icon, color, bgLight, onDelete }) => {
                         <p className="text-sm text-text-secondary capitalize">{fee.target_jar.replace(/_/g, ' ')}</p>
                     </div>
                 </div>
-                {/* === THÊM NÚT XÓA MỚI === */}
                 <button 
                     onClick={() => onDelete(fee.name)} 
                     className="text-text-secondary hover:text-danger transition-colors p-2"
@@ -55,21 +48,13 @@ const RecurringFeeItem = ({ fee, icon, color, bgLight, onDelete }) => {
     );
 };
 
-
-// --- THE PARENT CONTAINER COMPONENT ---
-
-// Component cha được cập nhật để xử lý logic xóa
 const RecurringFeesCard = ({ fees = [], onAddFeeClick, onSuccess }) => {
-
-    // === HÀM XỬ LÝ LOGIC XÓA ===
     const handleDelete = async (feeName) => {
-        // Hỏi người dùng xác nhận trước khi xóa
         if (!window.confirm(`Are you sure you want to delete the recurring fee: "${feeName}"?`)) {
             return;
         }
 
         try {
-            // Gọi API endpoint với fee_name (đã được URL-encode tự động bởi axios)
             await apiClient.delete(`/fees/${feeName}`);
             alert('Fee deleted successfully!');
             if (typeof onSuccess === 'function') {
@@ -77,7 +62,6 @@ const RecurringFeesCard = ({ fees = [], onAddFeeClick, onSuccess }) => {
             }
         } catch (err) {
             console.error("Failed to delete fee:", err);
-            // Hiển thị thông báo lỗi từ backend nếu có
             alert(err.response?.data?.detail || "Could not delete the fee.");
         }
     };
@@ -86,11 +70,11 @@ const RecurringFeesCard = ({ fees = [], onAddFeeClick, onSuccess }) => {
         const jarKey = fee.target_jar.toLowerCase().replace(/\s/g, '_');
         const iconInfo = JarsIcon[jarKey] || JarsIcon.Default;
         return {
-            fee: fee, // Truyền toàn bộ object fee xuống
+            fee: fee,
             icon: iconInfo.icon,
             color: iconInfo.color,
             bgLight: iconInfo.bgLight,
-            onDelete: handleDelete, // TRUYỀN HÀM XỬ LÝ XÓA XUỐNG COMPONENT CON
+            onDelete: handleDelete, 
         };
     };
 
@@ -115,7 +99,7 @@ const RecurringFeesCard = ({ fees = [], onAddFeeClick, onSuccess }) => {
                                 icon={iconInfo.icon}
                                 color={iconInfo.color}
                                 bgLight={iconInfo.bgLight}
-                                onDelete={handleDelete} // <-- TRUYỀN THẲNG HÀM handleDelete XUỐNG
+                                onDelete={handleDelete} 
                             />
                         );
                     })

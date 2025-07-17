@@ -1,30 +1,19 @@
-// src/components/jars/JarsAllocationCard.jsx
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencilAlt } from '@fortawesome/free-solid-svg-icons'; 
 import JarsIcon from '@/utils/JarsIcon'; 
 
-// CẬP NHẬT TOÀN DIỆN LOGIC CỦA COMPONENT CON
 const JarCard = ({ icon, name, spentAmount, total, color, bgColor }) => {
-    
-    // 1. TÍNH TOÁN LẠI DỮ LIỆU CHO ĐÚNG
-    // Số tiền còn lại thực tế
     const actualRemaining = total - spentAmount;
-
-    // Tỷ lệ đã sử dụng (để quyết định MÀU SẮC và CHIỀU RỘNG)
     const usagePercentage = total > 0 ? (spentAmount / total) * 100 : 0;
-    
-    // Chiều rộng của thanh tiến trình không bao giờ vượt quá 100%
     const progressWidth = Math.min(100, usagePercentage);
 
-    // 2. LOGIC CHỌN MÀU DỰA TRÊN TỶ LỆ ĐÃ SỬ DỤNG
     let progressBarColor;
     if (usagePercentage >= 100) {
-        progressBarColor = 'bg-danger'; // Đỏ đậm khi bằng hoặc vượt 100%
+        progressBarColor = 'bg-red-600'; // Đỏ đậm khi bằng hoặc vượt 100%
     } else if (usagePercentage >= 90) {
-        progressBarColor = 'bg-danger/70'; // Đỏ nhạt
+        progressBarColor = 'bg-red-400'; // Đỏ nhạt
     } else if (usagePercentage >= 80) {
-        progressBarColor = 'bg-yellow'; // Vàng
+        progressBarColor = 'bg-yellow-500'; // Vàng
     } else {
         progressBarColor = bgColor; // Màu mặc định của hũ
     }
@@ -39,7 +28,6 @@ const JarCard = ({ icon, name, spentAmount, total, color, bgColor }) => {
             </div>
             <div className="mt-4 flex-grow">
                 <p className="text-sm font-medium text-text-secondary">Remaining</p>
-                {/* 3. HIỂN THỊ ĐÚNG SỐ TIỀN CÒN LẠI (actualRemaining) */}
                 <p className="text-2xl font-bold text-text-primary">
                     ${actualRemaining.toFixed(2)} 
                     <span className="text-lg font-normal text-text-secondary"> / ${total.toFixed(2)}</span>
@@ -47,7 +35,6 @@ const JarCard = ({ icon, name, spentAmount, total, color, bgColor }) => {
             </div>
             <div className="mt-2">
                 <div className="w-full bg-card-secondary rounded-full h-2.5">
-                    {/* 4. ÁP DỤNG MÀU SẮC VÀ CHIỀU RỘNG ĐÃ TÍNH TOÁN LẠI */}
                     <div 
                         className={`h-2.5 rounded-full transition-all duration-500 ${progressBarColor}`} 
                         style={{ width: `${progressWidth}%` }}
@@ -81,7 +68,6 @@ const JarsAllocationCard = ({ jars = [], onManageClick }) => {
                 color={iconInfo.color}
                 bgColor={iconInfo.bg}
                 name={jar.name} 
-                // CẬP NHẬT: Truyền `current_amount` vào prop `spentAmount` để code rõ ràng hơn
                 spentAmount={jar.current_amount}
                 total={jar.amount}          
               />

@@ -1,4 +1,4 @@
-const Spending = ({ weeklyData = [] }) => { // Nhận dữ liệu tuần qua props
+const Spending = ({ weeklyData = [] }) => {
   return (
     <>
       <h3 className="text-xl font-bold text-text-primary mb-6">Weekly Spending</h3>

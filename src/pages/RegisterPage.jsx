@@ -1,5 +1,3 @@
-// src/pages/RegisterPage.jsx
-
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
@@ -7,7 +5,6 @@ import Footer from '../auth/Footer';
 import Header from '../auth/Header';
 
 const RegisterPage = () => {
-  // --- State cho các trường input ---
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -15,7 +12,6 @@ const RegisterPage = () => {
     confirmPassword: '',
   });
   
-  // --- State cho việc xử lý lỗi và tải ---
   const [error, setError] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -29,11 +25,9 @@ const RegisterPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // --- Xóa các thông báo cũ và bắt đầu tải ---
     setError('');
     setSuccessMessage('');
 
-    // --- Kiểm tra mật khẩu phía client ---
     if (formData.password !== formData.confirmPassword) {
       setError('Passwords do not match.');
       return;
@@ -42,7 +36,6 @@ const RegisterPage = () => {
     setIsLoading(true);
 
     try {
-      // --- Gọi hàm register từ AuthContext ---
       await register({
         username: formData.username,
         email: formData.email,
@@ -51,17 +44,14 @@ const RegisterPage = () => {
 
       setSuccessMessage('Registration successful! Redirecting to login...');
       
-      // --- Chờ vài giây để người dùng đọc thông báo rồi chuyển trang ---
       setTimeout(() => {
         navigate('/login');
-      }, 2000);
+      }, 1000);
 
     } catch (err) {
-      // --- Hiển thị lỗi từ API ---
-      // API trả về lỗi trong err.response.data.detail
+
       setError(err.response?.data?.detail || 'Registration failed. Please try again.');
     } finally {
-      // --- Dừng trạng thái tải ---
       setIsLoading(false);
     }
   };
@@ -82,7 +72,7 @@ const RegisterPage = () => {
 
         <button
           type="submit"
-          disabled={isLoading} // --- Vô hiệu hóa nút khi đang tải ---
+          disabled={isLoading} 
           className="w-full py-3 bg-brand text-card font-semibold rounded-lg hover:opacity-90 transition-opacity shadow-lg shadow-brand-primary/20 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {isLoading ? 'Registering...' : 'Register'}
@@ -93,7 +83,6 @@ const RegisterPage = () => {
   );
 };
 
-// Component FormField được chỉnh sửa một chút để nhận value và onChange
 const FormField = ({ id, label, type, value, onChange, required = false }) => (
   <div>
     <label htmlFor={id} className="block text-sm font-medium text-text-secondary">

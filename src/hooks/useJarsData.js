@@ -1,5 +1,3 @@
-// src/hooks/useJarsData.js
-
 import { useState, useEffect, useCallback } from 'react';
 import apiClient from '@/services/apiClient';
 
@@ -16,11 +14,10 @@ export const useJarsData = () => {
     setIsLoading(true);
     setError(null);
     try {
-      // Gọi đồng thời cả 3 API để tối ưu tốc độ
       const [settingsRes, jarsRes, feesRes] = await Promise.all([
         apiClient.get('/user/settings'),
         apiClient.get('/jars/'),
-        apiClient.get('/fees/?active_only=true') // Chỉ lấy các khoản phí đang hoạt động
+        apiClient.get('/fees/?active_only=true')
       ]);
 
       setData({
@@ -35,13 +32,11 @@ export const useJarsData = () => {
     } finally {
       setIsLoading(false);
     }
-  }, []); // useCallback với dependency rỗng để hàm không bị tạo lại
+  }, []);
 
-  // Chạy fetchData khi component được mount
   useEffect(() => {
     fetchData();
   }, [fetchData]);
 
-  // Trả về state và hàm để tải lại dữ liệu nếu cần
   return { data, isLoading, error, refetch: fetchData };
 };

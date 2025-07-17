@@ -1,4 +1,3 @@
-// src/pages/DashboardPage.jsx
 import { useState } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useDashboardData } from '@/hooks/useDashboardData';
@@ -12,7 +11,6 @@ import EditIncomeModal from '@/components/financialOverview/EditIncomeModal';
 
 const Dashboard = () => {
   const { user } = useAuth();
-  // CẬP NHẬT DÒNG NÀY: Thêm 'refetch' vào danh sách các biến được lấy ra từ hook
   const { data, isLoading, error, refetch } = useDashboardData();
 
   const [isIncomeModalOpen, setIsIncomeModalOpen] = useState(false);
@@ -25,8 +23,6 @@ const Dashboard = () => {
     return <div className="text-center p-8 text-danger">Failed to load dashboard data. Please try again later.</div>;
   }
 
-  // Logic cho thông báo Heads up (ví dụ)
-  // Thêm 'optional chaining' (?.) để tránh lỗi khi data chưa có
   const funJar = data?.jars?.find(j => j.name.toLowerCase() === 'play');
   let headsUpMessage = null;
   if (funJar && funJar.amount > 0) {
@@ -42,7 +38,6 @@ const Dashboard = () => {
         isOpen={isIncomeModalOpen}
         onClose={() => setIsIncomeModalOpen(false)}
         currentIncome={data?.totalIncome}
-        // Cập nhật onSuccess để đóng modal sau khi refetch
         onSuccess={() => {
           refetch();
           setIsIncomeModalOpen(false);

@@ -1,5 +1,3 @@
-// src/pages/AICoachPage.jsx
-
 import { useEffect, useState } from 'react';
 import JarsAllocation from '@/components/dashboard/JarsAllocation';
 import CategorizeExpenseCard from '@/components/aiCoach/CategorizeExpenseCard';
@@ -24,8 +22,6 @@ const AiCoachPage = () => {
   }, [refreshTrigger]);
 
   const handleCategorizationSuccess = () => {
-    // Khi phân loại ảnh thành công, trigger fetch lại dữ liệu hũ
-    // để cập nhật % phân bổ nếu có giao dịch mới được tạo.
     setRefreshTrigger(prev => prev + 1); 
   };
 

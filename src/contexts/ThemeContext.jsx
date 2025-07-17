@@ -35,7 +35,7 @@ export const ThemeProvider = ({ children }) => {
 
     mediaQuery.addEventListener('change', handleChange);
     return () => mediaQuery.removeEventListener('change', handleChange);
-  }, [theme]); // Only run this listener logic when theme is 'system' or changes
+  }, [theme]); 
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
@@ -44,5 +44,4 @@ export const ThemeProvider = ({ children }) => {
   );
 };
 
-// 3. Create a custom hook to easily use the context
 export const useTheme = () => useContext(ThemeContext);

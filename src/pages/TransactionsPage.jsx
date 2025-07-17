@@ -1,12 +1,10 @@
-// src/pages/TransactionsPage.jsx
-
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faSpinner, faEdit, faTrash, faUndo, faFilter } from '@fortawesome/free-solid-svg-icons';
 import apiClient from '@/services/apiClient';
 import AddTransactionModal from '@/components/transactions/AddTransactionModal';
 import JarsIcon from '@/utils/JarsIcon';
-import useClickOutside from '@/hooks/useClickOutside'; // Giả sử bạn có hook này
+import useClickOutside from '@/hooks/useClickOutside';
 
 const transactionSources = ["vpbank_api", "manual_input", "text_input", "image_input"];
 
@@ -20,12 +18,10 @@ const TransactionsPage = () => {
 
   const initialFilters = { jar: '', source: '', start: '', end: '', min: '', max: '' };
   const [filters, setFilters] = useState(initialFilters);
-  const [activeFilter, setActiveFilter] = useState('all'); // State để theo dõi filter nào đang active
-
+  const [activeFilter, setActiveFilter] = useState('all');
   const advancedFilterRef = useRef(null);
   useClickOutside(advancedFilterRef, () => setIsAdvancedFilterOpen(false));
 
-  // Hàm fetch dữ liệu chung
   const fetchData = useCallback(async (endpoint = '/transactions/') => {
     setIsLoading(true);
     setError(null);
@@ -41,7 +37,6 @@ const TransactionsPage = () => {
     }
   }, []);
 
-  // Fetch dữ liệu và jars lần đầu
   useEffect(() => {
     fetchData('/transactions/');
     const fetchUserJars = async () => {

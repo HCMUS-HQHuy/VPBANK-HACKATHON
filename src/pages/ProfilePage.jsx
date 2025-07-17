@@ -1,5 +1,3 @@
-// file: src/pages/ProfilePage.jsx
-
 import React, { useState, useEffect, useRef } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -10,16 +8,12 @@ import {
   faSpinner, 
   faKey, 
   faLock,
-  faCamera // Thêm icon camera
+  faCamera 
 } from '@fortawesome/free-solid-svg-icons';
 
 const ProfilePage = () => {
   const { user, updateUserProfile } = useAuth();
-  
-  // State cho avatar
   const [avatarPreview, setAvatarPreview] = useState('');
-  
-  // State để quản lý dữ liệu form
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -27,16 +21,11 @@ const ProfilePage = () => {
     newPassword: '',
     confirmPassword: ''
   });
-
-  // State để quản lý trạng thái của form
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
-
-  // Ref để truy cập file input một cách ẩn
   const fileInputRef = useRef(null);
 
-  // Khi component được mount hoặc user thay đổi, cập nhật state của form và avatar
   useEffect(() => {
     if (user) {
       setFormData({
@@ -46,7 +35,6 @@ const ProfilePage = () => {
         newPassword: '',
         confirmPassword: ''
       });
-      // Đặt avatar mặc định
       setAvatarPreview(`https://i.pravatar.cc/150?u=${user.username}`);
     }
   }, [user]);
@@ -56,16 +44,13 @@ const ProfilePage = () => {
   };
 
   const handleAvatarClick = () => {
-    // Kích hoạt file input khi người dùng nhấn vào khu vực avatar
     fileInputRef.current.click();
   };
 
   const handleAvatarChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      // Tạo một URL tạm thời cho ảnh mới và cập nhật state để hiển thị
       setAvatarPreview(URL.createObjectURL(file));
-      // Trong ứng dụng thực tế, bạn sẽ tải file này lên server ở đây
     }
   };
   
@@ -75,8 +60,6 @@ const ProfilePage = () => {
     setError('');
     setSuccess('');
 
-    // Kiểm tra mật khẩu mới
-    // Phần 1: Cập nhật thông tin profile (username/email) nếu có thay đổi
     try {
       if (formData.username !== user.username || formData.email !== user.email) {
         await updateUserProfile({
@@ -88,10 +71,9 @@ const ProfilePage = () => {
     } catch (err) {
       setError(err.response?.data?.detail || 'Failed to update profile info.');
       setIsLoading(false);
-      return; // Dừng lại nếu có lỗi
+      return; 
     }
 
-    // Phần 2: Thay đổi mật khẩu nếu người dùng nhập mật khẩu mới
     if (formData.newPassword) {
       if (formData.newPassword.length < 8) {
         setError('New password must be at least 8 characters long.');
@@ -114,10 +96,8 @@ const ProfilePage = () => {
           current_password: formData.currentPassword,
           new_password: formData.newPassword,
         });
-        // Cập nhật thông báo thành công (nối vào thông báo cũ nếu có)
         setSuccess(prev => (prev ? prev + ' Password changed successfully!' : 'Password changed successfully!'));
         
-        // Xóa các trường mật khẩu sau khi thành công
         setFormData(prev => ({
           ...prev,
           currentPassword: '',
@@ -138,13 +118,11 @@ const ProfilePage = () => {
 
   return (
     <div className="container mx-auto p-4 md:p-8">
-      {/* Tiêu đề "My Profile" đã được xóa */}
-      
       <div className="max-w-2xl mx-auto">
         <div className="glass-card p-8 rounded-xl border border-border shadow-sm">
           
           <div className="flex flex-col items-center gap-4 mb-8">
-            {/* Chức năng thay đổi Avatar */}
+            {/* Change Avatar Function */}
             <div className="relative group cursor-pointer" onClick={handleAvatarClick}>
               <img 
                 className="h-28 w-28 rounded-full border-4 border-primary object-cover" 

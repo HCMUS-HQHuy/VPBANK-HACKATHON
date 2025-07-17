@@ -69,7 +69,6 @@ const AddFeeModal = ({ isOpen, onClose, jars, onSuccess }) => {
   if (!isOpen) return null;
 
   return (
-    // CẬP NHẬT: Thay đổi className để có hiệu ứng nền mờ
     <div className="fixed inset-0 bg-background/30 backdrop-blur-sm flex items-center justify-center z-50 p-4">
       <div className="bg-card p-6 md:p-8 rounded-xl shadow-lg w-full max-w-lg border border-border">
         <div className="flex justify-between items-center mb-6">

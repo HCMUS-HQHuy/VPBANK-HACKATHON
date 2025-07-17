@@ -1,5 +1,3 @@
-// src/components/transactions/AddTransactionModal.jsx
-
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faSave, faSpinner } from '@fortawesome/free-solid-svg-icons';
@@ -10,7 +8,6 @@ const AddTransactionModal = ({ isOpen, onClose, onTransactionAdded }) => {
     amount: '',
     description: '',
     jar: '',
-    // Tách date và time để dễ dàng xử lý trên UI
     date: new Date().toISOString().split('T')[0],
     time: new Date().toTimeString().slice(0, 5),
     source: 'manual_input',
@@ -47,24 +44,19 @@ const AddTransactionModal = ({ isOpen, onClose, onTransactionAdded }) => {
     setError('');
 
     try {
-      // CẬP NHẬT: Kết hợp date và time thành một chuỗi ISO 8601
-      // để khớp với yêu cầu `datetime` của Pydantic ở backend.
       const transaction_datetime = new Date(`${formData.date}T${formData.time}:00`).toISOString();
-
       const payload = {
         amount: parseFloat(formData.amount),
         description: formData.description,
-        jar: formData.jar, // Backend model đã được cập nhật để nhận `jar`
+        jar: formData.jar, 
         source: formData.source,
-        transaction_datetime: transaction_datetime, // Gửi trường này thay vì date và time
+        transaction_datetime: transaction_datetime, 
       };
 
       await apiClient.post('/transactions/', payload);
       onTransactionAdded();
       onClose();
     } catch (err) {
-      // CẬP NHẬT: Xử lý lỗi 422 một cách an toàn
-      // Lấy thông báo lỗi cụ thể từ mảng 'detail' của FastAPI
       const errorMsg = err.response?.data?.detail?.[0]?.msg || err.response?.data?.detail || 'Failed to add transaction.';
       setError(errorMsg);
     } finally {
@@ -96,12 +88,10 @@ const AddTransactionModal = ({ isOpen, onClose, onTransactionAdded }) => {
             <div>
               <label htmlFor="jar" className="block text-sm font-medium text-text-secondary">Jar</label>
               <select name="jar" id="jar" value={formData.jar} onChange={handleChange} required className="mt-1 w-full p-3 bg-card-secondary border border-border rounded-md">
-                {/* CẬP NHẬT: Thêm `key` prop để sửa lỗi warning của React */}
                 {jars.map(j => <option key={j._id} value={j.name}>{j.name}</option>)}
               </select>
             </div>
           </div>
-          {/* CẬP NHẬT: Thêm các ô nhập ngày và giờ */}
           <div className="grid grid-cols-2 gap-4">
               <div>
                 <label htmlFor="date" className="block text-sm font-medium text-text-secondary">Date</label>

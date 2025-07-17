@@ -26,7 +26,6 @@ const EditIncomeModal = ({ isOpen, onClose, currentIncome, onSuccess }) => {
   if (!isOpen) return null;
 
   return (
-    // CẬP NHẬT: Thay đổi className để có hiệu ứng nền mờ
     <div className="fixed inset-0 bg-background/30 backdrop-blur-sm flex items-center justify-center z-50">
       <div className="bg-card p-8 rounded-xl shadow-lg w-full max-w-md border border-border">
         <h2 className="text-2xl font-bold text-text-primary mb-6">Edit Total Income</h2>

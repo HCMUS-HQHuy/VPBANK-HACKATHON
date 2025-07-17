@@ -51,14 +51,12 @@ const Navbar = () => {
 
                     {/* User Actions */}
                     <div className="flex items-center">
-                        {/* BƯỚC 3.3: TẠO MỘT CONTAINER TƯƠNG ĐỐI (RELATIVE) */}
                         <div ref={userMenuRef} className="relative flex items-center gap-4">
                             {/* Notifications */}
                             <button type="button" className="relative p-1 text-text-secondary hover:text-text-primary">
                                 {/* ... */}
                             </button>
 
-                            {/* Avatar Button */}
                             <button
                                 type="button"
                                 className="flex text-sm bg-slate-200 rounded-full focus:outline-none ring-2 ring-offset-2 ring-ring"
@@ -68,13 +66,11 @@ const Navbar = () => {
                                 <img className="h-8 w-8 rounded-full" src="https://i.pravatar.cc/40?u=alex" alt="User avatar" />
                             </button>
 
-                            {/* BƯỚC 3.4: HIỂN THỊ DROPDOWN CÓ ĐIỀU KIỆN */}
                             {isUserMenuOpen && (
                                 <UserSettingsDropdown closeDropdown={() => setIsUserMenuOpen(false)} />
                             )}
                         </div>
 
-                        {/* Mobile Menu Button */}
                         <div className="md:hidden">
                             <button
                                 type="button"
@@ -89,7 +85,6 @@ const Navbar = () => {
                 </div>
             </div>
 
-            {/* Mobile menu - Conditionally rendered */}
             {isMobileMenuOpen && (
                 <div className="md:hidden" id="mobile-menu">
                     <div className="space-y-1 px-2 pt-2 pb-3 sm:px-3">

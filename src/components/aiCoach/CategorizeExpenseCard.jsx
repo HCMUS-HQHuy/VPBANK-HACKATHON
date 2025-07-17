@@ -1,5 +1,3 @@
-// src/components/aiCoach/CategorizeExpenseCard.jsx
-
 import React, { useState, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUpload, faPencil, faSpinner, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
@@ -44,13 +42,10 @@ const CategorizeExpenseCard = ({ onCategorizeSuccess }) => {
         setError('');
 
         const formData = new FormData();
-        // CẬP NHẬT: Gửi một mô tả mặc định vì backend yêu cầu trường này,
-        // nhưng người dùng không cần nhập nữa.
         formData.append('description', `Categorize from image: ${selectedFile.name}`);
         formData.append('image', selectedFile);
 
         try {
-            // Gọi đến endpoint AI chuyên dụng để phân loại
             const response = await apiClient.post('/chat/', formData, {
                 headers: { 'Content-Type': 'multipart/form-data' },
             });
@@ -73,7 +68,6 @@ const CategorizeExpenseCard = ({ onCategorizeSuccess }) => {
         <div className="glass-card p-6 rounded-xl border border-border shadow-sm">
             <h3 className="text-xl font-bold text-text-primary mb-4">Categorize by Receipt</h3>
             <div className="space-y-4">
-                {/* Bỏ đi ô input description */}
                 <input
                     disabled
                     type="file"

@@ -3,12 +3,12 @@ import { createRoot } from 'react-dom/client';
 import "@/styles/index.css";
 import App from '@/App.jsx';
 import { ThemeProvider } from '@/contexts/ThemeContext.jsx';
-import { AuthProvider } from '@/contexts/AuthContext.jsx'; // <-- IMPORT
+import { AuthProvider } from '@/contexts/AuthContext.jsx'; 
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <ThemeProvider>
-      <AuthProvider> {/* <-- BỌC Ở ĐÂY */}
+      <AuthProvider> 
         <App />
       </AuthProvider>
     </ThemeProvider>

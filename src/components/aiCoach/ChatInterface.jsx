@@ -1,5 +1,3 @@
-// src/components/aiCoach/ChatInterface.jsx
-
 import React, { useState, useRef, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
@@ -8,7 +6,6 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import apiClient from '@/services/apiClient';
 
-// BƯỚC 1: TẠO MAPPING TỪ TÊN AGENT SANG ICON
 const agentIcons = {
     classifier: faTags,
     jar: faSackDollar,
@@ -21,12 +18,10 @@ const agentIcons = {
 };
 
 const getAgentIcon = (agentList) => {
-    // Ưu tiên hiển thị icon của agent chuyên biệt thay vì orchestrator
     const specificAgent = agentList?.find(agent => agent !== 'orchestrator');
     return agentIcons[specificAgent] || agentIcons.default;
 };
 
-// BƯỚC 2: CẬP NHẬT CHATMESSAGE COMPONENT
 const ChatMessage = ({ messageData, onAccept }) => {
     const { text, isUser, agent_list, plan_stage } = messageData;
     
@@ -44,7 +39,6 @@ const ChatMessage = ({ messageData, onAccept }) => {
                 <div className={`max-w-xl p-4 rounded-xl whitespace-pre-wrap ${isUser ? 'bg-primary text-primary-light rounded-br-none' : 'bg-card-secondary text-text-primary rounded-bl-none'}`}>
                     <p>{text}</p>
                 </div>
-                {/* Hiển thị nút Accept nếu đúng điều kiện */}
                 {isPlanStageTwo && (
                     <div className="flex justify-start">
                         <button 
@@ -65,8 +59,6 @@ const ChatMessage = ({ messageData, onAccept }) => {
     );
 };
 
-
-// BƯỚC 3: CẬP NHẬT CHATINTERFACE
 const ChatInterface = () => {
     const [messages, setMessages] = useState([]);
     const [inputValue, setInputValue] = useState('');
@@ -85,7 +77,6 @@ const ChatInterface = () => {
                 acc.push({ text: turn.user_input, isUser: true });
             }
             if (turn.agent_output) {
-                // Truyền toàn bộ thông tin của lượt chat từ AI
                 acc.push({ 
                     text: turn.agent_output, 
                     isUser: false,
@@ -150,7 +141,6 @@ const ChatInterface = () => {
         sendMessage(inputValue);
     };
 
-    // Hàm xử lý khi người dùng nhấn nút "Accept"
     const handleAcceptPlan = () => {
         sendMessage("Accept");
     };

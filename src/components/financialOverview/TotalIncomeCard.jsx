@@ -6,7 +6,6 @@ const TotalIncomeCard = ({ income = 0, onEditClick }) => {
         <div className="bg-card p-6 rounded-xl border border-border shadow-sm">
             <div className="flex justify-between items-center">
                 <h3 className="text-xl font-bold text-text-primary">Total Income</h3>
-                {/* Dùng button thay vì 'a' và gọi onEditClick */}
                 <button onClick={onEditClick} className="text-sm font-semibold text-text-accent hover:underline">
                     <FontAwesomeIcon icon={faEdit} />
                     <span> Edit </span>

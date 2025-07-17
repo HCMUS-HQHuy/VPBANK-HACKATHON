@@ -1,5 +1,3 @@
-// src/pages/LoginPage.jsx
-
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
@@ -7,11 +5,8 @@ import Footer from '../auth/Footer';
 import Header from '../auth/Header';
 
 const LoginPage = () => {
-  // --- State cho các trường input ---
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-
-  // --- State cho việc xử lý lỗi và tải ---
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
@@ -24,15 +19,12 @@ const LoginPage = () => {
     setIsLoading(true);
 
     try {
-      // --- Gọi hàm login từ AuthContext ---
       await login(username, password);
-      navigate('/dashboard'); // --- Chuyển hướng đến dashboard ngay khi thành công ---
+      navigate('/dashboard'); 
 
     } catch (err) {
-      // --- Hiển thị lỗi từ API ---
       setError(err.response?.data?.detail || 'Login failed. Please check your credentials.');
     } finally {
-      // --- Dừng trạng thái tải ---
       setIsLoading(false);
     }
   };
