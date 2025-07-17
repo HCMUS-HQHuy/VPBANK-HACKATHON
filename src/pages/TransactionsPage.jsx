@@ -127,7 +127,7 @@ const TransactionsPage = () => {
               {/* --- Bộ lọc chính --- */}
               <select value={filters.jar} onChange={(e) => applyJarFilter(e.target.value)} className={`px-4 py-2 text-text-primary bg-card-secondary border rounded-lg focus:ring-2 focus:ring-ring ${activeFilter === 'jar' ? 'border-primary' : 'border-border'}`}>
                 <option value="">All Jars</option>
-                {userJars.map(jar => <option key={jar.id} value={jar.name}>{jar.name}</option>)}
+                {userJars.map(jar => <option key={jar._id} value={jar.name}>{jar.name}</option>)}
               </select>
               <select value={filters.source} onChange={(e) => applySourceFilter(e.target.value)} className={`px-4 py-2 text-text-primary bg-card-secondary border rounded-lg focus:ring-2 focus:ring-ring ${activeFilter === 'source' ? 'border-primary' : 'border-border'}`}>
                 <option value="">All Sources</option>
